@@ -1,0 +1,58 @@
+8/18/2023, 11:21:32 AM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/18/2023, 11:22:51 AM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/18/2023, 11:24:03 AM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/18/2023, 11:27:43 AM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/18/2023, 3:22:07 PM [ERROR]: Error updating user: pool.connection is not a function
+8/18/2023, 3:23:24 PM [ERROR]: Error updating user: pool.connection is not a function
+8/18/2023, 3:25:06 PM [ERROR]: Error updating user: pool.connection is not a function
+8/18/2023, 6:27:45 PM [ERROR]: Error updating user: Incorrect arguments to mysqld_stmt_execute
+8/18/2023, 6:28:45 PM [ERROR]: Error updating user: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE user_uuid=?' at line 1
+8/21/2023, 2:57:32 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:01:30 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:11:52 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:13:07 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:15:19 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:16:11 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:17:19 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:19:58 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 3:21:30 PM [ERROR]: Error in adding device: Error: Incorrect datetime value: '2023-08-21 15:21:30 pm' for column `portalbeta`.`devices`.`created_at` at row 1
+8/21/2023, 3:34:19 PM [ERROR]: Error in adding device: ReferenceError: userUUID is not defined
+8/21/2023, 4:03:20 PM [ERROR]: Error in updating device ReferenceError: email is not defined
+8/21/2023, 4:05:08 PM [ERROR]: Error in updating device TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 4:08:05 PM [ERROR]: Error in updating device TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 5:36:59 PM [ERROR]: Error in updating device TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/21/2023, 5:51:04 PM [ERROR]: Error in getting data, Error: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null 
+8/21/2023, 5:51:54 PM [ERROR]: Error in getting data, Error: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null 
+8/21/2023, 7:07:17 PM [ERROR]: Error in updating device ReferenceError: status is not defined
+8/22/2023, 10:23:04 AM [ERROR]: Error in deleting the device TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 10:23:51 AM [ERROR]: Error in deleting the device TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 10:24:40 AM [ERROR]: Error in deleting the device Error: Incorrect datetime value: '2023-08-22 10:24:40 am' for column `portalbeta`.`devices`.`modified_at` at row 1
+8/22/2023, 10:25:43 AM [ERROR]: Error in deleting the device Error: Incorrect datetime value: '2023-08-22 10:25:43 am' for column `portalbeta`.`devices`.`modified_at` at row 1
+8/22/2023, 3:00:26 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:00:48 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:05:03 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:08:53 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:09:58 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:10:27 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:10:45 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:11:12 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:12:44 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:13:47 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:14:10 PM [ERROR]: Error adding analytics thresholds: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 3:18:21 PM [ERROR]: Error adding analytics thresholds: brake is not defined
+8/22/2023, 3:19:41 PM [ERROR]: Error adding analytics thresholds: Column count doesn't match value count at row 1
+8/22/2023, 3:22:46 PM [ERROR]: Error adding analytics thresholds: Incorrect arguments to mysqld_stmt_execute
+8/22/2023, 3:26:03 PM [ERROR]: Error adding analytics thresholds: Incorrect integer value: '{"ttc_difference_percentage":"21"}' for column `portalbeta`.`thresholds`.`accident` at row 1
+8/22/2023, 3:33:57 PM [ERROR]: Error adding analytics thresholds: Incorrect integer value: '' for column `portalbeta`.`thresholds`.`status` at row 1
+8/22/2023, 3:34:10 PM [ERROR]: Error adding analytics thresholds: Incorrect integer value: '' for column `portalbeta`.`thresholds`.`status` at row 1
+8/22/2023, 3:34:24 PM [ERROR]: Error adding analytics thresholds: Incorrect integer value: '' for column `portalbeta`.`thresholds`.`status` at row 1
+8/22/2023, 5:40:14 PM [ERROR]: Error in updating analytics thresholds Error: Incorrect arguments to mysqld_stmt_execute
+8/22/2023, 5:56:50 PM [ERROR]: Error in updating analytics thresholds: Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE threshold_uuid=?' at line 1
+8/22/2023, 6:06:53 PM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 6:07:04 PM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 6:08:01 PM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 6:08:29 PM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 6:09:01 PM [ERROR]: Error adding customers: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/22/2023, 6:14:21 PM [ERROR]: Error in updating analytics thresholds: Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE threshold_uuid=?' at line 1
+8/22/2023, 6:16:32 PM [ERROR]: Error in updating analytics thresholds: Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE threshold_uuid=?' at line 1
+8/22/2023, 6:16:50 PM [ERROR]: Error in updating analytics thresholds: Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE threshold_uuid=?' at line 1
