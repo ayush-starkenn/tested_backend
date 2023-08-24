@@ -104,7 +104,7 @@ exports.getAnalyticsThreshold = async (req, res) => {
     connection.release();
 }
 };
-
+// update AT
 exports.updateAnalyticsThresholds = async (req, res) => {
 
       // Connection To the Database
@@ -171,6 +171,7 @@ exports.updateAnalyticsThresholds = async (req, res) => {
 }
 };
 
+//Delete AT
 exports.deleteAnalyticsThresholds = async (req, res) => {
 
       // Connection To the Database
@@ -209,6 +210,7 @@ exports.deleteAnalyticsThresholds = async (req, res) => {
   }
 };
 
+//Get By Id AT
 exports.getByIdAnalyticsThresholds = async (req, res) => {
 
       // Connection To the Database
