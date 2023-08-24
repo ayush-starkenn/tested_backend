@@ -33,7 +33,7 @@ app.use("/api/analytics-threshold", ATRouter);
 app.use("/api/vehicles", vehiclesRouter);
 // app.use("/api/drivers", driversRouter);
 
-const mqttClient = setupMQTT();
+setupMQTT();
 
 app.listen(8080, () => {
   logger.info(`App is running on port ${8080}`);

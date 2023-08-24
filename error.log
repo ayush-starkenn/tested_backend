@@ -56,3 +56,4 @@
 8/22/2023, 6:14:21 PM [ERROR]: Error in updating analytics thresholds: Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE threshold_uuid=?' at line 1
 8/22/2023, 6:16:32 PM [ERROR]: Error in updating analytics thresholds: Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE threshold_uuid=?' at line 1
 8/22/2023, 6:16:50 PM [ERROR]: Error in updating analytics thresholds: Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' modified_at=?, modified_by = ? WHERE threshold_uuid=?' at line 1
+8/24/2023, 1:01:46 PM [ERROR]: Error retrieving topics from the database: Table 'portalbeta.topics_table' doesn't exist

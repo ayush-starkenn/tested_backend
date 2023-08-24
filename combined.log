@@ -1,58 +1,40 @@
-8/23/2023, 2:53:28 PM [INFO]: App is running on port 8080
-8/23/2023, 2:53:28 PM [INFO]: Connected to MQTT broker
-8/23/2023, 2:53:28 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
-8/23/2023, 2:53:33 PM [INFO]: Database connected
-8/23/2023, 2:53:33 PM [INFO]: Database connected
-8/23/2023, 2:54:17 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:17 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:17 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:20 PM [INFO]: Database connected
-8/23/2023, 2:54:20 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:20 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:20 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:24 PM [INFO]: Database connected
-8/23/2023, 2:54:24 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:24 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:24 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:26 PM [INFO]: Database connected
-8/23/2023, 2:54:26 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:26 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:26 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:28 PM [INFO]: Database connected
-8/23/2023, 2:54:28 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:28 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:28 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:29 PM [INFO]: Database connected
-8/23/2023, 2:54:29 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:29 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:29 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:30 PM [INFO]: Database connected
-8/23/2023, 2:54:30 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:30 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:30 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:31 PM [INFO]: Database connected
-8/23/2023, 2:54:31 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:31 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:31 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 2:54:32 PM [INFO]: Database connected
-8/23/2023, 2:54:32 PM [INFO]: Successfully received vehicle details.
-8/23/2023, 2:54:32 PM [INFO]: Ongoing trip found. Trip will continue
-8/23/2023, 2:54:32 PM [INFO]: Stored Tripdata in the database
-8/23/2023, 3:03:16 PM [INFO]: App is running on port 8080
-8/23/2023, 3:03:16 PM [INFO]: Connected to MQTT broker
-8/23/2023, 3:03:16 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
-8/23/2023, 3:03:19 PM [INFO]: Database connected
-8/23/2023, 3:03:19 PM [INFO]: Database connected
-8/23/2023, 3:30:28 PM [INFO]: App is running on port 8080
-8/23/2023, 3:30:29 PM [INFO]: Connected to MQTT broker
-8/23/2023, 3:30:29 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
-8/23/2023, 3:32:05 PM [INFO]: App is running on port 8080
-8/23/2023, 3:32:05 PM [INFO]: Connected to MQTT broker
-8/23/2023, 3:32:05 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
-8/23/2023, 3:32:11 PM [INFO]: Database connected
-8/23/2023, 3:32:11 PM [INFO]: Database connected
-8/23/2023, 3:33:27 PM [INFO]: App is running on port 8080
-8/23/2023, 3:33:27 PM [INFO]: Connected to MQTT broker
-8/23/2023, 3:33:27 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
-8/23/2023, 3:34:24 PM [INFO]: Database connected
-8/23/2023, 3:34:24 PM [INFO]: Database connected
+8/24/2023, 12:43:32 PM [INFO]: App is running on port 8080
+8/24/2023, 12:43:32 PM [INFO]: Connected to MQTT broker
+8/24/2023, 12:43:32 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
+8/24/2023, 12:46:33 PM [INFO]: App is running on port 8080
+8/24/2023, 12:46:33 PM [INFO]: Connected to MQTT broker
+8/24/2023, 12:46:33 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
+8/24/2023, 12:48:07 PM [INFO]: Database connected
+8/24/2023, 12:48:07 PM [INFO]: Database connected
+8/24/2023, 12:48:07 PM [INFO]: Database connected
+8/24/2023, 12:48:07 PM [INFO]: Database connected
+8/24/2023, 12:49:36 PM [INFO]: App is running on port 8080
+8/24/2023, 12:49:36 PM [INFO]: Connected to MQTT broker
+8/24/2023, 12:49:36 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
+8/24/2023, 12:54:31 PM [INFO]: App is running on port 8080
+8/24/2023, 12:54:31 PM [INFO]: Connected to MQTT broker
+8/24/2023, 12:54:31 PM [INFO]: Subscribe to topic starkennInv3/PIYUSH_01/data
+8/24/2023, 12:54:42 PM [INFO]: Database connected
+8/24/2023, 12:54:42 PM [INFO]: Database connected
+8/24/2023, 12:54:42 PM [INFO]: Database connected
+8/24/2023, 12:55:03 PM [INFO]: Database connected
+8/24/2023, 1:01:46 PM [INFO]: App is running on port 8080
+8/24/2023, 1:01:46 PM [INFO]: Database connected
+8/24/2023, 1:01:46 PM [ERROR]: Error retrieving topics from the database: Table 'portalbeta.topics_table' doesn't exist
+8/24/2023, 1:01:46 PM [INFO]: Connected to MQTT broker
+8/24/2023, 1:03:09 PM [INFO]: App is running on port 8080
+8/24/2023, 1:03:09 PM [INFO]: Database connected
+8/24/2023, 1:03:09 PM [INFO]: Connected to MQTT broker
+8/24/2023, 1:03:09 PM [INFO]: Subscribed to topic: CV43433
+8/24/2023, 1:03:09 PM [INFO]: Subscribed to topic: DMS_NCL_8
+8/24/2023, 1:03:09 PM [INFO]: Subscribed to topic: EC02190
+8/24/2023, 1:03:09 PM [INFO]: Subscribed to topic: PIYUSH_01
+8/24/2023, 1:03:09 PM [INFO]: Subscribed to topic: WCE1321
+8/24/2023, 1:03:33 PM [INFO]: App is running on port 8080
+8/24/2023, 1:03:33 PM [INFO]: Database connected
+8/24/2023, 1:03:33 PM [INFO]: Connected to MQTT broker
+8/24/2023, 1:03:33 PM [INFO]: Subscribed to topic: CV43433
+8/24/2023, 1:03:33 PM [INFO]: Subscribed to topic: DMS_NCL_8
+8/24/2023, 1:03:33 PM [INFO]: Subscribed to topic: EC02190
+8/24/2023, 1:03:33 PM [INFO]: Subscribed to topic: PIYUSH_01
+8/24/2023, 1:03:33 PM [INFO]: Subscribed to topic: WCE1321
