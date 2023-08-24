@@ -4,12 +4,11 @@ const logger = require("../../logger.js");
 
 // Add the device to database
 const addDevice = async (req, res) => {
-
-      // Connection to the database
-      const connection = await pool.getConnection();
+  // Connection to the database
+  const connection = await pool.getConnection();
   try {
     const { device_id, device_type, user_uuid, sim_number, status, userUUID } =
-      req.body
+      req.body;
 
     // Creating current date and time
     let createdAt = new Date();
@@ -47,20 +46,18 @@ const addDevice = async (req, res) => {
       totalCount: results.length,
       results,
     });
-
   } catch (err) {
     logger.error(`Error in adding device: ${err}`);
     res.status(500).json({ message: "Internal server error" });
   } finally {
     connection.release();
-}
+  }
 };
 
 // Edit device the device
 const editDevice = async (req, res) => {
-
-    // Connection to database
-    const connection = await pool.getConnection();
+  // Connection to database
+  const connection = await pool.getConnection();
   try {
     const {
       device_id,
@@ -101,14 +98,13 @@ const editDevice = async (req, res) => {
     res.status(500).send({ message: "Error in updating device", err });
   } finally {
     connection.release();
-}
+  }
 };
 
 // Delete device
 const deleteDevice = async (req, res) => {
-
-      //connection to database
-      const connection = await pool.getConnection();
+  //connection to database
+  const connection = await pool.getConnection();
   try {
     const { device_id } = req.params;
 
@@ -138,17 +134,15 @@ const deleteDevice = async (req, res) => {
     res
       .status(500)
       .send({ message: "Error in deleting the device", Error: err });
-    } finally {
-      connection.release();
+  } finally {
+    connection.release();
   }
 };
 
 // Get list of all devices from database whoes status=active
 const getDevices = async (req, res) => {
-
   const connection = await pool.getConnection();
   try {
-
     const getQuery = `
       SELECT devices.*, CONCAT(users.first_name, ' ', users.last_name) AS full_name
       FROM devices
@@ -162,23 +156,20 @@ const getDevices = async (req, res) => {
       totalCount: devices.length,
       devices,
     });
- 
   } catch (err) {
     logger.error(`Error in getting the list, Error: ${err} `);
     res.status(500).send({ message: "Error in getting the list", Error: err });
   } finally {
     connection.release();
-}
+  }
 };
 
 // Get device by device id
 const getDeviceById = async (req, res) => {
-
   const connection = await pool.getConnection();
   try {
     const deviceID = req.params.device_id;
 
- 
     const getQuery = `
       SELECT * FROM devices where device_id = ?
     `;
@@ -189,21 +180,18 @@ const getDeviceById = async (req, res) => {
       totalCount: device.length,
       device,
     });
-
   } catch (err) {
     logger.error(`Error in getting data, Error: ${err} `);
     res.status(500).send({ message: "Error in data", Error: err });
   } finally {
     connection.release();
-}
+  }
 };
 
 // Get list of all devices from database whoes status=active
 const getCustomerList = async (req, res) => {
-
   const connection = await pool.getConnection();
   try {
-    
     const getQuery =
       "SELECT user_uuid, first_name, last_name FROM users WHERE user_status=? AND user_type=?";
     const [users] = await connection.execute(getQuery, [1, 2]);
@@ -218,7 +206,7 @@ const getCustomerList = async (req, res) => {
     res.status(500).send({ message: "Error in getting the list", Error: err });
   } finally {
     connection.release();
-}
+  }
 };
 
 // //get list of devices which are assign to particular user
@@ -323,7 +311,6 @@ const getCustomerList = async (req, res) => {
 const deviceCount = async (req, res) => {
   const connection = await pool.getConnection();
   try {
-
     const [result] = await connection.query(
       "SELECT COUNT(*) AS count FROM devices WHERE device_status != ?",
       [0]
@@ -331,13 +318,12 @@ const deviceCount = async (req, res) => {
     res
       .status(200)
       .json({ message: "Successfully received devices count.", result });
-
   } catch (error) {
     logger.error("Error in fetching data", error);
     res.status(501).json({ message: "Unable to fetch total devices!" });
   } finally {
     connection.release();
-}
+  }
 };
 
 module.exports = {
