@@ -4,10 +4,10 @@ const { v4: uuidv4 } = require("uuid");
 const logger = require("../../logger.js");
 
 const addDriver = async (req, res) => {
-    try {
-        // Connection to the database
-        const connection = await pool.getConnection();
 
+          // Connection to the database
+          const connection = await pool.getConnection();
+    try {
         const { user_uuid } = req.params;
   
     const {
@@ -70,15 +70,19 @@ const addDriver = async (req, res) => {
             totalCount: results.length,
             results,
           });
-      
-          connection.release();
+
         } catch (err) {
           logger.error(`Error in adding Driver: ${err}`);
           res.status(500).json({ message: "Internal server error" });
-        }
-};
+        } finally {
+          connection.release();
+      }
+  };
   
 const editDriver = async (req, res) => {
+
+        // Connection to the database
+        const connection = await pool.getConnection();
     try {
     const {
       driver_first_name,
@@ -93,10 +97,6 @@ const editDriver = async (req, res) => {
   
     const { driver_uuid } = req.params;
 
-      // Connection to the database
-      const connection = await pool.getConnection();
-
-  
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
@@ -144,20 +144,21 @@ const editDriver = async (req, res) => {
           results,
         });
       
-        connection.release();
     } catch (err) {
       logger.error(`Error in adding Driver: ${err}`);
       res.status(500).json({ message: "Internal server error" });
-    }
+    } finally {
+      connection.release();
+  }
 };
   
 const deleteDriver = async (req, res) => {
+
+        //connection to database
+        const connection = await pool.getConnection();
     try {
     const { driver_uuid } = req.params;
     const { user_uuid } = req.body;
-  
-      //connection to database
-    const connection = await pool.getConnection();
   
     let createdAt = new Date();
     let currentTimeIST = moment
@@ -179,22 +180,22 @@ const deleteDriver = async (req, res) => {
         totalCount: results.length,
         results,
       });
-     connection.release();
+
     } catch (err) {
       logger.error(`Error in deleting the Contacts ${err}`);
       res
         .status(500)
         .send({ message: "Error in deleting the contacts", Error: err });
+      } finally {
+        connection.release();
     }
 };
   
 const getUsersDrivers = async (req, res) => {
-     try {
+
+  const connection = await pool.getConnection();
+     try { 
     const { user_uuid } = req.params;
-  
-    const connection = await pool.getConnection();
-  
-   
       const getQuery =
         "SELECT * FROM drivers WHERE user_uuid=? AND driver_status=? ORDER BY driver_created_at DESC";
   
@@ -205,13 +206,14 @@ const getUsersDrivers = async (req, res) => {
         totalCount: results.length,
         results,
       });
-      connection.release();
     } catch (err) {
       logger.error(`Error in getting data, Error: ${err} `);
       res.status(500).send({ message: "Error in data", Error: err });
-    }
+    } finally {
+      connection.release();
+  }
 };
 
 
 module.exports = { addDriver, editDriver, deleteDriver, getUsersDrivers };
-  
+   

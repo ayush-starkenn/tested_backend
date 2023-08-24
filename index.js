@@ -11,14 +11,19 @@ const { ATRouter } = require("./routes/admin/analyticsthresholdRoute");
 const { loginRouter } = require("./routes/loginRoute");
 const { authentication } = require("./middleware/authentication");
 const { contactsRouter } = require("./routes/customer/contactsRoute");
+const { profileRouter } = require("./routes/customer/profileRoute");
 
 const cors = require("cors");
+
 require("dotenv").config();
+const PORT = process.env.PORT;
 
 const app = express();
 
 app.use(express.json());
 app.use(cors({ origin: "*" }));
+
+setupMQTT();
 
 // Login Routes
 app.use("/api", loginRouter);
@@ -34,11 +39,10 @@ app.use("/api/analytics-threshold", ATRouter);
 app.use("/api/vehicles", vehiclesRouter);
 app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
+app.use("/api/profile", profileRouter);
 
-const mqttClient = setupMQTT();
-
-app.listen(8080, () => {
-  logger.info(`App is running on port ${8080}`);
+app.listen(PORT, () => {
+  logger.info(`App is running on port ${PORT}`);
 });
 
 // process.on("SIGINT", async () => {
