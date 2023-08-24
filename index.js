@@ -13,6 +13,7 @@ const { authentication } = require("./middleware/authentication");
 const { contactsRouter } = require("./routes/customer/contactsRoute");
 
 const cors = require("cors");
+const { log } = require("winston");
 require("dotenv").config();
 
 const app = express();
@@ -36,7 +37,7 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
 
 setupMQTT();
-
+console.log("text");
 app.listen(8080, () => {
   logger.info(`App is running on port ${8080}`);
 });
