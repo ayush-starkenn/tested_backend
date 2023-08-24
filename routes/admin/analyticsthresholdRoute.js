@@ -22,7 +22,7 @@ ATRouter.put(
 
 // Delete Analytics Threshold Routes //
 ATRouter.put(
-  "/delete-AnalyticsThresholds/:threshold_uuid",
+  "/delete-analytic-threshold/:threshold_uuid",
   ATController.deleteAnalyticsThresholds
 );
 

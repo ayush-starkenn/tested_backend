@@ -1,7 +1,7 @@
 const logger = require("./logger");
 const express = require("express");
 const pool = require("./config/db");
-// const setupMQTT = require("./controllers/mqttHandler");
+const setupMQTT = require("./controllers/mqttHandler");
 // Import all routes
 const { deviceRouter } = require("./routes/admin/deviceRoute");
 const { vehiclesRouter } = require("./routes/customer/vehiclesRoute");
@@ -14,6 +14,7 @@ const { contactsRouter } = require("./routes/customer/contactsRoute");
 const {  profileRouter } = require("./routes/customer/profileRoute");
 
 const cors = require("cors");
+const { log } = require("winston");
 require("dotenv").config();
 const PORT = process.env.PORT;
 
@@ -22,8 +23,11 @@ const app = express();
 app.use(express.json()); 
 app.use(cors({ origin: "*" }));
 
+<<<<<<< HEAD
 // const mqttClient = setupMQTT();
  
+=======
+>>>>>>> main
 // Login Routes
 app.use("/api", loginRouter);
 
@@ -38,10 +42,18 @@ app.use("/api/analytics-threshold", ATRouter);
 app.use("/api/vehicles", vehiclesRouter);
 app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
+<<<<<<< HEAD
 app.use("/api/profile", profileRouter);
  
 app.listen(PORT, () => { 
   logger.info(`App is running on port ${PORT}`);
+=======
+
+setupMQTT();
+
+app.listen(8080, () => {
+  logger.info(`App is running on port ${8080}`);
+>>>>>>> main
 });
 
 // process.on("SIGINT", async () => {
