@@ -19,7 +19,7 @@ pool.on("connection", (connection) => {
     console.log("Database connection released");
   });
 });
-
+ 
 // Add a listener for the 'error' event
 pool.on("error", (err) => {
   logger.error(`Database error: ${err}`);
