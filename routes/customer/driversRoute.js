@@ -4,10 +4,10 @@ const {
   editDriver,
   getUsersDrivers,
   deleteDriver,
-} = require("../../controllers/customer/driversController");
+} = require("../../controllers/customer/driverController");
 const driversRouter = express.Router();
 
-driversRouter.post("/add-driver", addDriver);
+driversRouter.post("/add-driver/:user_uuid", addDriver);
 
 driversRouter.put("/edit-driver/:driver_uuid", editDriver);
 
