@@ -1,0 +1,24 @@
+8/24/2023, 6:01:23 PM [INFO]: App is running on port 8080
+8/24/2023, 6:01:23 PM [INFO]: Database connected
+8/24/2023, 6:01:23 PM [INFO]: Connected to MQTT broker
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: DMS0556A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: DMS0776A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: DMS0887A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: EC0654A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: EC0742A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: EC0772A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: EC0776A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: EC3343A
+8/24/2023, 6:01:23 PM [INFO]: Subscribed to topic: FC0776A
+8/24/2023, 6:01:36 PM [INFO]: App is running on port 8080
+8/24/2023, 6:01:36 PM [INFO]: Database connected
+8/24/2023, 6:01:36 PM [INFO]: Connected to MQTT broker
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: DMS0556A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: DMS0776A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: DMS0887A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: EC0654A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: EC0742A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: EC0772A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: EC0776A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: EC3343A
+8/24/2023, 6:01:36 PM [INFO]: Subscribed to topic: FC0776A

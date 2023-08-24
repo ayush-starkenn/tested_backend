@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Add analytic threshold
 exports.addAnalyticsThreshold = async (req, res) => {
-
   const connection = await pool.getConnection();
   try {
     const {
@@ -72,28 +71,24 @@ exports.addAnalyticsThreshold = async (req, res) => {
     res
       .status(201)
       .json({ message: "Analytics Thresholds Added Successfully!", results });
-
   } catch (err) {
     logger.error("Error adding analytics thresholds:", err);
     res.status(500).json({ message: "Error in Add Analytics Thresholds" });
   } finally {
     connection.release();
-}
+  }
 };
 
 // Get analyticData
 exports.getAnalyticsThreshold = async (req, res) => {
-
-      // Connection To the Database
-      const connection = await pool.getConnection();
+  // Connection To the Database
+  const connection = await pool.getConnection();
   try {
-
     const getQuery =
       "SELECT thresholds.*, CONCAT(users.first_name, ' ', users.last_name) AS customer_name FROM thresholds INNER JOIN users ON thresholds.user_uuid = users.user_uuid WHERE thresholds.status != ? ORDER BY threshold_id DESC";
     const [analyticData] = await connection.execute(getQuery, [0]);
 
     res.status(200).send({ total_count: analyticData.length, analyticData });
-
   } catch (err) {
     logger.error(`Error in fetching analytical threshold data ${err}`);
     res.status(500).send({
@@ -102,13 +97,12 @@ exports.getAnalyticsThreshold = async (req, res) => {
     });
   } finally {
     connection.release();
-}
+  }
 };
 // update AT
 exports.updateAnalyticsThresholds = async (req, res) => {
-
-      // Connection To the Database
-      const connection = await pool.getConnection();
+  // Connection To the Database
+  const connection = await pool.getConnection();
   try {
     const { threshold_uuid } = req.params;
     const {
@@ -168,36 +162,23 @@ exports.updateAnalyticsThresholds = async (req, res) => {
     res.status(500).json({ message: "Error in Updating Analytics Thresholds" });
   } finally {
     connection.release();
-}
+  }
 };
 
 //Delete AT
 exports.deleteAnalyticsThresholds = async (req, res) => {
-<<<<<<< HEAD
-
-      // Connection To the Database
-      const connection = await pool.getConnection();
+  // Connection To the Database
+  const connection = await pool.getConnection();
 
   try {
     const { threshold_uuid } = req.params;
     //const { user_uuid} = req.body;
-
-  //creating current date and time
-  let createdAt = new Date();
-  let currentTimeIST = moment
-    .tz(createdAt, "Asia/Kolkata")
-    .format("YYYY-MM-DD HH:mm:ss ");
-=======
-  try {
-    const { threshold_uuid } = req.params;
-    const userUUID = req.body.userUUID;
 
     //creating current date and time
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss ");
->>>>>>> main
 
     const deleteQuery =
       "UPDATE thresholds SET status=?, modified_at=?, modified_by=? WHERE threshold_uuid=?";
@@ -227,9 +208,8 @@ exports.deleteAnalyticsThresholds = async (req, res) => {
 
 //Get By Id AT
 exports.getByIdAnalyticsThresholds = async (req, res) => {
-
-      // Connection To the Database
-      const connection = await pool.getConnection();
+  // Connection To the Database
+  const connection = await pool.getConnection();
 
   try {
     const { threshold_uuid } = req.params;

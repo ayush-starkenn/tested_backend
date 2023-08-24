@@ -1,16 +1,4 @@
-<<<<<<< HEAD
 .env
+node_modules
 combined.log
 error.log
-node_modules
-=======
-<<<<<<< HEAD
-node_modules
-.env
-combined.log
-error.log
-=======
-node_modules/
-.env
->>>>>>> fa428b72a10fb6dd65cd65e33979a717f96f4225
->>>>>>> main
