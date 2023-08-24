@@ -1,9 +1,14 @@
 const pool = require("../../config/db.js");
 const moment = require("moment-timezone");
 const logger = require("../../logger.js");
+const { client, endConnection } = require("../../config/mqtt.js");
 
 // Add the device to database
 const addDevice = async (req, res) => {
+  endConnection();
+
+  client.reconnect();
+
   // Connection to the database
   const connection = await pool.getConnection();
   try {
@@ -56,6 +61,9 @@ const addDevice = async (req, res) => {
 
 // Edit device the device
 const editDevice = async (req, res) => {
+  endConnection();
+  client.reconnect();
+
   // Connection to database
   const connection = await pool.getConnection();
   try {
@@ -103,6 +111,10 @@ const editDevice = async (req, res) => {
 
 // Delete device
 const deleteDevice = async (req, res) => {
+  endConnection();
+
+  client.reconnect();
+
   //connection to database
   const connection = await pool.getConnection();
   try {
