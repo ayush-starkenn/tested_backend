@@ -5,11 +5,12 @@ const pool = require("./config/db");
 // Import all routes
 const { deviceRouter } = require("./routes/admin/deviceRoute");
 const { vehiclesRouter } = require("./routes/customer/vehiclesRoute");
-// const { driversRouter } = require("./routes/customer/driversController");
+const { driversRouter } = require("./routes/customer/driversRoute");
 const { customerRouter } = require("./routes/admin/usersRoute");
 const { ATRouter } = require("./routes/admin/analyticsthresholdRoute");
 const { loginRouter } = require("./routes/loginRoute");
 const { authentication } = require("./middleware/authentication");
+const { contactsRouter } = require("./routes/customer/contactsRoute");
 
 const cors = require("cors");
 require("dotenv").config();
@@ -33,7 +34,8 @@ app.use("/api/analytics-threshold", ATRouter);
 
 // Customer Panel Routes
 app.use("/api/vehicles", vehiclesRouter);
-// app.use("/api/drivers", driversRouter);
+app.use("/api/contacts", contactsRouter);
+app.use("/api/drivers", driversRouter);
 
 app.listen(8080, () => {
   logger.info(`App is running on port ${8080}`);
