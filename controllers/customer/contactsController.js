@@ -5,8 +5,10 @@ const logger = require("../../logger.js");
 
 
 const getAllContacts = async (req, res) => {
+
+  const connection = await pool.getConnection();
   try {
-        const connection = await pool.getConnection();
+     
         const { user_uuid } = req.params;
 
       const getquery = 
@@ -20,19 +22,21 @@ const getAllContacts = async (req, res) => {
         contacts,
         
       });
-      connection.release();
+
     } catch (err) {
         logger.error(`Error in getting the list, Error: ${err} `);
         res.status(500).send({ message: "An error occurred while fetching contacts", Error: err });
+      } finally {
+        connection.release();
     }
-  };
-  
+};
+
 const getContact = async (req, res) => {
+
+  const connection = await pool.getConnection();
     try {
 
         const { contact_uuid } = req.params;
-        const connection = await pool.getConnection();
-  
         
       const query = `
         SELECT * FROM contacts WHERE contact_uuid = ? AND contact_status = ? ORDER BY contact_created_at DESC`;
@@ -48,15 +52,18 @@ const getContact = async (req, res) => {
        // totalCount: results.length,
         results,
       });
-      connection.release();
+
     } catch (err) {
       logger.error(`Error in getting data, Error: ${err} `);
       res.status(500).send({ message: "Error in data", Error: err });
-    }
-  };
+    } finally {
+      connection.release();
+  }
+};
 
 const saveContact = async (req, res) => {
-
+  
+  const connection = await pool.getConnection();
     try {
         const {
             contact_first_name,
@@ -66,8 +73,6 @@ const saveContact = async (req, res) => {
             //contact_status
           } = req.body;
 
-    // Connection to the database
-    const connection = await pool.getConnection();
 
     const { user_uuid } = req.params;
 
@@ -119,16 +124,17 @@ const saveContact = async (req, res) => {
         totalCount: insertResults.length,
         insertResults,
       });
-  
-      connection.release();
     } catch (err) {
       logger.error(`Error in adding Contact: ${err}`);
       res.status(500).json({ message: "Internal server error" });
-    }
-  };
-  
+    } finally {
+      connection.release();
+  }
+};
 const editContact = async (req, res) => {
   
+       // Connection to database
+       const connection = await pool.getConnection();
     try {
    
         const {
@@ -139,8 +145,6 @@ const editContact = async (req, res) => {
           } = req.body;
 
           const { contact_uuid } = req.params;
-     // Connection to database
-         const connection = await pool.getConnection();
 
           const contact_modified_at = new Date();
           const currentTimeIST2 = moment
@@ -182,19 +186,21 @@ const editContact = async (req, res) => {
         totalCount: results.length,
         results,
       });
-      connection.release();
     } catch (err) {
       logger.error(`Error in updating Contacts: ${err}`);
       res.status(500).send({ message: "Error in updating Contacts", err });
-    }
-  };
+    } finally {
+      connection.release();
+  }
+};
 
 const deleteContact = async (req, res) => {
+
+      //connection to database
+      const connection = await pool.getConnection();
+
   try {
        const { contact_uuid } = req.params;
-
-    //connection to database
-    const connection = await pool.getConnection();
 
     //creating current date and time
     let createdAt = new Date();
@@ -219,14 +225,17 @@ const deleteContact = async (req, res) => {
         totalCount: results.length,
         results,
       });
-      connection.release();
     } catch (err) {
       logger.error(`Error in deleting the Contacts ${err}`);
       res
         .status(500)
         .send({ message: "Error in deleting the contacts", Error: err });
+      } finally {
+        connection.release();
     }
-  };
+};
+
+
 //exports.....
 module.exports = {
   getAllContacts,
