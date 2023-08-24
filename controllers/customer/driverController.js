@@ -194,7 +194,7 @@ const deleteDriver = async (req, res) => {
 const getUsersDrivers = async (req, res) => {
 
   const connection = await pool.getConnection();
-     try {
+     try { 
     const { user_uuid } = req.params;
       const getQuery =
         "SELECT * FROM drivers WHERE user_uuid=? AND driver_status=? ORDER BY driver_created_at DESC";
