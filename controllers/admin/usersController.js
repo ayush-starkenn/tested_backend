@@ -15,10 +15,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Login user
 exports.Login = async (req, res) => {
+
+      // Connection to DB
+      const connection = await pool.getConnection();
   try {
     const { email, password } = req.body;
-    // Connection to DB
-    const connection = await pool.getConnection();
+
 
     // Check if the user with the given email exists in the database
     const [userRows] = await connection.execute(
@@ -54,15 +56,21 @@ exports.Login = async (req, res) => {
       },
       token: token,
     });
-    connection.release();
+   
   } catch (err) {
     logger.error("Login error:", err);
     res.status(500).send({ message: "Error in Login" });
-  }
+  } finally {
+    connection.release();
+}
 };
 
 // Signup or create new customer/user
 exports.Signup = async (req, res) => {
+
+
+    // Connection to DB
+    const connection = await pool.getConnection();
   try {
     const {
       userUUID,
@@ -101,8 +109,6 @@ exports.Signup = async (req, res) => {
       return rows.length > 0;
     };
 
-    // Connection to DB
-    const connection = await pool.getConnection();
 
     // Check Email Already Exist
     const emailExists = await checkIfExists(connection, "email", email);
@@ -152,18 +158,20 @@ exports.Signup = async (req, res) => {
 
     res.status(201).json({ message: "Customer Added Successfully!", results });
 
-    connection.release();
   } catch (err) {
     logger.error("Error adding customers:", err);
     res.status(500).send({ message: "Error in Add Customer" });
-  }
+  } finally {
+    connection.release();
+}
 };
 
 // Get all customers details [admin]
 exports.getCustomers = async (req, res) => {
+
+     // Connection To the Database
+     const connection = await pool.getConnection();
   try {
-    // Connection To the Database
-    const connection = await pool.getConnection();
 
     const getQuery =
       "SELECT * FROM users WHERE user_status != ? AND user_type = ? ORDER BY user_id DESC";
@@ -173,17 +181,21 @@ exports.getCustomers = async (req, res) => {
       .status(200)
       .send({ total_count: customers.length, customerData: customers });
 
-    connection.release();
   } catch (err) {
     logger.error("Error in fetching the list of Customers");
     res
       .status(500)
       .send({ message: "Error in fetching the list of Customers" });
+    } finally {
+      connection.release();
   }
 };
 
 // Update customer
 exports.updateCustomers = async (req, res) => {
+
+      // Connection to the database
+      const connection = await pool.getConnection();
   try {
     const {
       first_name,
@@ -200,9 +212,6 @@ exports.updateCustomers = async (req, res) => {
     } = req.body;
 
     const { user_uuid } = req.params;
-
-    // Connection to the database
-    const connection = await pool.getConnection();
 
     // Ensure pincode and phone are numeric values
     const isNumeric = (value) => /^\d+$/.test(value);
@@ -251,19 +260,21 @@ exports.updateCustomers = async (req, res) => {
       .status(202)
       .json({ message: "User updated successfully", customerData: results });
 
-    connection.release();
   } catch (err) {
     logger.error("Error updating user:", err);
     res.status(500).send({ message: "Error in updating user" });
-  }
+  } finally {
+    connection.release();
+}
 };
 
 // Get customer details by customer ID
 exports.GetCustomerById = async (req, res) => {
+
+  const connection = await pool.getConnection();
   try {
     const { user_uuid } = req.params;
 
-    const connection = await pool.getConnection();
     const getCustomer =
       "SELECT * FROM users WHERE user_status=? AND user_uuid=?";
 
@@ -273,19 +284,21 @@ exports.GetCustomerById = async (req, res) => {
       .status(200)
       .send({ message: "Customer Get successfully", customerData: results });
 
-    connection.release();
   } catch (err) {
     logger.error(`Error in fetching customer data. Error-> ${err}`);
     res.status(500).send("Error in fetching Customer");
-  }
+  } finally {
+    connection.release();
+}
 };
 
 // Delete customer
 exports.deleteCustomer = async (req, res) => {
+
+      //connection to database
+      const connection = await pool.getConnection();
   try {
     const { user_uuid } = req.params;
-    //connection to database
-    const connection = await pool.getConnection();
 
     //creating current date and time
     let createdAt = new Date();
@@ -305,11 +318,12 @@ exports.deleteCustomer = async (req, res) => {
 
     res.status(200).send({ message: "Customer deleted successfully" });
 
-    connection.release();
   } catch (err) {
     logger.error("Error updating user:", err);
     res.status(500).send({ message: "Error in deleting the Customer" });
-  }
+  } finally {
+    connection.release();
+}
 };
 
 // Logout
@@ -337,8 +351,9 @@ exports.Logout = async (req, res) => {
 
 // Get total customers [admin]
 exports.getTotalCustomers = async (req, res) => {
+  const connection = await pool.getConnection();
   try {
-    const connection = await pool.getConnection();
+  
     const [result] = await pool.query(
       "SELECT COUNT(*) AS count FROM users WHERE user_status != ? AND user_type != ?",
       [0, 1]
@@ -352,5 +367,7 @@ exports.getTotalCustomers = async (req, res) => {
     res
       .status(501)
       .json({ message: "Unable to fetched the total customers data" });
+    } finally {
+      connection.release();
   }
 };
