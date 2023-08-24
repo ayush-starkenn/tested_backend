@@ -2,39 +2,29 @@ const pool = require("../config/db");
 const logger = require("../logger");
 const { client } = require("../config/mqtt");
 const { v4: uuidv4 } = require("uuid");
+const { cli } = require("winston/lib/winston/config");
 
 const setupMQTT = () => {
-  // Function to retrieve topics from the database
-  const getTopicsFromDatabase = async () => {
+  // On connect to MQTT then Function to retrieve topics from the database
+  client.on("connect", async () => {
+    logger.info("Connected to MQTT broker");
     const connection = await pool.getConnection();
     try {
-      const [rows] = await connection.query("SELECT device_id FROM devices");
-      return rows.map((row) => row.device_id);
-    } catch (error) {
-      logger.error(
-        `Error retrieving topics from the database: ${error.message}`
+      const [rows] = await connection.query(
+        "SELECT device_id FROM devices WHERE device_type = ? || device_type = ? AND device_status = ?",
+        ["DMS", "IoT", 1]
       );
-      return [];
-    } finally {
-      connection.release();
-    }
-  };
-
-  // Subscribe to topics retrieved from the database
-  const subscribeToTopics = async () => {
-    const topics = await getTopicsFromDatabase();
-
-    client.on("connect", () => {
-      logger.info("Connected to MQTT broker");
-      topics.forEach((topic) => {
+      rows.map((row) => {
+        const topic = row.device_id;
         client.subscribe(topic);
         logger.info(`Subscribed to topic: ${topic}`);
       });
-    });
-  };
-
-  // Call the function to subscribe to topics
-  subscribeToTopics();
+    } catch (error) {
+      logger.error(`Enable to subscribe the topics ${error}`);
+    } finally {
+      connection.release();
+    }
+  });
 
   client.on("message", (topic, message) => {
     // console.log(`${message.toString()}`);
