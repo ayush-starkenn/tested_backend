@@ -7,6 +7,8 @@ const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
+const  {sendEmail}  = require("../../middleware/mailer");
+
 const app = express();
 
 // Configure body-parser middleware
@@ -370,4 +372,109 @@ exports.getTotalCustomers = async (req, res) => {
     } finally {
       connection.release();
   }
+}; 
+
+exports.ForgotPasswordOTP = async (req, res) => {
+
+  const connection = await pool.getConnection();
+  try {
+    const { email } = req.body
+    const { user_uuid } = req.params;
+
+    // Generate OTP 
+    const otp = Math.floor(100000 + Math.random() * 900000);
+
+    // Send OTP on Email 
+   await sendEmail(email, otp);
+
+     await connection.execute(
+        'UPDATE users SET otp = ? WHERE user_uuid = ?',
+        [otp,user_uuid]
+      );
+    //let expiry = Date.now() + 60 * 1000 * 15;
+    //user_uuid.resetPasswordToken = otp;
+   // user_uuid.resetPasswordExpires = expiry; 
+
+    res.status(200).json({ message: "OTP generated " });
+  } catch (err) {
+    logger.error("Forgot password error:", err);
+    res.status(500).json({ message: "An error occurred." });
+  } finally {
+    connection.release();
+}
+};
+
+exports.ForgotPasswordOTPVerify = async (req, res) => {
+
+         // Connection to database
+         const connection = await pool.getConnection();
+  try {
+    const { user_uuid } = req.params;
+    const { otp } = req.body;
+ 
+    const [userRows] = await connection.execute(
+      "SELECT otp FROM users WHERE user_uuid = ?",
+      [user_uuid]
+    
+    );
+// Check User Exists in DataBase
+    if (userRows.length === 0) {
+        
+      return res.status(404).json({ message: "User not found." });
+    
+    }
+
+    const storedOTP = userRows[0].otp;
+    console.log(storedOTP);
+   // const expiry = new Date(userRows[0].resetPasswordExpires).getTime();
+
+// Check Enter OTP and Exists OTP same
+    if (otp != storedOTP ) {
+      return res.status(401).json({ message: "Invalid OTP " });
+    }
+
+    res.status(200).json({ message: "OTP verified successfully." });
+  } catch (err) {
+    logger.error("Verify OTP error:", err);
+    res.status(500).json({ message: "An error occurred." });
+  } finally {
+    connection.release();
+}
+};
+
+exports.ForgotPasswordChange = async (req, res) => {
+
+         // Connection to database
+         const connection = await pool.getConnection();
+try {
+
+  const { password} = req.body;
+  const { user_uuid } = req.params;
+
+  // Encrypted Password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Password Change Time
+  const currentTimeIST = moment
+  .tz("Asia/Kolkata")
+  .format("YYYY-MM-DD HH:mm:ss");
+
+  const updatePasswordQuery = "UPDATE users SET password=?, modified_at=?, modified_by=?  WHERE user_uuid=?";
+
+  const values = [
+    hashedPassword,
+    currentTimeIST,
+      user_uuid,
+      user_uuid,
+  ]
+
+  const [results] = await connection.execute(updatePasswordQuery, values);
+
+  res.status(200).json({ message: "User Password Change Successfully", results});
+} catch (err) {
+  logger.error("Error updating user password:", err);
+  res.status(500).send({ message: "Error in updating user password" });
+} finally {
+  connection.release();
+}
 };

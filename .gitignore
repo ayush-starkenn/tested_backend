@@ -1,5 +1,4 @@
 .env
 combined.log
-logger.js
 error.log
 node_modules
