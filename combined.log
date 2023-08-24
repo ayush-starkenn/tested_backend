@@ -1,0 +1,11 @@
+8/24/2023, 3:19:52 PM [INFO]: App is running on port 8080
+8/24/2023, 3:19:52 PM [INFO]: Database connected
+8/24/2023, 3:19:52 PM [ERROR]: Error retrieving topics from the database: No database selected
+8/24/2023, 3:20:44 PM [INFO]: App is running on port 8080
+8/24/2023, 3:20:44 PM [INFO]: Database connected
+8/24/2023, 3:20:44 PM [INFO]: Connected to MQTT broker
+8/24/2023, 3:20:44 PM [INFO]: Subscribed to topic: CV43433
+8/24/2023, 3:20:44 PM [INFO]: Subscribed to topic: DMS_NCL_8
+8/24/2023, 3:20:44 PM [INFO]: Subscribed to topic: EC02190
+8/24/2023, 3:20:44 PM [INFO]: Subscribed to topic: PIYUSH_01
+8/24/2023, 3:20:44 PM [INFO]: Subscribed to topic: WCE1321
