@@ -168,38 +168,39 @@ exports.updateAnalyticsThresholds = async (req, res) => {
 };
 
 exports.deleteAnalyticsThresholds = async (req, res) => {
-  const { threshold_uuid } = req.params;
-  //const { user_uuid} = req.body;
-  //connection to database
-  const connection = await db();
-
-  //creating current date and time
-  let createdAt = new Date();
-  let currentTimeIST = moment
-    .tz(createdAt, "Asia/Kolkata")
-    .format("YYYY-MM-DD HH:mm:ss ");
-
   try {
+    const { threshold_uuid } = req.params;
+    const userUUID = req.body.userUUID;
+
+    //creating current date and time
+    let createdAt = new Date();
+    let currentTimeIST = moment
+      .tz(createdAt, "Asia/Kolkata")
+      .format("YYYY-MM-DD HH:mm:ss ");
+
     const deleteQuery =
       "UPDATE thresholds SET status=?, modified_at=?, modified_by=? WHERE threshold_uuid=?";
 
+    //connection to database
+    const connection = await pool.getConnection();
+
     const [results] = await connection.execute(deleteQuery, [
-      2,
+      0,
       currentTimeIST,
-      threshold_uuid,
+      userUUID,
       threshold_uuid,
     ]);
 
     res
       .status(201)
       .send({ message: "Analytics Thresholds deleted successfully", results });
+
+    connection.release();
   } catch (err) {
-    console.error("Error deleteing AT:", err);
+    logger.error("Error deleteing AT:", err);
     res
       .status(500)
       .send({ message: "Error in deleting the Analytics Thresholds " });
-  } finally {
-    connection.release();
   }
 };
 

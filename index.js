@@ -1,7 +1,7 @@
 const logger = require("./logger");
 const express = require("express");
 const pool = require("./config/db");
-// const setupMQTT = require("./controllers/mqttHandler");
+const setupMQTT = require("./controllers/mqttHandler");
 // Import all routes
 const { deviceRouter } = require("./routes/admin/deviceRoute");
 const { vehiclesRouter } = require("./routes/customer/vehiclesRoute");
@@ -20,8 +20,6 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
-// const mqttClient = setupMQTT();
-
 // Login Routes
 app.use("/api", loginRouter);
 
@@ -36,6 +34,8 @@ app.use("/api/analytics-threshold", ATRouter);
 app.use("/api/vehicles", vehiclesRouter);
 app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
+
+const mqttClient = setupMQTT();
 
 app.listen(8080, () => {
   logger.info(`App is running on port ${8080}`);
