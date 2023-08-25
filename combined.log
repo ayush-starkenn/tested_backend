@@ -1345,6 +1345,7 @@
 8/25/2023, 6:52:49 PM [INFO]: No vehicle found for the provide device ID : DMS_NCL_8. Tripdata not stored.
 8/25/2023, 6:52:58 PM [INFO]: Vehicle not found for the incomming device ID DMS_NCL_8
 8/25/2023, 6:52:58 PM [INFO]: No vehicle found for the provide device ID : DMS_NCL_8. Tripdata not stored.
+<<<<<<< HEAD
 8/25/2023, 6:53:00 PM [INFO]: Vehicle not found for the incomming device ID DMS_NCL_8
 8/25/2023, 6:53:00 PM [INFO]: No vehicle found for the provide device ID : DMS_NCL_8. Tripdata not stored.
 8/25/2023, 6:53:05 PM [INFO]: Vehicle not found for the incomming device ID DMS_NCL_8
@@ -1353,3 +1354,5 @@
 8/25/2023, 6:53:08 PM [INFO]: No vehicle found for the provide device ID : DMS_NCL_8. Tripdata not stored.
 8/25/2023, 6:53:14 PM [INFO]: Vehicle not found for the incomming device ID DMS_NCL_8
 8/25/2023, 6:53:14 PM [INFO]: No vehicle found for the provide device ID : DMS_NCL_8. Tripdata not stored.
+=======
+>>>>>>> main
