@@ -125,3 +125,7 @@
 8/25/2023, 7:23:11 PM [INFO]: App is running on port 8080
 8/25/2023, 7:23:11 PM [INFO]: Connected to MQTT broker
 8/25/2023, 7:23:11 PM [INFO]: Database connected
+>>>>>>> main
+8/25/2023, 7:26:05 PM [INFO]: App is running on port 8080
+8/25/2023, 7:26:05 PM [INFO]: Connected to MQTT broker
+8/25/2023, 7:26:05 PM [INFO]: Database connected
