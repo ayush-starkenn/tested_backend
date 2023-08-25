@@ -1,5 +1,6 @@
 const express = require("express");
 const { 
+    Signup,
     Login,
     ForgotPasswordOTP ,
     ForgotPasswordOTPVerify,
@@ -10,6 +11,9 @@ const loginRouter = express.Router();
 
 // Login User Routes
 loginRouter.post("/login", Login);
+
+// Sign Up User Router
+loginRouter.post("/signup", Signup);
 
 // Forgot Password OTP
 loginRouter.get("/forgot-password-otp/:user_uuid", ForgotPasswordOTP);

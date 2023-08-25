@@ -2,7 +2,7 @@ const pool = require("../../config/db");
 const logger = require("../../logger");
 const express = require("express");
 const moment = require("moment-timezone");
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid"); 
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
@@ -66,6 +66,7 @@ exports.Login = async (req, res) => {
 
 // Signup or create new customer/user
 exports.Signup = async (req, res) => {
+
   // Connection to DB
   const connection = await pool.getConnection();
   try {
@@ -82,7 +83,6 @@ exports.Signup = async (req, res) => {
       city,
       pincode,
       phone,
-      user_status,
     } = req.body;
 
     // Hash the password. You can adjust the salt rounds (10) as needed
@@ -125,6 +125,7 @@ exports.Signup = async (req, res) => {
       .tz("Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss");
 
+
     const addQuery =
       "INSERT INTO users(`user_uuid`,`first_name`,`last_name`,`email`,`password`,`user_type`,`company_name`,`address`,`state`,`city`,`pincode`,`phone`,`user_status`,`created_at`,`created_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -144,13 +145,17 @@ exports.Signup = async (req, res) => {
       city,
       pincode,
       phone,
-      user_status,
+      parseInt(1),
       currentTimeIST,
       userUUID,
     ];
 
+
     // console.log(values);
     const [results] = await connection.execute(addQuery, values);
+
+        // Send OTP on Email
+        await sendEmail(email, values);
 
     res.status(201).json({ message: "Customer Added Successfully!", results });
   } catch (err) {
@@ -167,8 +172,8 @@ exports.getCustomers = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const getQuery =
-      "SELECT * FROM users WHERE user_status != ? AND user_type = ? ORDER BY user_id DESC";
-    const [customers] = await connection.execute(getQuery, [0, 2]);
+      "SELECT * FROM users WHERE user_status = ? AND user_type = ? ORDER BY user_id DESC";
+    const [customers] = await connection.execute(getQuery, [1, 2]);
 
     res
       .status(200)
@@ -189,6 +194,7 @@ exports.updateCustomers = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const {
+
       first_name,
       last_name,
       email,
@@ -198,7 +204,6 @@ exports.updateCustomers = async (req, res) => {
       city,
       pincode,
       phone,
-      user_status,
       userUUID,
     } = req.body;
 
@@ -213,23 +218,36 @@ exports.updateCustomers = async (req, res) => {
         .json({ message: "Pincode and phone must be numeric values." });
     }
 
-    // Check if user exists
-    const [existingUserRows] = await connection.execute(
-      "SELECT * FROM users WHERE user_uuid = ?",
-      [user_uuid]
-    );
-    if (existingUserRows.length === 0) {
-      return res.status(404).json({ message: "User not found!" });
-    }
 
     // Generate current time in Asia/Kolkata timezone
     const currentTimeIST = moment
       .tz("Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss");
 
-    const updateQuery =
-      "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, user_status=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
-    const values = [
+        // Check if user exists
+        const [existingUserRows] = await connection.execute(
+          "SELECT * FROM users WHERE user_uuid = ?",
+          [user_uuid]
+        );
+              // Check if the updated email or mobile already exist for another contact
+      const queriesToGet = `
+      SELECT * FROM users WHERE (email = ? OR phone= ?) AND user_uuid != ?`;
+  
+    const [result] = await connection.execute(queriesToGet, [
+      email,
+      phone,
+      user_uuid,
+    ]);
+        if (existingUserRows.length === 0) {
+          return res.status(404).json({ message: "User not found" });
+        } else  
+        if (result.length > 0) {
+            return res.status(400).send({ error: "Contact already exists with the provided email or mobile" });
+          }
+
+      const updateQuery =
+          "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
+const values = [
       first_name,
       last_name,
       email,
@@ -239,13 +257,16 @@ exports.updateCustomers = async (req, res) => {
       city,
       pincode,
       phone,
-      user_status,
       currentTimeIST,
       userUUID,
       user_uuid,
     ];
 
     const [results] = await connection.execute(updateQuery, values);
+
+
+        // Send OTP on Email
+        await sendEmail(email, values);
 
     res
       .status(202)
@@ -285,6 +306,7 @@ exports.deleteCustomer = async (req, res) => {
   //connection to database
   const connection = await pool.getConnection();
   try {
+    const { userUUID } = req.body;
     const { user_uuid } = req.params;
 
     //creating current date and time
@@ -299,11 +321,12 @@ exports.deleteCustomer = async (req, res) => {
     const [results] = await connection.execute(deleteQuery, [
       0,
       currentTimeIST,
-      req.body.userUUID,
+      userUUID,
       user_uuid,
     ]);
-
-    res.status(200).send({ message: "Customer deleted successfully" });
+        // // Send OTP on Email
+        // await sendEmail(email, values);
+    res.status(200).send({ message: "Customer deleted successfully" ,results});
   } catch (err) {
     logger.error("Error updating user:", err);
     res.status(500).send({ message: "Error in deleting the Customer" });
@@ -332,6 +355,49 @@ exports.Logout = async (req, res) => {
   } catch (err) {
     logger.error("Logout error:", err);
     return res.status(500).json({ message: "Error in Logout" });
+  }
+};
+
+exports.ResetPassword = async (req, res) => {
+
+    //connection to database
+    const connection = await pool.getConnection();
+  try {
+    const { user_uuid } = req.params;
+    const { oldPassword, newPassword } = req.body;
+
+    // Get user information
+    const [userRows] = await connection.execute(
+      "SELECT * FROM users WHERE user_uuid = ?",
+      [user_uuid]
+    );
+// Check User Exists in DataBase
+    if (userRows.length === 0) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    // Verify old password
+    const isPasswordMatch = await bcrypt.compare(oldPassword, userRows[0].password);
+
+    if (!isPasswordMatch) {
+      return res.status(401).json({ message: "Old password is incorrect." });
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the password in the database
+    await connection.execute(
+      "UPDATE users SET password = ? WHERE user_uuid = ?",
+      [hashedNewPassword, user_uuid]
+    );
+
+    res.status(200).json({ message: "Password changed successfully." });
+  } catch (err) {
+    console.error("Change password error:", err);
+    res.status(500).json({ message: "An error occurred." });
+  } finally {
+    connection.release();
   }
 };
 
@@ -403,7 +469,6 @@ exports.ForgotPasswordOTPVerify = async (req, res) => {
     }
 
     const storedOTP = userRows[0].otp;
-    console.log(storedOTP);
     // const expiry = new Date(userRows[0].resetPasswordExpires).getTime();
 
     // Check Enter OTP and Exists OTP same
