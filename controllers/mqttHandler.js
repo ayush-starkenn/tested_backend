@@ -2,7 +2,6 @@ const pool = require("../config/db");
 const logger = require("../logger");
 const { client } = require("../config/mqtt");
 const { v4: uuidv4 } = require("uuid");
-const { cli } = require("winston/lib/winston/config");
 
 const setupMQTT = () => {
   // On connect to MQTT then Function to retrieve topics from the database
@@ -11,13 +10,15 @@ const setupMQTT = () => {
     const connection = await pool.getConnection();
     try {
       const [rows] = await connection.query(
-        "SELECT device_id FROM devices WHERE device_type = ? || device_type = ? AND device_status = ?",
-        ["DMS", "IoT", 1]
+        "SELECT device_id, device_status FROM devices WHERE device_type = ? OR device_type = ?",
+        ["DMS", "IoT"]
       );
       rows.map((row) => {
-        const topic = row.device_id;
-        client.subscribe(topic);
-        logger.info(`Subscribed to topic: ${topic}`);
+        if (row.device_status === 1) {
+          const topic = `starkennInv3/${row.device_id}/data`;
+          client.subscribe(topic);
+          logger.info(`Subscribed to topic: ${topic}`);
+        }
       });
     } catch (error) {
       logger.error(`Enable to subscribe the topics ${error}`);
@@ -113,7 +114,7 @@ const getVehicleDetailsbyDeviceID = async (deviceID) => {
     );
 
     if (row.length > 0) {
-      logger.info("Successfully received vehicle details.");
+      // logger.info("Successfully received vehicle details.");
       // Return vehicle uuid
       return row;
     } else {
