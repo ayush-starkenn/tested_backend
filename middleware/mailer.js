@@ -22,7 +22,9 @@ const pool = require("../config/db");
 // }); 
 
 // Send email function
-async function sendEmail(email, otp) {
+//async function sendEmail(email, otp) {
+async function sendEmail(email, values) {
+
 
      const connection = await pool.getConnection();
   try {
@@ -241,7 +243,8 @@ async function sendEmail(email, otp) {
       to: email,
       subject: "Testing",
      // html: body_html
-      html: `<h3>Authentication otp is</h3><h1 style='font-weight:bold;'>${otp}</h1>`,
+      html: `<h3>This message only testing purpose , please ignore it</h3><h1 style='font-weight:bold;'>${values}</h1>`,
+      //html: `<h3>This message only testing purpose , please ignore it</h3><h1 style='font-weight:bold;'></h1>`,
     };
 
     // Send the email

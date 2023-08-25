@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 8/24/2023, 3:19:52 PM [ERROR]: Error retrieving topics from the database: No database selected
 8/24/2023, 6:46:57 PM [ERROR]: Enable to subscribe the topics TypeError: mqttDBconn.query is not a function
 8/24/2023, 6:48:00 PM [ERROR]: Enable to subscribe the topics TypeError: mqttDBconn.query is not a function
 8/24/2023, 6:48:30 PM [ERROR]: Enable to subscribe the topics TypeError: connection.query is not a function
-=======
->>>>>>> 657f7484727b018e1eeacfbbb85394a0748ebde5
