@@ -1,131 +1,35 @@
-8/24/2023, 6:24:07 PM [INFO]: App is running on port undefined
-8/24/2023, 6:24:07 PM [INFO]: Database connected
-8/24/2023, 6:24:07 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:24:07 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:24:07 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:24:07 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:24:07 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:24:07 PM [INFO]: Subscribed to topic: WCE1321
-8/24/2023, 6:24:16 PM [INFO]: App is running on port undefined
-8/24/2023, 6:24:16 PM [INFO]: Database connected
-8/24/2023, 6:24:16 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:24:16 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:24:16 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:24:16 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:24:16 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:24:16 PM [INFO]: Subscribed to topic: WCE1321
-8/24/2023, 6:28:39 PM [INFO]: App is running on port 8080
-8/24/2023, 6:28:39 PM [INFO]: Database connected
-8/24/2023, 6:28:39 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:28:39 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:28:39 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:28:39 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:28:39 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:28:39 PM [INFO]: Subscribed to topic: WCE1321
-8/24/2023, 6:32:02 PM [INFO]: Database connected
-8/24/2023, 6:32:02 PM [INFO]: Database connected
-8/24/2023, 6:32:36 PM [INFO]: Disconnected from MQTT broker
-8/24/2023, 6:32:36 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:32:36 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:32:36 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:32:36 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:32:36 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:32:36 PM [INFO]: Subscribed to topic: WCE1321
-8/24/2023, 6:36:25 PM [INFO]: App is running on port 8080
-8/24/2023, 6:36:25 PM [INFO]: Database connected
-8/24/2023, 6:36:25 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:36:25 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:36:25 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:36:25 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:36:25 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:36:25 PM [INFO]: Subscribed to topic: DM0001A
-8/24/2023, 6:46:57 PM [INFO]: App is running on port 8080
-8/24/2023, 6:46:57 PM [INFO]: Database connected
-8/24/2023, 6:46:57 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:48:00 PM [INFO]: App is running on port 8080
-8/24/2023, 6:48:00 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:48:30 PM [INFO]: App is running on port 8080
-8/24/2023, 6:48:30 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:49:22 PM [INFO]: App is running on port 8080
-8/24/2023, 6:49:22 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:49:22 PM [INFO]: Database connected
-8/24/2023, 6:49:43 PM [INFO]: App is running on port 8080
-8/24/2023, 6:49:43 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:49:43 PM [INFO]: Database connected
-8/24/2023, 6:50:10 PM [INFO]: App is running on port 8080
-8/24/2023, 6:50:10 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:50:10 PM [INFO]: Database connected
-8/24/2023, 6:50:55 PM [INFO]: App is running on port 8080
-8/24/2023, 6:50:55 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:50:55 PM [INFO]: Database connected
-8/24/2023, 6:50:55 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:50:55 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:50:55 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:50:55 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:50:55 PM [INFO]: Subscribed to topic: DM0001A
-8/24/2023, 6:51:32 PM [INFO]: Disconnected from MQTT broker
-8/24/2023, 6:51:32 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:51:32 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:51:32 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:51:32 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:51:32 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:51:32 PM [INFO]: Subscribed to topic: DM0001A
-8/24/2023, 6:51:32 PM [INFO]: Subscribed to topic: PIY_001
-8/24/2023, 6:52:02 PM [INFO]: Disconnected from MQTT broker
-8/24/2023, 6:52:02 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:52:02 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:52:02 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:52:02 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:52:02 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:52:02 PM [INFO]: Subscribed to topic: DM0001A
-8/24/2023, 6:52:12 PM [INFO]: Disconnected from MQTT broker
-8/24/2023, 6:52:12 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:52:12 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:52:12 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:52:12 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:52:12 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:52:12 PM [INFO]: Subscribed to topic: DM0001A
-8/24/2023, 6:52:12 PM [INFO]: Subscribed to topic: PIY_001
-8/24/2023, 6:53:09 PM [INFO]: App is running on port 8080
-8/24/2023, 6:53:09 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:53:09 PM [INFO]: Database connected
-8/24/2023, 6:53:09 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:53:09 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:53:09 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:53:09 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:53:09 PM [INFO]: Subscribed to topic: DM0001A
-8/24/2023, 6:53:09 PM [INFO]: Subscribed to topic: PIY_001
-8/24/2023, 6:55:12 PM [INFO]: App is running on port 8080
-8/24/2023, 6:55:12 PM [INFO]: Connected to MQTT broker
-8/24/2023, 6:55:12 PM [INFO]: Database connected
-8/24/2023, 6:55:12 PM [INFO]: Subscribed to topic: DMS_NCL_8
-8/24/2023, 6:55:12 PM [INFO]: Subscribed to topic: CV43433
-8/24/2023, 6:55:12 PM [INFO]: Subscribed to topic: EC02190
-8/24/2023, 6:55:12 PM [INFO]: Subscribed to topic: PIYUSH_01
-8/24/2023, 6:55:12 PM [INFO]: Subscribed to topic: DM0001A
-8/24/2023, 6:55:12 PM [INFO]: Subscribed to topic: PIY_001
-8/25/2023, 6:35:07 PM [INFO]: App is running on port 8080
-8/25/2023, 6:35:07 PM [INFO]: Connected to MQTT broker
-8/25/2023, 6:35:07 PM [INFO]: Database connected
-8/25/2023, 6:43:55 PM [INFO]: App is running on port 8080
-8/25/2023, 6:43:55 PM [INFO]: Connected to MQTT broker
-8/25/2023, 6:43:55 PM [INFO]: Database connected
-8/25/2023, 6:44:43 PM [INFO]: App is running on port 8080
-8/25/2023, 6:44:43 PM [INFO]: Connected to MQTT broker
-8/25/2023, 6:44:43 PM [INFO]: Database connected
-8/25/2023, 6:45:21 PM [INFO]: App is running on port 8080
-8/25/2023, 6:45:21 PM [INFO]: Connected to MQTT broker
-8/25/2023, 6:45:21 PM [INFO]: Database connected
-8/25/2023, 6:47:06 PM [INFO]: App is running on port 8080
-8/25/2023, 6:47:06 PM [INFO]: Connected to MQTT broker
-8/25/2023, 6:47:06 PM [INFO]: Database connected
-8/25/2023, 7:14:13 PM [INFO]: App is running on port 8080
-8/25/2023, 7:14:13 PM [INFO]: Connected to MQTT broker
-8/25/2023, 7:14:13 PM [INFO]: Database connected
-8/25/2023, 7:23:11 PM [INFO]: App is running on port 8080
-8/25/2023, 7:23:11 PM [INFO]: Connected to MQTT broker
-8/25/2023, 7:23:11 PM [INFO]: Database connected
->>>>>>> main
-8/25/2023, 7:26:05 PM [INFO]: App is running on port 8080
-8/25/2023, 7:26:05 PM [INFO]: Connected to MQTT broker
-8/25/2023, 7:26:05 PM [INFO]: Database connected
+8/28/2023, 1:21:59 PM [INFO]: App is running on port 8080
+8/28/2023, 1:21:59 PM [INFO]: Connected to MQTT broker
+8/28/2023, 1:21:59 PM [INFO]: Database connected
+8/28/2023, 4:02:26 PM [INFO]: App is running on port 8080
+8/28/2023, 4:02:31 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:02:31 PM [INFO]: Database connected
+8/28/2023, 4:16:40 PM [INFO]: App is running on port 8080
+8/28/2023, 4:16:49 PM [INFO]: App is running on port 8080
+8/28/2023, 4:16:49 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:16:49 PM [INFO]: Database connected
+8/28/2023, 4:17:03 PM [INFO]: App is running on port 8080
+8/28/2023, 4:17:03 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:17:03 PM [INFO]: Database connected
+8/28/2023, 4:17:08 PM [INFO]: App is running on port 8080
+8/28/2023, 4:17:08 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:17:08 PM [INFO]: Database connected
+8/28/2023, 4:17:23 PM [INFO]: App is running on port 8080
+8/28/2023, 4:17:29 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:17:29 PM [INFO]: Database connected
+8/28/2023, 4:17:53 PM [INFO]: App is running on port 8080
+8/28/2023, 4:17:53 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:17:53 PM [INFO]: Database connected
+8/28/2023, 4:52:48 PM [INFO]: App is running on port 8080
+8/28/2023, 4:52:48 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:52:48 PM [INFO]: Database connected
+8/28/2023, 4:58:06 PM [INFO]: App is running on port 8080
+8/28/2023, 4:58:11 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:58:11 PM [INFO]: Database connected
+8/28/2023, 4:58:12 PM [INFO]: App is running on port 8080
+8/28/2023, 4:58:12 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:58:12 PM [INFO]: Database connected
+8/28/2023, 4:59:39 PM [INFO]: App is running on port 8080
+8/28/2023, 4:59:59 PM [INFO]: Connected to MQTT broker
+8/28/2023, 4:59:59 PM [INFO]: Database connected
+8/28/2023, 6:46:14 PM [INFO]: Connected to MQTT broker
