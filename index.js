@@ -12,6 +12,7 @@ const { loginRouter } = require("./routes/loginRoute");
 const { authentication } = require("./middleware/authentication");
 const { contactsRouter } = require("./routes/customer/contactsRoute");
 const { profileRouter } = require("./routes/customer/profileRoute");
+const { rfidRouter } = require("./routes/customer/rfidRoute");
 
 const cors = require("cors");
 
@@ -40,6 +41,8 @@ app.use("/api/vehicles", vehiclesRouter);
 app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
 app.use("/api/profile", profileRouter);
+app.use("/api/rfid", rfidRouter);
+
 
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);

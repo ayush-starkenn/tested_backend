@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
+const { sendEmail } = require("../../middleware/mailer");
 
 exports.getProfile = async (req, res) => {
 
@@ -54,8 +55,8 @@ exports.updateProfile = async (req, res) => {
         city,
         pincode,
         phone,
-        user_status,
-        //user_uuid,
+       // user_status,
+       userUUID,
       } = req.body;
     
       const { user_uuid } = req.params;
@@ -109,13 +110,16 @@ exports.updateProfile = async (req, res) => {
           phone,
           user_status,
           currentTimeIST,
-          user_uuid,
+          userUUID,
           user_uuid,
         ];
         //console.log("values", values);
     
         const [results] = await connection.execute(updateQuery, values);
     
+        // Send OTP on Email
+        await sendEmail(email, values);
+
         res
         .status(202)
         .json({ message: "User updated successfully", customerData: results });

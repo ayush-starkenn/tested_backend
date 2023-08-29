@@ -99,6 +99,7 @@ exports.getAnalyticsThreshold = async (req, res) => {
     connection.release();
   }
 };
+
 // update AT
 exports.updateAnalyticsThresholds = async (req, res) => {
   // Connection To the Database
@@ -233,3 +234,4 @@ exports.getByIdAnalyticsThresholds = async (req, res) => {
     connection.release();
   }
 };
+
