@@ -19,7 +19,7 @@ const setupMQTT = () => {
           client.subscribe(topic);
           logger.info(`Subscribed to topic: ${topic}`);
         }
-      });
+      }); 
     } catch (error) {
       logger.error(`Enable to subscribe the topics ${error}`);
     } finally {
@@ -32,7 +32,7 @@ const setupMQTT = () => {
     try {
       const validatedJson = JSON.parse(message.toString());
       // Store valid JSON in DB
-      storeJsonInDatabase(validatedJson);
+      storeJsonInDatabase(validatedJson); 
     } catch (error) {
       logger.error(
         `MQTT send invalid JSON from Topic : ${topic} Error: ${error.message}`
