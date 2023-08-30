@@ -588,3 +588,33 @@
 8/29/2023, 6:16:36 PM [INFO]: Subscribed to topic: starkennInv3/DMS001s/data
 8/29/2023, 6:16:36 PM [INFO]: Subscribed to topic: starkennInv3/DMS001k/data
 8/29/2023, 6:25:44 PM [INFO]: Database connected
+8/30/2023, 10:12:25 AM [INFO]: Connected to MQTT broker
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS001A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS002A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS003A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS004A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS005A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS007A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS008A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS009A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS010A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/IOT001A/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS001d/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS001s/data
+8/30/2023, 10:12:25 AM [INFO]: Subscribed to topic: starkennInv3/DMS001k/data
+8/30/2023, 10:13:36 AM [INFO]: App is running on port 8080
+8/30/2023, 10:13:36 AM [INFO]: Connected to MQTT broker
+8/30/2023, 10:13:36 AM [INFO]: Database connected
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS001A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS002A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS003A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS004A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS005A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS007A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS008A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS009A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS010A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/IOT001A/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS001d/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS001s/data
+8/30/2023, 10:13:36 AM [INFO]: Subscribed to topic: starkennInv3/DMS001k/data
