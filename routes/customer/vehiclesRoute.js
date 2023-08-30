@@ -6,6 +6,7 @@ const {
   editVehicle,
   getUserVehicles,
   deleteVehicle,
+  getVehicleData,
 } = require("../../controllers/customer/vehiclesController");
 const vehiclesRouter = express.Router();
 // Hello
@@ -26,5 +27,8 @@ vehiclesRouter.put("/delete-vehicle/:vehicle_uuid", deleteVehicle);
 
 // Get total vehicles count[admin]
 vehiclesRouter.get("/total-vehicles", totalVehicles);
+
+//get data of particular vehicle by vehicle_uuid
+vehiclesRouter.get("/get-vehicle-details/:vehicle_uuid", getVehicleData);
 
 module.exports = { vehiclesRouter };

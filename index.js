@@ -16,6 +16,7 @@ const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 
 const cors = require("cors");
+const { featuresetRouter } = require("./routes/admin/featuresetRoute");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -39,6 +40,7 @@ app.use(authentication);
 app.use("/api/devices", deviceRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/analytics-threshold", ATRouter);
+app.use("/api/featuresets", featuresetRouter);
 
 // Customer Panel Routes
 app.use("/api/vehicles", vehiclesRouter);
