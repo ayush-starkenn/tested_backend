@@ -2,7 +2,7 @@ const pool = require("../../config/db");
 const logger = require("../../logger");
 const express = require("express");
 const moment = require("moment-timezone");
-const { v4: uuidv4 } = require("uuid"); 
+const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
@@ -66,7 +66,6 @@ exports.Login = async (req, res) => {
 
 // Signup or create new customer/user
 exports.Signup = async (req, res) => {
-
   // Connection to DB
   const connection = await pool.getConnection();
   try {
@@ -125,7 +124,6 @@ exports.Signup = async (req, res) => {
       .tz("Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss");
 
-
     const addQuery =
       "INSERT INTO users(`user_uuid`,`first_name`,`last_name`,`email`,`password`,`user_type`,`company_name`,`address`,`state`,`city`,`pincode`,`phone`,`user_status`,`created_at`,`created_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -150,12 +148,11 @@ exports.Signup = async (req, res) => {
       userUUID,
     ];
 
-
     // console.log(values);
     const [results] = await connection.execute(addQuery, values);
 
-        // Send OTP on Email
-        await sendEmail(email, values);
+    // Send OTP on Email
+    await sendEmail(email, values);
 
     res.status(201).json({ message: "Customer Added Successfully!", results });
   } catch (err) {
@@ -194,7 +191,6 @@ exports.updateCustomers = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const {
-
       first_name,
       last_name,
       email,
@@ -218,36 +214,38 @@ exports.updateCustomers = async (req, res) => {
         .json({ message: "Pincode and phone must be numeric values." });
     }
 
-
     // Generate current time in Asia/Kolkata timezone
     const currentTimeIST = moment
       .tz("Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss");
 
-        // Check if user exists
-        const [existingUserRows] = await connection.execute(
-          "SELECT * FROM users WHERE user_uuid = ?",
-          [user_uuid]
-        );
-              // Check if the updated email or mobile already exist for another contact
-      const queriesToGet = `
+    // Check if user exists
+    const [existingUserRows] = await connection.execute(
+      "SELECT * FROM users WHERE user_uuid = ?",
+      [user_uuid]
+    );
+    // Check if the updated email or mobile already exist for another contact
+    const queriesToGet = `
       SELECT * FROM users WHERE (email = ? OR phone= ?) AND user_uuid != ?`;
-  
+
     const [result] = await connection.execute(queriesToGet, [
       email,
       phone,
       user_uuid,
     ]);
-        if (existingUserRows.length === 0) {
-          return res.status(404).json({ message: "User not found" });
-        } else  
-        if (result.length > 0) {
-            return res.status(400).send({ error: "Contact already exists with the provided email or mobile" });
-          }
+    if (existingUserRows.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    } else if (result.length > 0) {
+      return res
+        .status(400)
+        .send({
+          error: "Contact already exists with the provided email or mobile",
+        });
+    }
 
-      const updateQuery =
-          "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
-const values = [
+    const updateQuery =
+      "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
+    const values = [
       first_name,
       last_name,
       email,
@@ -264,9 +262,8 @@ const values = [
 
     const [results] = await connection.execute(updateQuery, values);
 
-
-        // Send OTP on Email
-        await sendEmail(email, values);
+    // Send OTP on Email
+    await sendEmail(email, values);
 
     res
       .status(202)
@@ -324,9 +321,9 @@ exports.deleteCustomer = async (req, res) => {
       userUUID,
       user_uuid,
     ]);
-        // // Send OTP on Email
-        // await sendEmail(email, values);
-    res.status(200).send({ message: "Customer deleted successfully" ,results});
+    // // Send OTP on Email
+    // await sendEmail(email, values);
+    res.status(200).send({ message: "Customer deleted successfully", results });
   } catch (err) {
     logger.error("Error updating user:", err);
     res.status(500).send({ message: "Error in deleting the Customer" });
@@ -359,9 +356,8 @@ exports.Logout = async (req, res) => {
 };
 
 exports.ResetPassword = async (req, res) => {
-
-    //connection to database
-    const connection = await pool.getConnection();
+  //connection to database
+  const connection = await pool.getConnection();
   try {
     const { user_uuid } = req.params;
     const { oldPassword, newPassword } = req.body;
@@ -371,13 +367,16 @@ exports.ResetPassword = async (req, res) => {
       "SELECT * FROM users WHERE user_uuid = ?",
       [user_uuid]
     );
-// Check User Exists in DataBase
+    // Check User Exists in DataBase
     if (userRows.length === 0) {
       return res.status(404).json({ message: "User not found." });
     }
 
     // Verify old password
-    const isPasswordMatch = await bcrypt.compare(oldPassword, userRows[0].password);
+    const isPasswordMatch = await bcrypt.compare(
+      oldPassword,
+      userRows[0].password
+    );
 
     if (!isPasswordMatch) {
       return res.status(401).json({ message: "Old password is incorrect." });
