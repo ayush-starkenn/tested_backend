@@ -49,7 +49,7 @@ const addDevice = async (req, res) => {
     });
 
     // Subscribe topic if device status is active
-    if (device_status == 1) {
+    if (status == 1) {
       // subscribe from the topic
       client.subscribe(`starkennInv3/${device_id}/data`, (err) => {
         if (err) {

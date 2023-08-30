@@ -12,6 +12,7 @@ const { loginRouter } = require("./routes/loginRoute");
 const { authentication } = require("./middleware/authentication");
 const { contactsRouter } = require("./routes/customer/contactsRoute");
 const { profileRouter } = require("./routes/customer/profileRoute");
+const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 
 const cors = require("cors");
@@ -25,6 +26,9 @@ app.use(express.json());
 app.use(cors({ origin: "*" }));
 
 setupMQTT();
+
+// cronJob();
+setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
 // Login Routes
 app.use("/api", loginRouter);
@@ -43,19 +47,18 @@ app.use("/api/drivers", driversRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/rfid", rfidRouter);
 
-
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);
 });
 
-// process.on("SIGINT", async () => {
-//   logger.info("Received SIGINT signal. Closing connection pool...");
-//   try {
-//     await pool.end();
-//     logger.info("Connection pool closed.");
-//     process.exit(0);
-//   } catch (error) {
-//     logger.error("Error closing connection pool:", error);
-//     process.exit(1);
-//   }
-// });
+process.on("SIGINT", async () => {
+  logger.info("Received SIGINT signal. Closing connection pool...");
+  try {
+    await pool.end();
+    logger.info("Connection pool closed.");
+    process.exit(0);
+  } catch (error) {
+    logger.error("Error closing connection pool:", error);
+    process.exit(1);
+  }
+});
