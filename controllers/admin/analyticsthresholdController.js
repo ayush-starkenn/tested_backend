@@ -99,6 +99,7 @@ exports.getAnalyticsThreshold = async (req, res) => {
     connection.release();
   }
 };
+
 // update AT
 exports.updateAnalyticsThresholds = async (req, res) => {
   // Connection To the Database
@@ -172,7 +173,7 @@ exports.deleteAnalyticsThresholds = async (req, res) => {
 
   try {
     const { threshold_uuid } = req.params;
-    //const { user_uuid} = req.body;
+    const { userUUID} = req.body;
 
     //creating current date and time
     let createdAt = new Date();
@@ -183,8 +184,6 @@ exports.deleteAnalyticsThresholds = async (req, res) => {
     const deleteQuery =
       "UPDATE thresholds SET status=?, modified_at=?, modified_by=? WHERE threshold_uuid=?";
 
-    //connection to database
-    const connection = await pool.getConnection();
 
     const [results] = await connection.execute(deleteQuery, [
       0,
@@ -233,3 +232,4 @@ exports.getByIdAnalyticsThresholds = async (req, res) => {
     connection.release();
   }
 };
+

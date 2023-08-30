@@ -2,46 +2,39 @@ const pool = require("../config/db");
 const logger = require("../logger");
 const { client } = require("../config/mqtt");
 const { v4: uuidv4 } = require("uuid");
+const pkg = require("geolib");
 
 const setupMQTT = () => {
-  // Function to retrieve topics from the database
-  const getTopicsFromDatabase = async () => {
+  // On connect to MQTT then Function to retrieve topics from the database
+  client.on("connect", async () => {
+    logger.info("Connected to MQTT broker");
     const connection = await pool.getConnection();
     try {
-      const [rows] = await connection.query("SELECT device_id FROM devices");
-      return rows.map((row) => row.device_id);
-    } catch (error) {
-      logger.error(
-        `Error retrieving topics from the database: ${error.message}`
+      const [rows] = await connection.query(
+        "SELECT device_id, device_status FROM devices WHERE device_type = ? OR device_type = ?",
+        ["DMS", "IoT"]
       );
-      return [];
+      rows.map((row) => {
+        if (row.device_status === 1) {
+          const topic = `starkennInv3/${row.device_id}/data`;
+          client.subscribe(topic);
+          logger.info(`Subscribed to topic: ${topic}`);
+        }
+      });
+    } catch (error) {
+      logger.error(`Enable to subscribe the topics ${error}`);
     } finally {
       connection.release();
     }
-  };
-
-  // Subscribe to topics retrieved from the database
-  const subscribeToTopics = async () => {
-    const topics = await getTopicsFromDatabase();
-
-    client.on("connect", () => {
-      logger.info("Connected to MQTT broker");
-      topics.forEach((topic) => {
-        client.subscribe(topic);
-        logger.info(`Subscribed to topic: ${topic}`);
-      });
-    });
-  };
-
-  // Call the function to subscribe to topics
-  subscribeToTopics();
+  });
 
   client.on("message", (topic, message) => {
     // console.log(`${message.toString()}`);
     try {
       const validatedJson = JSON.parse(message.toString());
-      // Store valid JSON in DB
-      storeJsonInDatabase(validatedJson);
+
+      // Check for trip completion if the current data is > 30 mins
+      checkForTripCompletion(validatedJson);
     } catch (error) {
       logger.error(
         `MQTT send invalid JSON from Topic : ${topic} Error: ${error.message}`
@@ -52,6 +45,160 @@ const setupMQTT = () => {
   });
 
   return client;
+};
+
+// check for trip completion
+const checkForTripCompletion = async (validatedJson) => {
+  const connection = await pool.getConnection();
+  const deviceID = validatedJson.device_id;
+  const commingTimeStamp = validatedJson.timestamp;
+  try {
+    const checkTrip = await checkIfTripAlreadyCompleted(deviceID);
+    console.log(checkTrip);
+    if (checkTrip) {
+      logger.info(`Trip is already completed for this Device ${deviceID}`);
+      // New trip
+      storeJsonInDatabase(validatedJson);
+      return;
+    }
+
+    const [tripData] = await connection.query(
+      "SELECT timestamp FROM tripdata WHERE device_id = ? ORDER BY timestamp DESC LIMIT 1",
+      [deviceID]
+    );
+    if (tripData.length > 0) {
+      const lastTripTimestamp = tripData[0].timestamp;
+      const timeDifferenceInSeconds = commingTimeStamp - lastTripTimestamp;
+      const timeDifferenceInMinutes = timeDifferenceInSeconds / 60;
+
+      // check the time diff is > 30 mins
+      if (timeDifferenceInMinutes > 30) {
+        // Complete the trip
+        completeTrip(deviceID);
+        console.log("Trip end");
+      } else {
+        console.log("trip continue");
+        // Store valid JSON in DB [continue trip]
+        storeJsonInDatabase(validatedJson);
+      }
+    }
+  } catch (error) {
+    logger.error(`Something went wrong while completing the trip ${error}`);
+  } finally {
+    connection.release();
+  }
+};
+
+// Check trip is already completed or not from trip summary
+const checkIfTripAlreadyCompleted = async (deviceID) => {
+  const connection = await pool.getConnection();
+  try {
+    const [result] = await pool.query(
+      "SELECT trip_id, trip_status FROM trip_summary WHERE device_id = ? ORDER BY ts_id DESC LIMIT 1",
+      [deviceID]
+    );
+
+    if (result[0].trip_status === 1) {
+      return true;
+    } else if (result[0].trip_status === 0) {
+      return null;
+    } else {
+      return;
+    }
+  } catch (error) {
+    logger.error(`Error in checking trip status ${error}`);
+  } finally {
+    connection.release();
+  }
+};
+
+// Complete trip
+const completeTrip = async (deviceID) => {
+  const connection = await pool.getConnection();
+  // console.log(validatedJson.device_id);
+  try {
+    const [tripSum] = await connection.query(
+      "SELECT trip_id, device_id FROM trip_summary WHERE device_id = ? AND trip_status = ?",
+      [deviceID, 0]
+    );
+    if (tripSum.length > 0) {
+      const tripID = tripSum[0].trip_id;
+
+      // Fetch all data from tripdata related to this tripID
+      const [tripdata] = await connection.query(
+        "SELECT trip_id, event, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? AND event = ? ORDER BY timestamp ASC",
+        [tripID, "LOC"]
+      );
+      if (tripdata.length > 0) {
+        let path = [];
+        let tripStartTime = tripdata[0].timestamp; // Set trip start time to the first timestamp
+        let tripEndTime = tripdata[tripdata.length - 1].timestamp; // Set trip end time to the last timestamp
+        let allSpd = [];
+        let duration = 0;
+
+        tripdata.forEach((item, index) => {
+          // Set lat lng data
+          if (item.event == "LOC") {
+            let geodata = { latitude: item.lat, longitude: item.lng };
+            path.push(geodata);
+          }
+
+          // Set speed data
+          allSpd.push(item.spd);
+        });
+
+        // Set Max speed
+        let maxSpd = 0;
+        maxSpd = Math.max(...allSpd.map(parseFloat));
+        if (maxSpd < 0) {
+          maxSpd = 0;
+        }
+
+        // Set Avg speed
+        const sumOfSpeed = allSpd.reduce(
+          (acc, curr) => acc + parseFloat(curr),
+          0
+        );
+        const avgSpd = Math.round(sumOfSpeed) / allSpd.length;
+        const averageSpeed = avgSpd.toFixed(2);
+
+        // Set Trip Total distance
+        let distance = 0;
+        const totalDistance = pkg.getPathLength(path); // In meters
+        distance = totalDistance / 1000; // In Kms
+
+        // Set Trip duration
+        let difference = "";
+        difference = tripEndTime - tripStartTime; // seconds
+        let hours = Math.floor(difference / 3600);
+        difference = difference % 3600;
+        let minutes = Math.floor(difference / 60);
+        difference = difference % 60;
+        let seconds = difference;
+        if (hours > 0) {
+          duration = hours + " hours " + minutes + " Mins " + seconds + " Sec";
+        } else {
+          duration = minutes + " Mins " + seconds + " Sec";
+        }
+
+        // Update to trip summary page
+        const [updateTrip] = await pool.query(
+          "UPDATE trip_summary SET trip_end_time = ?, total_distance = ?, duration = ?, avg_spd =?, max_spd = ?, trip_status =? WHERE trip_id = ?",
+          [tripEndTime, distance, duration, avgSpd, maxSpd, 1, tripID]
+        );
+
+        console.log("Trip completed:", updateTrip);
+      } else {
+        logger.info("Trip data not found for the Trip ID", tripID);
+      }
+    } else {
+      logger.info("No Ongoing trip found!");
+    }
+  } catch (error) {
+    logger.error(`Trip completion process failed! ${error}`);
+  } finally {
+    connection.release();
+  }
 };
 
 // Function to store valid JSON in the database
@@ -123,7 +270,7 @@ const getVehicleDetailsbyDeviceID = async (deviceID) => {
     );
 
     if (row.length > 0) {
-      logger.info("Successfully received vehicle details.");
+      // logger.info("Successfully received vehicle details.");
       // Return vehicle uuid
       return row;
     } else {

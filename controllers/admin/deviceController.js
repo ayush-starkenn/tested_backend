@@ -1,6 +1,7 @@
 const pool = require("../../config/db.js");
 const moment = require("moment-timezone");
 const logger = require("../../logger.js");
+const { client } = require("../../config/mqtt.js"); 
 
 // Add the device to database
 const addDevice = async (req, res) => {
@@ -46,6 +47,24 @@ const addDevice = async (req, res) => {
       totalCount: results.length,
       results,
     });
+
+    // Subscribe topic if device status is active
+    if (status == 1) {
+      // subscribe from the topic
+      client.subscribe(`starkennInv3/${device_id}/data`, (err) => {
+        if (err) {
+          console.error(
+            `Error subscribing from topic: starkennInv3/${device_id}/data`,
+            err
+          );
+        } else {
+          console.log(
+            "Subscribed from topic",
+            `starkennInv3/${device_id}/data`
+          );
+        }
+      });
+    }
   } catch (err) {
     logger.error(`Error in adding device: ${err}`);
     res.status(500).json({ message: "Internal server error" });
@@ -93,11 +112,50 @@ const editDevice = async (req, res) => {
       totalCount: results.length,
       results,
     });
+
+    // Unsubscribe topic if device status is deactivate
+    if (device_status == 2) {
+      // Unsubscribe from the topic
+      client.unsubscribe(`starkennInv3/${device_id}/data`, (err) => {
+        if (err) {
+          console.error(
+            `Error unsubscribing from topic: starkennInv3/${device_id}/data`,
+            err
+          );
+        } else {
+          console.log(
+            "Unsubscribed from topic",
+            `starkennInv3/${device_id}/data`
+          );
+        }
+      });
+    }
+
+    // Subscribe topic if device status is active
+    if (device_status == 1) {
+      // Unsubscribe from the topic
+      client.subscribe(`starkennInv3/${device_id}/data`, (err) => {
+        if (err) {
+          console.error(
+            `Error subscribing from topic: starkennInv3/${device_id}/data`,
+            err
+          );
+        } else {
+          console.log(
+            "Subscribed from topic",
+            `starkennInv3/${device_id}/data`
+          );
+        }
+      });
+    }
   } catch (err) {
     logger.error(`Error in updating device ${err}`);
     res.status(500).send({ message: "Error in updating device", err });
   } finally {
     connection.release();
+
+    // endConnection();
+    // client.reconnect();
   }
 };
 
@@ -129,6 +187,24 @@ const deleteDevice = async (req, res) => {
       totalCount: results.length,
       results,
     });
+
+    // Unsubscribe topic if device status is deactivate
+    if (results) {
+      // Unsubscribe from the topic
+      client.unsubscribe(`starkennInv3/${device_id}/data`, (err) => {
+        if (err) {
+          console.error(
+            `Error unsubscribing from topic: starkennInv3/${device_id}/data`,
+            err
+          );
+        } else {
+          console.log(
+            "Unsubscribed from topic",
+            `starkennInv3/${device_id}/data`
+          );
+        }
+      });
+    }
   } catch (err) {
     logger.error(`Error in deleting the device ${err}`);
     res

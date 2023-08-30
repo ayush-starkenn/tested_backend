@@ -4,7 +4,6 @@ const contactsRouter = express.Router();
 const ContactsController = require("../../controllers/customer/contactsController");
 
 //creating the route for the contacts
-//Helooooo
 
 // 1. getting all the contacts for that particular customer...
 contactsRouter.get("/getContacts-all/:user_uuid", ContactsController.getAllContacts);

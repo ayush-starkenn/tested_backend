@@ -76,8 +76,6 @@ const saveContact = async (req, res) => {
 
     const { user_uuid } = req.params;
 
-
-  
       const contact_created_at = new Date();
       const currentTimeIST = moment
         .tz(contact_created_at, "Asia/Kolkata")
