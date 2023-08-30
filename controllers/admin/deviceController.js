@@ -210,102 +210,101 @@ const getCustomerList = async (req, res) => {
 };
 
 // //get list of devices which are assign to particular user
-// const getusersDevices = async (req, res) => {
-//   const { user_uuid } = req.params;
+const getusersDevices = async (req, res) => {
+  const connection = await pool.getConnection();
 
-//   const connection = await db();
+  try {
+    const { user_uuid } = req.params;
 
-//   try {
-//     const getUserDevices =
-//       "SELECT * FROM devices WHERE device_status=? AND user_uuid=?";
+    const getUserDevices =
+      "SELECT * FROM devices WHERE device_status!=0 AND user_uuid=?";
 
-//     const [results] = await connection.execute(getUserDevices, [1, user_uuid]);
+    const [results] = await connection.execute(getUserDevices, [user_uuid]);
 
-//     res.status(200).send({
-//       message: "Successfully got list of users devices",
-//       devices,
-//       results,
-//     });
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .send({ message: "Error in getting users devices", Error: err });
-//   } finally {
-//     connection.release();
-//   }
-// };
+    res.status(200).send({
+      message: "Successfully got list of users devices",
+      results,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Error in getting users devices", Error: err });
+  } finally {
+    connection.release();
+  }
+};
 
 // //get list of all ecu which are not assign to any vehicle and device assign to particular user
-// const getUserEcu = async (req, res) => {
-//   const { user_uuid } = req.params;
+const getUserEcu = async (req, res) => {
+  const connection = await pool.getConnection();
 
-//   const connection = await db();
+  try {
+    const { user_uuid } = req.params;
 
-//   try {
-//     const getQuery =
-//       "SELECT id, device_id, device_type, sim_number FROM devices LEFT JOIN vehicles ON devices.device_id = vehicles.ecu WHERE devices.device_type = 'ECU' AND vehicles.vehicle_uuid IS NULL AND devices.user_uuid = ? AND devices.device_status = 1";
-//     const [results] = await connection.execute(getQuery, [user_uuid]);
-//     res.status(200).send({
-//       message: "Successfuly got list of ECU",
-//       totalCount: results.length,
-//       results,
-//     });
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .send({ message: "Error in getting the users ecu", Error: err });
-//   } finally {
-//     connection.release();
-//   }
-// };
+    const getQuery =
+      "SELECT id, device_id, device_type, sim_number FROM devices LEFT JOIN vehicles ON devices.device_id = vehicles.ecu WHERE devices.device_type = 'ECU' AND vehicles.vehicle_uuid IS NULL AND devices.user_uuid = ? AND devices.device_status = 1";
+    const [results] = await connection.execute(getQuery, [user_uuid]);
+    res.status(200).send({
+      message: "Successfuly got list of ECU",
+      totalCount: results.length,
+      results,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Error in getting the users ecu", Error: err });
+  } finally {
+    connection.release();
+  }
+};
 
 // //get list of all iot which are not assign to any vehicle and device assign to particular user
-// const getUserIot = async (req, res) => {
-//   const { user_uuid } = req.params;
+const getUserIot = async (req, res) => {
+  const connection = await pool.getConnection();
 
-//   const connection = await db();
+  try {
+    const { user_uuid } = req.params;
 
-//   try {
-//     const getQuery =
-//       "SELECT id, device_id, device_type, sim_number FROM devices LEFT JOIN vehicles ON devices.device_id = vehicles.iot WHERE devices.device_type = 'IoT' AND vehicles.vehicle_uuid IS NULL AND devices.user_uuid = ? AND devices.device_status = 1";
-//     const [results] = await connection.execute(getQuery, [user_uuid]);
-//     res.status(200).send({
-//       message: "Successfully got list of IoT",
-//       totalCount: results.length,
-//       results,
-//     });
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .send({ message: "Error in getting the users ecu", Error: err });
-//   } finally {
-//     connection.release();
-//   }
-// };
+    const getQuery =
+      "SELECT id, device_id, device_type, sim_number FROM devices LEFT JOIN vehicles ON devices.device_id = vehicles.iot WHERE devices.device_type = 'IoT' AND vehicles.vehicle_uuid IS NULL AND devices.user_uuid = ? AND devices.device_status = 1";
+    const [results] = await connection.execute(getQuery, [user_uuid]);
+    res.status(200).send({
+      message: "Successfully got list of IoT",
+      totalCount: results.length,
+      results,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Error in getting the users ecu", Error: err });
+  } finally {
+    connection.release();
+  }
+};
 
 // //get list of all dms which are not assign to any vehicle and device assign to particular user
-// const getUserDMS = async (req, res) => {
-//   const { user_uuid } = req.params;
+const getUserDMS = async (req, res) => {
+  const connection = await pool.getConnection();
 
-//   const connection = await db();
+  try {
+    const { user_uuid } = req.params;
 
-//   try {
-//     const getQuery =
-//       "SELECT id, device_id, device_type, sim_number FROM devices LEFT JOIN vehicles ON devices.device_id = vehicles.dms WHERE devices.device_type = 'DMS' AND vehicles.vehicle_uuid IS NULL AND devices.user_uuid = ? AND devices.device_status = 1";
-//     const [results] = await connection.execute(getQuery, [user_uuid]);
-//     res.status(200).send({
-//       message: "Successfully got list of DMS",
-//       totalCount: results.length,
-//       results,
-//     });
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .send({ message: "Error in getting the users ecu", Error: err });
-//   } finally {
-//     connection.release();
-//   }
-// };
+    const getQuery =
+      "SELECT id, device_id, device_type, sim_number FROM devices LEFT JOIN vehicles ON devices.device_id = vehicles.dms WHERE devices.device_type = 'DMS' AND vehicles.vehicle_uuid IS NULL AND devices.user_uuid = ? AND devices.device_status = 1";
+    const [results] = await connection.execute(getQuery, [user_uuid]);
+    res.status(200).send({
+      message: "Successfully got list of DMS",
+      totalCount: results.length,
+      results,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Error in getting the users ecu", Error: err });
+  } finally {
+    connection.release();
+  }
+};
 
 // get all devices count
 const deviceCount = async (req, res) => {
@@ -331,10 +330,10 @@ module.exports = {
   editDevice,
   deleteDevice,
   getDevices,
-  // getusersDevices,
-  // getUserEcu,
-  // getUserIot,
-  // getUserDMS,
+  getusersDevices,
+  getUserEcu,
+  getUserIot,
+  getUserDMS,
   deviceCount,
   getCustomerList,
   getDeviceById,
