@@ -24,8 +24,9 @@ exports.Login = async (req, res) => {
 
     // Check if the user with the given email exists in the database
     const [userRows] = await connection.execute(
-      "SELECT * FROM users WHERE email = ?",
-      [email]
+      "SELECT * FROM users WHERE user_status = ? AND email = ?",
+
+      [1, email]
     );
     const user = userRows[0];
 
@@ -233,6 +234,7 @@ exports.updateCustomers = async (req, res) => {
       phone,
       user_uuid,
     ]);
+<<<<<<< HEAD
     if (existingUserRows.length === 0) {
       return res.status(404).json({ message: "User not found" });
     } else if (result.length > 0) {
@@ -242,6 +244,14 @@ exports.updateCustomers = async (req, res) => {
           error: "Contact already exists with the provided email or mobile",
         });
     }
+=======
+        if (existingUserRows.length === 0) {
+          return res.status(404).json({ message: "User not found" });
+        } else  
+        if (result.length > 0) {
+            return res.status(400).send({ message: "User already exists with the provided email or mobile" });
+          }
+>>>>>>> main
 
     const updateQuery =
       "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
@@ -266,7 +276,7 @@ exports.updateCustomers = async (req, res) => {
     await sendEmail(email, values);
 
     res
-      .status(202)
+      .status(201)
       .json({ message: "User updated successfully", customerData: results });
   } catch (err) {
     logger.error("Error updating user:", err);

@@ -1,0 +1,49 @@
+8/29/2023, 12:38:04 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
+8/29/2023, 12:58:35 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/29/2023, 12:58:44 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/29/2023, 12:58:49 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/29/2023, 12:59:02 PM [ERROR]: Error in adding device: TypeError: Bind parameters must not contain undefined. To pass SQL NULL specify JS null
+8/29/2023, 1:01:18 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
+8/29/2023, 1:02:04 PM [ERROR]: Error in adding device: Error: Duplicate entry 'DMS001A' for key 'device_id'
+8/29/2023, 1:02:10 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
+8/29/2023, 1:03:35 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:03:38 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:03:38 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:03:38 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:03:39 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:03:55 PM [ERROR]: Enable to subscribe the topics Error: Unknown column 'device_status' in 'field list'
+8/29/2023, 1:03:57 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:04:06 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:04:07 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:05:17 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
+8/29/2023, 1:05:28 PM [ERROR]: Enable to subscribe the topics Error: Unknown column 'device_status' in 'field list'
+8/29/2023, 1:05:31 PM [ERROR]: Enable to subscribe the topics Error: Unknown column 'device_status' in 'field list'
+8/29/2023, 1:05:32 PM [ERROR]: Enable to subscribe the topics Error: Unknown column 'device_status' in 'field list'
+8/29/2023, 1:05:38 PM [ERROR]: Enable to subscribe the topics Error: Unknown column 'device_status' in 'field list'
+8/29/2023, 1:05:41 PM [ERROR]: Enable to subscribe the topics Error: Unknown column 'device_status' in 'field list'
+8/29/2023, 1:05:46 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:05:47 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:05:47 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:05:47 PM [ERROR]: Error in getting the list, Error: Error: Unknown column 'devices.device_status' in 'where clause' 
+8/29/2023, 1:06:49 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
+8/29/2023, 1:07:57 PM [ERROR]: Error in adding device: ReferenceError: status is not defined
+8/29/2023, 1:07:59 PM [ERROR]: Error in adding device: ReferenceError: status is not defined
+8/29/2023, 1:07:59 PM [ERROR]: Error in adding device: ReferenceError: status is not defined
+8/29/2023, 1:08:00 PM [ERROR]: Error in adding device: ReferenceError: status is not defined
+8/29/2023, 1:08:00 PM [ERROR]: Error in adding device: ReferenceError: status is not defined
+8/29/2023, 1:08:07 PM [ERROR]: Error in adding device: ReferenceError: status is not defined
+8/29/2023, 1:09:02 PM [ERROR]: Error in adding device: Error: Duplicate entry 'ECU002A' for key 'device_id'
+8/29/2023, 1:11:08 PM [ERROR]: Error in adding device: Error: Duplicate entry 'DMS001A' for key 'device_id'
+8/29/2023, 1:11:15 PM [ERROR]: Error in adding device: Error: Duplicate entry 'DMS001A' for key 'device_id'
+8/29/2023, 1:14:00 PM [ERROR]: Error in adding device: Error: Duplicate entry 'DMS001A' for key 'device_id'
+8/29/2023, 1:17:39 PM [ERROR]: Error in updating device Error: Duplicate entry 'DMS001A' for key 'device_id'
+8/29/2023, 1:17:54 PM [ERROR]: Error in updating device Error: Duplicate entry 'DMS001A' for key 'device_id'
+8/29/2023, 1:18:50 PM [ERROR]: Error in updating device Error: Duplicate entry 'DMS001A' for key 'device_id'
+8/29/2023, 1:25:31 PM [ERROR]: Error in adding device: Error: Duplicate entry 'DMS014A' for key 'device_id'
+8/29/2023, 3:16:14 PM [ERROR]: Error in updating device Error: Duplicate entry 'DMS014A' for key 'device_id'
+8/29/2023, 3:40:02 PM [ERROR]: Error deleteing AT: userUUID is not defined
+8/29/2023, 3:40:07 PM [ERROR]: Error deleteing AT: userUUID is not defined
+8/29/2023, 3:40:43 PM [ERROR]: Error deleteing AT: userUUID is not defined
+8/29/2023, 5:36:19 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
+8/29/2023, 5:37:02 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
+8/29/2023, 5:38:22 PM [ERROR]: Error in adding device: ReferenceError: device_status is not defined
