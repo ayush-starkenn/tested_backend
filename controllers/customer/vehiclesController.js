@@ -138,7 +138,7 @@ const getUserVehicles = async (req, res) => {
   try {
     const { user_uuid } = req.params;
     const getQuery =
-      "SELECT * FROM vehicles WHERE vehicle_status!=0 AND user_uuid=?";
+      "SELECT * FROM vehicles WHERE vehicle_status!=0 AND user_uuid=? ORDER BY vehicle_id DESC";
 
     [results] = await connection.execute(getQuery, [user_uuid]);
 
