@@ -52,6 +52,7 @@ const addVehicle = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Error in adding vehicle: ${err}`);
     res.status(500).send({ message: "Error in adding vehicle", Error: err });
   } finally {
     connection.release();
@@ -106,6 +107,7 @@ const editVehicle = async (req, res) => {
       results,
     });
   } catch (err) {
+    logger.error(`Error in editing vehicle: ${err}`);
     res.status(500).send({ message: "Error in updating data", Error: err });
   } finally {
     connection.release();
@@ -148,6 +150,7 @@ const getUserVehicles = async (req, res) => {
       results,
     });
   } catch (err) {
+    logger.error(`Error in getting user vehicle list: ${err}`);
     res
       .status(500)
       .send({ message: "Error in getting user vehicle list", Error: err });
@@ -182,7 +185,8 @@ const deleteVehicle = async (req, res) => {
       results,
     });
   } catch (err) {
-    res.status(500).send({ message: "Error in deleting device", Error: err });
+    logger.error(`Error in deleting vehicle: ${err}`);
+    res.status(500).send({ message: "Error in deleting vehicle", Error: err });
   } finally {
     connection.release();
   }
@@ -225,7 +229,7 @@ const getVehicleData = async (req, res) => {
       });
     }
   } catch (err) {
-    logger.error(`Error in fetching the vehicle data by vehicle_uuid ${error}`);
+    logger.error(`Error in fetching the vehicle data by vehicle_uuid ${err}`);
     res.status(501).json({ message: "Unable to fetch particular vehicle!" });
   } finally {
     connection.release();

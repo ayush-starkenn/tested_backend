@@ -48,6 +48,7 @@ const addFeatureset = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Error in adding featureset: ${err}`);
     res.status(500).send({ message: "Error in adding featureset", error: err });
   } finally {
     connection.release();
@@ -97,6 +98,7 @@ const editFeatureset = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Error in updating featureset: ${err}`);
     res
       .status(500)
       .send({ message: "Error in updating featureset", error: err });
@@ -131,6 +133,7 @@ const deleteFeatureset = async (req, res) => {
         .send({ message: "Successfully featureset deleted", results });
     }
   } catch (err) {
+    logger.error(`Error in deleting the featureset: ${err}`);
     res
       .status(500)
       .send({ message: "Error in deleting the featureset", error: err });
@@ -156,6 +159,7 @@ const getAllFeatureset = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Error in getting the FeaturesetList: ${err}`);
     res
       .status(500)
       .send({ message: "Error in getting the FeaturesetList", error: err });
@@ -183,6 +187,7 @@ const getFeatureset = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Failed to get featureset: ${err}`);
     res.status(500).send({ message: "Failed to get featureset", error: err });
   } finally {
     connection.release();
@@ -216,6 +221,7 @@ const getFeaturesetOFUser = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Error in getting featureset of user: ${err}`);
     res
       .status(500)
       .send({ message: "Error in getting featureset of user", error: err });
@@ -256,6 +262,7 @@ const getAssignUsers = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Failed to get list of users: ${err}`);
     res
       .status(500)
       .send({ message: "Failed to get list of users", error: err });
@@ -284,6 +291,7 @@ const getUnassignUsers = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Failed to get unassign users list: ${err}`);
     res
       .status(500)
       .send({ messsage: "Failed to get unassign users list", error: err });
@@ -322,6 +330,7 @@ const assignuser = async (req, res) => {
       });
     }
   } catch (err) {
+    logger.error(`Failed to assign user: ${err}`);
     res.status(500).send({ message: "Failed to assign user", error: err });
   } finally {
     connection.release();
@@ -359,6 +368,7 @@ const unassignuser = async (req, res) => {
         .send({ message: "User unassigned successfully", results: newlist });
     }
   } catch (err) {
+    logger.error(`Failed to unassign user: ${err}`);
     res.status(500).send({ message: "Failed to unassign user", error: err });
   } finally {
     connection.release();
