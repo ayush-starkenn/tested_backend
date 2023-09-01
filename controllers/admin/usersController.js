@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
 const { sendEmail } = require("../../middleware/mailer");
+const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 const app = express();
 
@@ -154,6 +155,7 @@ exports.Signup = async (req, res) => {
 
     // Send OTP on Email
     await sendEmail(email, values);
+    await sendWhatsappMessage(phone);
 
     res.status(201).json({ message: "Customer Added Successfully!", results });
   } catch (err) {
