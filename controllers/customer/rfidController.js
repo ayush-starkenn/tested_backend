@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const pool = require("../../config/db");
 const logger = require("../../logger.js");
-
+const crypto = require('crypto');
 const moment = require("moment-timezone");
 const { v4: uuidv4 } = require("uuid"); 
 const bodyParser = require("body-parser");
@@ -11,50 +11,48 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Utility function to generate an RFID code
+function generateRFIDCode() {
+  const timestamp = Date.now().toString();
+  const randomBytes = crypto.randomBytes(4).toString('hex').toUpperCase();
+  return `${timestamp}-${randomBytes}`;
+}
+
 // creating the add rfid
 exports.addRFID = async (req, res) => {
-
-  // Connection to DB
   const connection = await pool.getConnection();
 
   try {
-      const {
-        rfid,
-       // driver_uuid,
-       // rfid_status,
-       } = req.body;
+    const rfidCode = generateRFIDCode();
+    const { driver_uuid, user_uuid } = req.params;
 
-       const {  driver_uuid, user_uuid} = req.params;
+    const currentTimeIST = moment.tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");  
 
-    // Generate current time in Asia/Kolkata timezone
-    const currentTimeIST = moment
-      .tz("Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss");
+    const checkQuery = `SELECT * FROM rfid WHERE rfid=? OR driver_uuid=?`;
+    const [results] = await connection.execute(checkQuery, [rfidCode, driver_uuid]);
 
-    const checkQuery = "SELECT rfid FROM rfid WHERE rfid=?";
-
-    const [checkrfid] = await connection.execute(checkQuery, [rfid]);
-
-    if (checkrfid.length > 0) {
-      return res
+    if (results.length > 0) {
+           return res
         .status(400)
-        .json({ message: "Driver RFID already exists" });
-    }
+        .json({ message: "Driver already exists for RFID" }); 
+    } 
 
-    const query =
-      "INSERT INTO rfid (rfid , driver_uuid , rfid_status , rfid_created_at , rfid_created_by ) VALUES (? , ? , ? , ? , ?)";
+    const insertQuery =
+      "INSERT INTO rfid (rfid, driver_uuid, rfid_status, rfid_created_at, rfid_created_by) VALUES (?, ?, ?, ?, ?)";
 
-    const [results] = await connection.execute(query, [
-      rfid,
+    await connection.execute(insertQuery, [
+      rfidCode,
       driver_uuid,
       parseInt(1),
       currentTimeIST,
       user_uuid,
     ]);
 
-    res.status(201).json({ message: "Driver RFID Added Successfully!", results });
+    //await connection.commit(); 
+    res.status(201).json({ message: "Driver RFID Added Successfully!" });
   } catch (err) {
-    logger.error("Error adding Driver RFID:", err);
+    //await connection.rollback(); 
+    console.error("Error adding Driver RFID:", err);
     res.status(500).send({ message: "Error in Add Driver RFID" });
   } finally {
     connection.release();
@@ -69,7 +67,6 @@ exports.assignRFID = async (req, res) => {
     try {
   const { rfid } = req.params;
   const {user_uuid} = req.body;
-
 
     // Generate current time in Asia/Kolkata timezone
     const currentTimeIST = moment

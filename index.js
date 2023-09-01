@@ -2,6 +2,7 @@ const logger = require("./logger");
 const express = require("express");
 const pool = require("./config/db");
 const setupMQTT = require("./controllers/mqttHandler");
+//const  whatsappRouter = require("./middleware/whatsapp");
 // Import all routes
 const { deviceRouter } = require("./routes/admin/deviceRoute");
 const { vehiclesRouter } = require("./routes/customer/vehiclesRoute");
@@ -15,6 +16,7 @@ const { profileRouter } = require("./routes/customer/profileRoute");
 const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 
+
 const cors = require("cors");
 
 require("dotenv").config();
@@ -26,6 +28,7 @@ app.use(express.json());
 app.use(cors({ origin: "*" }));
 
 setupMQTT();
+//whatsappRouter();
 
 // cronJob();
 setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
