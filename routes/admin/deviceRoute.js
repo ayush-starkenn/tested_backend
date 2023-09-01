@@ -4,10 +4,10 @@ const {
   editDevice,
   deleteDevice,
   getDevices,
-  // getusersDevices,
-  // getUserEcu,
-  // getUserIot,
-  // getUserDMS,
+  getusersDevices,
+  getUserEcu,
+  getUserIot,
+  getUserDMS,
   deviceCount,
   getCustomerList,
   getDeviceById,
@@ -33,16 +33,16 @@ deviceRouter.get("/get-device-by-id/:device_id", getDeviceById);
 deviceRouter.get("/get-customerlist", getCustomerList);
 
 // //get list of all devices assign to particular user
-// deviceRouter.get("/get-user-devices-list/:user_uuid", getusersDevices);
+deviceRouter.get("/get-user-devices-list/:user_uuid", getusersDevices);
 
 // //get list of ecu assign to particular user
-// deviceRouter.get("/get-user-ecu/:user_uuid", getUserEcu);
+deviceRouter.get("/get-user-ecu/:user_uuid", getUserEcu);
 
 // //get list of all  iot assign to particular user
-// deviceRouter.get("/get-user-iot/:user_uuid", getUserIot);
+deviceRouter.get("/get-user-iot/:user_uuid", getUserIot);
 
 // //get list of all dms assign to particular user
-// deviceRouter.get("/get-user-dms/:user_uuid", getUserDMS);
+deviceRouter.get("/get-user-dms/:user_uuid", getUserDMS);
 
 // Get total devices count
 deviceRouter.get("/total-devices", deviceCount);

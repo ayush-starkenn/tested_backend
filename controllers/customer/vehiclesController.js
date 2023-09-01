@@ -27,15 +27,14 @@ const addVehicle = async (req, res) => {
 
     const addQuery =
       "INSERT INTO vehicles(`vehicle_uuid`,`user_uuid`,`vehicle_name`,`vehicle_registration`,`ecu`,`iot`,`dms`,`featureset_uuid`,`vehicle_status`,`created_at`,`created_by`,`modified_at`,`modified_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
     const values = [
       newUuid,
       user_uuid,
       vehicle_name,
       vehicle_registration,
-      ecu,
-      iot,
-      dms,
+      ecu || null,
+      iot || null,
+      dms || null,
       featureset_uuid,
       1,
       currentTimeIST,
@@ -43,7 +42,6 @@ const addVehicle = async (req, res) => {
       currentTimeIST,
       user_uuid,
     ];
-
     const [results] = await connection.execute(addQuery, values);
 
     if (results) {
@@ -75,6 +73,7 @@ const editVehicle = async (req, res) => {
       iot,
       dms,
       featureset_uuid,
+      vehicle_status,
     } = req.body;
 
     let createdAt = new Date();
@@ -83,16 +82,17 @@ const editVehicle = async (req, res) => {
       .format("YYYY-MM-DD HH:mm:ss a");
 
     const editQuery =
-      "UPDATE vehicles SET `user_uuid` = ?, `vehicle_name` = ?, `vehicle_registration` = ?, `ecu` = ?, `iot` = ?, `dms` = ?, `featureset_uuid` = ?, `modified_at` = ?, `modified_by` = ? WHERE `vehicle_uuid` = ?";
+      "UPDATE vehicles SET `user_uuid` = ?, `vehicle_name` = ?, `vehicle_registration` = ?, `ecu` = ?, `iot` = ?, `dms` = ?, `featureset_uuid` = ?,`vehicle_status`=?, `modified_at` = ?, `modified_by` = ? WHERE `vehicle_uuid` = ?";
 
     const values = [
       user_uuid,
       vehicle_name,
       vehicle_registration,
-      ecu,
-      iot,
-      dms,
+      ecu || null,
+      iot || null,
+      dms || null,
       featureset_uuid,
+      vehicle_status || 1,
       currentTimeIST,
       user_uuid,
       vehicle_uuid,
@@ -138,9 +138,9 @@ const getUserVehicles = async (req, res) => {
   try {
     const { user_uuid } = req.params;
     const getQuery =
-      "SELECT * FROM vehicles WHERE vehicle_status=? AND user_uuid=?";
+      "SELECT * FROM vehicles WHERE vehicle_status!=0 AND user_uuid=? ORDER BY vehicle_id DESC";
 
-    [results] = await connection.execute(getQuery, [1, user_uuid]);
+    [results] = await connection.execute(getQuery, [user_uuid]);
 
     res.status(200).send({
       message: "Successfully got list of all vehicles",
@@ -163,15 +163,22 @@ const deleteVehicle = async (req, res) => {
 
   try {
     const { vehicle_uuid } = req.params;
+    const { user_uuid } = req.body;
+
+    let createdAt = new Date();
+    let currentTimeIST = moment
+      .tz(createdAt, "Asia/Kolkata")
+      .format("YYYY-MM-DD HH:mm:ss");
 
     const deleteQuery =
-      "UPDATE vehicles SET vehicle_status=? WHERE vehicle_uuid=?";
+      "UPDATE vehicles SET vehicle_status=?,modified_at=?,modified_by=?  WHERE vehicle_uuid=?";
 
-    const [results] = await connection.execute(deleteQuery, [0, vehicle_uuid]);
+    const values = [0, currentTimeIST, user_uuid, vehicle_uuid];
+
+    const [results] = await connection.execute(deleteQuery, values);
 
     res.status(200).send({
       message: "Successfully vehicle deleted",
-      totalCount: results.length,
       results,
     });
   } catch (err) {
@@ -200,6 +207,31 @@ const totalVehicles = async (req, res) => {
   }
 };
 
+//get vehicle Data by vehicle_uuid
+
+const getVehicleData = async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    const { vehicle_uuid } = req.params;
+    const getQuery = "SELECT * FROM vehicles WHERE vehicle_uuid=?";
+
+    const [results] = await connection.execute(getQuery, [vehicle_uuid]);
+
+    if (results) {
+      res.status(200).send({
+        message: "Successfully received vehicles count.",
+        totalCount: results.length,
+        results,
+      });
+    }
+  } catch (err) {
+    logger.error(`Error in fetching the vehicle data by vehicle_uuid ${error}`);
+    res.status(501).json({ message: "Unable to fetch particular vehicle!" });
+  } finally {
+    connection.release();
+  }
+};
+
 module.exports = {
   addVehicle,
   editVehicle,
@@ -207,4 +239,5 @@ module.exports = {
   getUserVehicles,
   deleteVehicle,
   totalVehicles,
+  getVehicleData,
 };
