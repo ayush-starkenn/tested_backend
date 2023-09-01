@@ -27,8 +27,8 @@ app.use(cors({ origin: "*" }));
 
 setupMQTT();
 
-// cronJob();
-setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
+cronJobForEndTrip();
+// setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
 // Login Routes
 app.use("/api", loginRouter);
