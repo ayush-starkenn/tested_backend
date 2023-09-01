@@ -22,8 +22,6 @@ const addDriver = async (req, res) => {
       driver_license_no,
     } = req.body;
  
-        
-  
     const newUuid = uuidv4();
   
     let createdAt = new Date();
@@ -34,13 +32,27 @@ const addDriver = async (req, res) => {
    
       const checkQuery =
         `SELECT * FROM drivers WHERE driver_mobile = ? OR driver_license_no = ? OR driver_email = ?` ;
-  
-      const [checkresults] = await connection.execute(checkQuery, [driver_mobile, driver_license_no, driver_email]);
-  
-      if (checkresults.length > 0) {
+
+        const [checkResults] = await connection.execute(checkQuery, [
+          driver_mobile,
+          driver_license_no,
+          driver_email
+        ]);
+
+      if (checkResults.length > 0) {
+        const existingFields = checkResults.map(result => {
+          if (result.driver_mobile === driver_mobile) {
+            return "Mobile number";
+          } else if (result.driver_license_no === driver_license_no) {
+            return "License number";
+          } else if (result.driver_email === driver_email) {
+            return "Email";
+          }
+        });
+    
         return res
-        .status(400)
-        .send({ message: "Drivers mobile number and License and Email already exits" });
+          .status(400)
+          .send({ message: `Driver ${existingFields.join(', ')} already exists` });
       } 
 
       const addQuery =
@@ -93,6 +105,7 @@ const editDriver = async (req, res) => {
       driver_gender,
       driver_auth_id,
       driver_license_no,
+      driver_status,
     } = req.body;
   
     const { driver_uuid } = req.params;
@@ -106,19 +119,30 @@ const editDriver = async (req, res) => {
       const checkQuery =
       `SELECT * FROM drivers WHERE (driver_mobile = ? OR driver_license_no = ? OR driver_email = ?) AND driver_uuid != ?` ;
 
-    const [checkresults] = await connection.execute(checkQuery, [
-        driver_mobile, 
-        driver_license_no, 
-        driver_email, 
-        driver_uuid]);
+        const [checkResults] = await connection.execute(checkQuery, [
+          driver_mobile,
+          driver_license_no,
+          driver_email
+        ]);
+        
+      if (checkResults.length > 0) {
+        const existingFields = checkResults.map(result => {
+          if (result.driver_mobile === driver_mobile) {
+            return "Mobile number";
+          } else if (result.driver_license_no === driver_license_no) {
+            return "License number";
+          } else if (result.driver_email === driver_email) {
+            return "Email";
+          }
+        });
+    
+        return res
+          .status(400)
+          .send({ message: `Driver ${existingFields.join(', ')} already exists` });
+      } 
 
-    if (checkresults.length > 0) {
-      return res
-      .status(400)
-      .send({ message: "Drivers mobile number and License and Email already exits" });
-    } 
       const editQuery =
-        "UPDATE drivers SET driver_first_name=?,driver_last_name=?,driver_email=?,driver_mobile=?,driver_dob=?,driver_gender=?,driver_auth_id=?,driver_license_no=?,driver_modified_at=?,driver_modified_by=? WHERE driver_uuid=?";
+        "UPDATE drivers SET driver_first_name=?,driver_last_name=?,driver_email=?,driver_mobile=?,driver_dob=?,driver_gender=?,driver_auth_id=?,driver_license_no=?,driver_status=?,driver_modified_at=?,driver_modified_by=? WHERE driver_uuid=?";
   
       const values = [
         driver_first_name,
@@ -129,6 +153,7 @@ const editDriver = async (req, res) => {
         driver_gender,
         driver_auth_id,
         driver_license_no,
+        driver_status,
         currentTimeIST,
         
         req.body.user_uuid,

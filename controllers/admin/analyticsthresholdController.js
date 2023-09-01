@@ -156,7 +156,7 @@ exports.updateAnalyticsThresholds = async (req, res) => {
 
     const [results] = await connection.execute(updateQuery, values);
     res
-      .status(200)
+      .status(201)
       .json({ message: "Analytics Thresholds Updated Successfully", results });
   } catch (err) {
     logger.error(`Error in updating analytics thresholds: ${err}`);
@@ -221,7 +221,7 @@ exports.getByIdAnalyticsThresholds = async (req, res) => {
     ]);
 
     res
-      .status(201)
+      .status(200)
       .send({ message: " Analytics Thresholds Get Succesfully", results });
   } catch (err) {
     res

@@ -2,6 +2,7 @@ const logger = require("./logger");
 const express = require("express");
 const pool = require("./config/db");
 const setupMQTT = require("./controllers/mqttHandler");
+//const  whatsappRouter = require("./middleware/whatsapp");
 // Import all routes
 const { deviceRouter } = require("./routes/admin/deviceRoute");
 const { vehiclesRouter } = require("./routes/customer/vehiclesRoute");
@@ -15,7 +16,9 @@ const { profileRouter } = require("./routes/customer/profileRoute");
 const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 
+
 const cors = require("cors");
+const { featuresetRouter } = require("./routes/admin/featuresetRoute");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -26,6 +29,7 @@ app.use(express.json());
 app.use(cors({ origin: "*" }));
 
 setupMQTT();
+//whatsappRouter();
 
 cronJobForEndTrip();
 // setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
@@ -39,6 +43,7 @@ app.use(authentication);
 app.use("/api/devices", deviceRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/analytics-threshold", ATRouter);
+app.use("/api/featuresets", featuresetRouter);
 
 // Customer Panel Routes
 app.use("/api/vehicles", vehiclesRouter);
