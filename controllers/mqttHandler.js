@@ -3,6 +3,7 @@ const logger = require("../logger");
 const { client } = require("../config/mqtt");
 const { v4: uuidv4 } = require("uuid");
 const pkg = require("geolib");
+const { sendEmail } = require("../middleware/mailer");
 
 const setupMQTT = () => {
   // On connect to MQTT then Function to retrieve topics from the database
@@ -192,16 +193,20 @@ const completeTrip = async (tripID) => {
 
         // Set Trip duration
         let difference = "";
-        difference = tripEndTime - tripStartTime; // seconds
-        let hours = Math.floor(difference / 3600);
-        difference = difference % 3600;
-        let minutes = Math.floor(difference / 60);
-        difference = difference % 60;
-        let seconds = difference;
-        if (hours > 0) {
-          duration = hours + " hours " + minutes + " Mins " + seconds + " Sec";
-        } else {
-          duration = minutes + " Mins " + seconds + " Sec";
+
+        if (tripEndTime > 0 && tripStartTime > 0) {
+          difference = tripEndTime - tripStartTime; // seconds
+          let hours = Math.floor(difference / 3600);
+          difference = difference % 3600;
+          let minutes = Math.floor(difference / 60);
+          difference = difference % 60;
+          let seconds = difference;
+          if (hours > 0) {
+            duration =
+              hours + " hours " + minutes + " Mins " + seconds + " Sec";
+          } else {
+            duration = minutes + " Mins " + seconds + " Sec";
+          }
         }
 
         // Update to trip summary page
@@ -263,7 +268,7 @@ const storeJsonInDatabase = async (validatedJson) => {
     const tripdata = [
       tripID,
       deviceIDD,
-      vehicleData[0].vehicle_uuid,
+      vehicle_uuid,
       validatedJson.event,
       validatedJson.message,
       validatedJson.timestamp,
@@ -279,6 +284,9 @@ const storeJsonInDatabase = async (validatedJson) => {
       [tripdata]
     );
     logger.info("Stored Tripdata in the database");
+
+    // Alert triggers
+    await trigerMode(validatedJson.event, vehicle_uuid);
   } catch (error) {
     logger.error(`Error storing Tripdata in database: ${error.message}`);
   } finally {
@@ -378,6 +386,29 @@ const storeInvalidJsonInDatabase = async (topic, message) => {
     logger.error(
       `Error storing invalid Tripdata in database: ${error.message}`
     );
+  } finally {
+    connection.release();
+  }
+};
+
+// Trigger mode
+const trigerMode = async (event, vehicleUUID) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const [triggers] = await connection.query(
+      `SELECT recipients FROM alert_triggers WHERE vehicle_uuid = ? AND trigger_type = ? AND trigger_status = ?`,
+      [vehicleUUID, event, 1]
+    );
+    if (triggers.length > 0) {
+      // console.log(triggers);
+      sendEmail("piyush@starkenn.com", `${event} mode due to Some reason...`);
+    } else {
+      // logger.info(`No alert trigger found`);
+      return;
+    }
+  } catch (error) {
+    logger.error(`Error in alert trigger ${error}`);
   } finally {
     connection.release();
   }

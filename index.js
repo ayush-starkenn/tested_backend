@@ -16,7 +16,6 @@ const { profileRouter } = require("./routes/customer/profileRoute");
 const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 
-
 const cors = require("cors");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
 
