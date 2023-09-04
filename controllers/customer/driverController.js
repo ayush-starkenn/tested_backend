@@ -20,6 +20,7 @@ const addDriver = async (req, res) => {
       driver_auth_id,
       driver_license_no,
     } = req.body;
+    console.log(req.body);
 
     const newUuid = uuidv4();
 
@@ -27,6 +28,8 @@ const addDriver = async (req, res) => {
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss ");
+
+    let driverDOB = moment.tz(driver_dob, "Asia/Kolkata").format("YYYY-MM-DD");
 
     const checkQuery = `SELECT * FROM drivers WHERE driver_mobile = ? OR driver_license_no = ? OR driver_email = ?`;
 
@@ -62,7 +65,7 @@ const addDriver = async (req, res) => {
       driver_last_name,
       driver_email,
       driver_mobile,
-      driver_dob,
+      driverDOB,
       driver_gender,
       driver_auth_id,
       driver_license_no,
@@ -101,6 +104,7 @@ const editDriver = async (req, res) => {
       driver_auth_id,
       driver_license_no,
       driver_status,
+      userUUID,
     } = req.body;
 
     const { driver_uuid } = req.params;
@@ -110,12 +114,15 @@ const editDriver = async (req, res) => {
       .tz(createdAt, "Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss ");
 
+    let driverDOB = moment.tz(driver_dob, "Asia/Kolkata").format("YYYY-MM-DD");
+
     const checkQuery = `SELECT * FROM drivers WHERE (driver_mobile = ? OR driver_license_no = ? OR driver_email = ?) AND driver_uuid != ?`;
 
     const [checkResults] = await connection.execute(checkQuery, [
       driver_mobile,
       driver_license_no,
       driver_email,
+      driver_uuid,
     ]);
 
     if (checkResults.length > 0) {
@@ -142,14 +149,13 @@ const editDriver = async (req, res) => {
       driver_last_name,
       driver_email,
       driver_mobile,
-      driver_dob,
+      driverDOB,
       driver_gender,
       driver_auth_id,
       driver_license_no,
       driver_status,
       currentTimeIST,
-
-      req.body.user_uuid,
+      userUUID,
       driver_uuid,
     ];
 
@@ -161,7 +167,7 @@ const editDriver = async (req, res) => {
       results,
     });
   } catch (err) {
-    logger.error(`Error in adding Driver: ${err}`);
+    logger.error(`Error in updating Driver: ${err}`);
     res.status(500).json({ message: "Internal server error" });
   } finally {
     connection.release();
