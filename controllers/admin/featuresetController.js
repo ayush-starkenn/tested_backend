@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 const moment = require("moment-timezone");
 const pool = require("../../config/db.js");
+const logger = require("../../logger.js");
 
 //adding the featureset
 const addFeatureset = async (req, res) => {
@@ -193,31 +194,43 @@ const getFeatureset = async (req, res) => {
     connection.release();
   }
 };
+
 //get list of featuresets which are assign to particular user
 const getFeaturesetOFUser = async (req, res) => {
   const connection = await pool.getConnection();
 
   try {
     const { user_uuid } = req.params;
-    const getQuery =
-      "SELECT * FROM featureset WHERE featureset_status=? ORDER BY featureset_id DESC";
+    const getQuery = "SELECT * FROM featureset WHERE featureset_status = ?";
     const [results] = await connection.execute(getQuery, [1]);
 
     if (results) {
-      const userFeaturesets = results
-        .filter((result) => {
-          const featuresetUsers = JSON.parse(result.featureset_users);
-          return featuresetUsers.includes(user_uuid);
-        })
-        .map((result) => ({
-          featureset_uuid: result.featureset_uuid,
-          featureset_name: result.featureset_name,
-        }));
+      const matchingFeaturesets = [];
+
+      for (const result of results) {
+        const featuresetUsers = JSON.parse(result.featureset_users);
+
+        // Check if any object in the featuresetUsers array has the desired user_uuid
+        const userFound = featuresetUsers.some(
+          (userObj) => userObj.user_uuid === user_uuid
+        );
+
+        if (userFound) {
+          matchingFeaturesets.push({
+            featureset_uuid: result.featureset_uuid,
+            featureset_name: result.featureset_name,
+          });
+        }
+      }
 
       res.status(200).send({
         message: "Successfully retrieved user's featuresets",
-        totalCount: userFeaturesets.length,
-        results: userFeaturesets,
+        totalCount: matchingFeaturesets.length,
+        results: matchingFeaturesets,
+      });
+    } else {
+      res.status(404).send({
+        message: "No matching featuresets found for the user",
       });
     }
   } catch (err) {
