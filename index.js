@@ -16,7 +16,6 @@ const { profileRouter } = require("./routes/customer/profileRoute");
 const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 
-
 const cors = require("cors");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
 
@@ -31,8 +30,8 @@ app.use(cors({ origin: "*" }));
 setupMQTT();
 //whatsappRouter();
 
-// cronJob();
-setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
+cronJobForEndTrip();
+// setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
 // Login Routes
 app.use("/api", loginRouter);
