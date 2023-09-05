@@ -55,7 +55,6 @@ exports.Login = async (req, res) => {
         user_uuid: user.user_uuid,
         email: user.email,
         user_type: user.user_type,
-        first_name:user.first_name,
       },
       token: token,
     });
@@ -237,12 +236,13 @@ exports.updateCustomers = async (req, res) => {
       phone,
       user_uuid,
     ]);
-        if (existingUserRows.length === 0) {
-          return res.status(404).json({ message: "User not found" });
-        } else  
-        if (result.length > 0) {
-            return res.status(400).send({ message: "User already exists with the provided email or mobile" });
-          }
+    if (existingUserRows.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    } else if (result.length > 0) {
+      return res.status(400).send({
+        message: "User already exists with the provided email or mobile",
+      });
+    }
 
     const updateQuery =
       "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
