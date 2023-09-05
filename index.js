@@ -18,6 +18,7 @@ const { rfidRouter } = require("./routes/customer/rfidRoute");
 
 const cors = require("cors");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
+const { tripRouter } = require("./routes/customer/tripRoute");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -31,7 +32,7 @@ setupMQTT();
 //whatsappRouter();
 
 cronJobForEndTrip();
-// setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
+setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
 // Login Routes
 app.use("/api", loginRouter);
@@ -50,6 +51,7 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/rfid", rfidRouter);
+app.use("/api/trips", tripRouter);
 
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);
