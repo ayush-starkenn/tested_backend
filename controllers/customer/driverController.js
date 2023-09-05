@@ -214,21 +214,23 @@ const getUsersDrivers = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const { user_uuid } = req.params;
-    const getQuery =
-      "SELECT * FROM drivers WHERE user_uuid=? AND driver_status=? ORDER BY driver_created_at DESC";
 
-    const [results] = await connection.execute(getQuery, [user_uuid, 1]);
+      const getQuery =
+        "SELECT * FROM drivers WHERE user_uuid=? AND driver_status !=? ORDER BY driver_created_at DESC";
+  
+      const [results] = await connection.execute(getQuery, [user_uuid, 0]);
+  
+      res.status(200).send({
+        message: "Successfully got all drivers list",
+        totalCount: results.length,
+        results, 
+      });
+    } catch (err) {
+      logger.error(`Error in getting data, Error: ${err} `);
+      res.status(500).send({ message: "Error in data", Error: err });
+    } finally {
+      connection.release();
 
-    res.status(200).send({
-      message: "Successfully got all drivers list",
-      totalCount: results.length,
-      results,
-    });
-  } catch (err) {
-    logger.error(`Error in getting data, Error: ${err} `);
-    res.status(500).send({ message: "Error in data", Error: err });
-  } finally {
-    connection.release();
   }
 };
 
