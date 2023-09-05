@@ -175,9 +175,6 @@ const editDriver = async (req, res) => {
 };
 
 const deleteDriver = async (req, res) => {
-
-
-const deleteDriver = async (req, res) => {
   //connection to database
   const connection = await pool.getConnection();
   try {
@@ -212,7 +209,6 @@ const deleteDriver = async (req, res) => {
     connection.release();
   }
 };
-
 
 const getUsersDrivers = async (req, res) => {
   const connection = await pool.getConnection();
