@@ -102,7 +102,7 @@ exports.Signup = async (req, res) => {
       const [rows] = await connection.execute(
         `SELECT ${column} FROM users WHERE ${column} = ?`,
         [value]
-      );
+      ); 
 
       return rows.length > 0;
     };
