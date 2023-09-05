@@ -28,7 +28,7 @@ const addFeatureset = async (req, res) => {
     const values = [
       newUuid,
       featureset_name,
-      JSON.stringify(featureset_users),
+      JSON.stringify(featureset_users), 
       featuerset_version,
       JSON.stringify(featureset_data),
       1,

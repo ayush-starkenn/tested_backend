@@ -15,7 +15,7 @@ const { contactsRouter } = require("./routes/customer/contactsRoute");
 const { profileRouter } = require("./routes/customer/profileRoute");
 const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
-
+const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 
 const cors = require("cors");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
@@ -51,6 +51,7 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/rfid", rfidRouter);
+app.use("/api/alert-triggers", alertRouter);
 
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);

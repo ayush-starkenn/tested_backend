@@ -177,7 +177,7 @@ const editDriver = async (req, res) => {
       connection.release();
   }
 };
-  
+
 const deleteDriver = async (req, res) => {
 
         //connection to database
@@ -216,7 +216,7 @@ const deleteDriver = async (req, res) => {
         connection.release();
     }
 };
-  
+
 const getUsersDrivers = async (req, res) => {
 
   const connection = await pool.getConnection();
@@ -230,7 +230,7 @@ const getUsersDrivers = async (req, res) => {
       res.status(200).send({
         message: "Successfully got all drivers list",
         totalCount: results.length,
-        results,
+        results, 
       });
     } catch (err) {
       logger.error(`Error in getting data, Error: ${err} `);
