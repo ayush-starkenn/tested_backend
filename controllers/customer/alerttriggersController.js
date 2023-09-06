@@ -1,4 +1,3 @@
-
 const pool = require("../../config/db");
 const express = require("express");
 const app = express();
@@ -46,7 +45,7 @@ exports.saveAlertTrigger = async (req, res) => {
       trigger_description,
       vehicle_uuid,
       trigger_type,
-      recipients,
+      JSON.stringify(recipients), 
       1,
       currentTimeIST,
       user_uuid,
@@ -77,9 +76,9 @@ exports.getAlertTrigger = async (req, res) => {
 
   try {
     const { trigger_id } = req.params;
-    const getquery = `SELECT * FROM alert_triggers WHERE trigger_id = ${trigger_id}`;
+    const getquery = `SELECT * FROM alert_triggers WHERE trigger_id = ?`;
 
-    const [alerts] = await connection.execute(getquery);
+    const [alerts] = await connection.execute(getquery,[trigger_id]);
 
     res.status(200).send({
       message: "Successfully got the alert",
@@ -103,10 +102,10 @@ exports.getAllAlertTrigger = async (req, res) => {
 
   try {
     const { user_uuid } = req.params;
-    console.log(user_uuid);
-    const getquery = `SELECT * FROM alert_triggers WHERE user_uuid = ?`;
 
-    const [alerts] = await connection.execute(getquery, [user_uuid]);
+    const getquery = `SELECT * FROM alert_triggers WHERE user_uuid = ? AND trigger_status !=? ORDER BY trigger_id DESC`;
+
+    const [alerts] = await connection.execute(getquery, [user_uuid, 0]);
 
     res.status(200).send({
       message: "Successfully got all the alert",
@@ -206,7 +205,7 @@ exports.ActivateAlertTrigger = async (req, res) => {
 };
 
 //edit triggers by trigger_id
-exports.EditAlertTrigger = async (req, res) => {
+exports.updateAlertTrigger = async (req, res) => {
   const connection = await pool.getConnection();
 
   try {
@@ -217,6 +216,7 @@ exports.EditAlertTrigger = async (req, res) => {
       vehicle_uuid,
       trigger_type,
       recipients,
+      trigger_status,
       user_uuid,
     } = req.body;
 
@@ -227,6 +227,7 @@ exports.EditAlertTrigger = async (req, res) => {
       !vehicle_uuid ||
       !trigger_type ||
       !recipients ||
+      !trigger_status||
       !user_uuid
     ) {
       return res.status(400).send({ message: "All fields are required." });
@@ -243,7 +244,7 @@ exports.EditAlertTrigger = async (req, res) => {
       vehicle_uuid,
       trigger_type,
       recipients,
-      1,
+      trigger_status,
       currentTimeIST,
       user_uuid,
       trigger_id,
@@ -258,7 +259,7 @@ exports.EditAlertTrigger = async (req, res) => {
       alerts,
     });
   } catch (err) {
-    console.error(`Error in updating the alert: ${err}`);
+    logger.error(`Error in updating the alert: ${err}`);
     res.status(500).send({
       message: "An error occurred while updating alerts",
       error: err.message,

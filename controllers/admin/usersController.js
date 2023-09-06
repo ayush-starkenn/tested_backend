@@ -6,6 +6,8 @@ const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const redis = require('redis');
+const client = redis.createClient();
 
 const { sendEmail } = require("../../middleware/mailer");
 const { sendWhatsappMessage } = require("../../middleware/whatsapp");
@@ -428,17 +430,26 @@ exports.ForgotPasswordOTP = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const { email } = req.body;
-    const { user_uuid } = req.params;
+    //const { user_uuid } = req.params;
 
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000);
 
+    const [userRows] = await connection.execute(
+      "SELECT * FROM users WHERE email = ?",
+      [email]
+    );
+    // Check User Exists in DataBase
+    if (userRows.length === 0) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
     // Send OTP on Email
     await sendEmail(email, otp);
 
-    await connection.execute("UPDATE users SET otp = ? WHERE user_uuid = ?", [
+    await connection.execute("UPDATE users SET otp = ? WHERE email = ?", [
       otp,
-      user_uuid,
+      email,
     ]);
     //let expiry = Date.now() + 60 * 1000 * 15;
     //user_uuid.resetPasswordToken = otp;
@@ -456,18 +467,19 @@ exports.ForgotPasswordOTP = async (req, res) => {
 exports.ForgotPasswordOTPVerify = async (req, res) => {
   // Connection to database
   const connection = await pool.getConnection();
-  try {
-    const { user_uuid } = req.params;
-    const { otp } = req.body;
+  try  {
+   
+   // const { user_uuid } = req.params;
+    const { email, otp } = req.body;
 
     const [userRows] = await connection.execute(
-      "SELECT otp FROM users WHERE user_uuid = ?",
-      [user_uuid]
+      "SELECT otp FROM users WHERE email =? ",
+      [email]
     );
     // Check User Exists in DataBase
-    if (userRows.length === 0) {
-      return res.status(404).json({ message: "User not found." });
-    }
+    // if (userRows === otp) {
+    //   return res.status(404).json({ message: "User found." });
+    // }
 
     const storedOTP = userRows[0].otp;
     // const expiry = new Date(userRows[0].resetPasswordExpires).getTime();
@@ -490,8 +502,8 @@ exports.ForgotPasswordChange = async (req, res) => {
   // Connection to database
   const connection = await pool.getConnection();
   try {
-    const { password } = req.body;
-    const { user_uuid } = req.params;
+    const { password, email } = req.body;
+    
 
     // Encrypted Password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -502,9 +514,9 @@ exports.ForgotPasswordChange = async (req, res) => {
       .format("YYYY-MM-DD HH:mm:ss");
 
     const updatePasswordQuery =
-      "UPDATE users SET password=?, modified_at=?, modified_by=?  WHERE user_uuid=?";
+      "UPDATE users SET password=?, modified_at=?  WHERE email=?";
 
-    const values = [hashedPassword, currentTimeIST, user_uuid, user_uuid];
+    const values = [hashedPassword, currentTimeIST, email];
 
     const [results] = await connection.execute(updatePasswordQuery, values);
 

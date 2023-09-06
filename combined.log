@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 9/1/2023, 11:39:04 AM [INFO]: App is running on port 8080
 9/1/2023, 11:39:04 AM [INFO]: Connected to MQTT broker
 9/1/2023, 11:39:04 AM [INFO]: Database connected
@@ -675,3 +676,5 @@
 9/6/2023, 2:59:53 PM [INFO]: Database connected
 9/6/2023, 3:09:05 PM [ERROR]: Trip completion process failed! Error: Table 'portalbeta.trip_summary' doesn't exist
 9/6/2023, 3:11:21 PM [INFO]: Received SIGINT signal. Closing connection pool...
+=======
+>>>>>>> main
