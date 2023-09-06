@@ -130,6 +130,7 @@ const editContact = async (req, res) => {
       contact_last_name,
       contact_email,
       contact_mobile,
+      contact_status,
     } = req.body;
 
     const { contact_uuid } = req.params;
@@ -156,13 +157,14 @@ const editContact = async (req, res) => {
     }
 
     const query = `
-        UPDATE contacts SET contact_first_name = ? , contact_last_name = ? , contact_email = ? , contact_mobile = ? , contact_modified_at = ?, contact_modified_by = ? WHERE contact_uuid = ?`;
+        UPDATE contacts SET contact_first_name = ? , contact_last_name = ? , contact_email = ? , contact_mobile = ? ,contact_status = ?, contact_modified_at = ?, contact_modified_by = ? WHERE contact_uuid = ?`;
 
     const updateData = [
       contact_first_name,
       contact_last_name,
       contact_email,
       contact_mobile,
+      contact_status,
       currentTimeIST2,
       contact_uuid,
       //req.body.user_uuid,

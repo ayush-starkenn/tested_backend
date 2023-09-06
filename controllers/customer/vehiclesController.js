@@ -25,6 +25,18 @@ const addVehicle = async (req, res) => {
       .tz(createdAt, "Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss a");
 
+    const checkQuery =
+      "SELECT COUNT(*) as count FROM vehicles WHERE vehicle_registration = ?";
+    const [checkResults] = await connection.execute(checkQuery, [
+      vehicle_registration,
+    ]);
+
+    if (checkResults[0].count > 0) {
+      return res.status(400).send({
+        message: "Vehicle already present",
+      });
+    }
+
     const addQuery =
       "INSERT INTO vehicles(`vehicle_uuid`,`user_uuid`,`vehicle_name`,`vehicle_registration`,`ecu`,`iot`,`dms`,`featureset_uuid`,`vehicle_status`,`created_at`,`created_by`,`modified_at`,`modified_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
     const values = [
@@ -42,6 +54,7 @@ const addVehicle = async (req, res) => {
       currentTimeIST,
       user_uuid,
     ];
+
     const [results] = await connection.execute(addQuery, values);
 
     if (results) {
@@ -82,8 +95,23 @@ const editVehicle = async (req, res) => {
       .tz(createdAt, "Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss a");
 
+    // Check if the vehicle with the same registration number already exists
+    const checkQuery =
+      "SELECT COUNT(*) as count FROM vehicles WHERE vehicle_registration = ? AND vehicle_uuid <> ?";
+    const [checkResults] = await connection.execute(checkQuery, [
+      vehicle_registration,
+      vehicle_uuid,
+    ]);
+
+    if (checkResults[0].count > 0) {
+      // Vehicle with the same registration number already exists, respond accordingly
+      return res.status(400).send({
+        message: "Vehicle with the same registration number already exists",
+      });
+    }
+
     const editQuery =
-      "UPDATE vehicles SET `user_uuid` = ?, `vehicle_name` = ?, `vehicle_registration` = ?, `ecu` = ?, `iot` = ?, `dms` = ?, `featureset_uuid` = ?,`vehicle_status`=?, `modified_at` = ?, `modified_by` = ? WHERE `vehicle_uuid` = ?";
+      "UPDATE vehicles SET `user_uuid` = ?, `vehicle_name` = ?, `vehicle_registration` = ?, `ecu` = ?, `iot` = ?, `dms` = ?, `featureset_uuid` = ?, `vehicle_status` = ?, `modified_at` = ?, `modified_by` = ? WHERE `vehicle_uuid` = ?";
 
     const values = [
       user_uuid,
@@ -102,7 +130,7 @@ const editVehicle = async (req, res) => {
     const [results] = await connection.execute(editQuery, values);
 
     res.status(200).send({
-      message: "Vehicle added successfully",
+      message: "Vehicle updated successfully",
       totalCount: results.length,
       results,
     });
