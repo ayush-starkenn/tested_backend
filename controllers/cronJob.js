@@ -22,7 +22,7 @@ const cronJobForEndTrip = async () => {
         );
         if (tripdata.length > 0) {
           let path = [];
-          let tripStartTime = row.timestamp; // Set trip start time to the first timestamp
+          let tripStartTime = tripdata[0].timestamp; // Set trip start time to the first timestamp
           let tripEndTime = tripdata[tripdata.length - 1].timestamp; // Set trip end time to the last timestamp
           let allSpd = [];
           let duration = 0;
@@ -60,17 +60,20 @@ const cronJobForEndTrip = async () => {
 
           // Set Trip duration
           let difference = "";
-          difference = tripEndTime - tripStartTime; // seconds
-          let hours = Math.floor(difference / 3600);
-          difference = difference % 3600;
-          let minutes = Math.floor(difference / 60);
-          difference = difference % 60;
-          let seconds = difference;
-          if (hours > 0) {
-            duration =
-              hours + " hours " + minutes + " Mins " + seconds + " Sec";
-          } else {
-            duration = minutes + " Mins " + seconds + " Sec";
+
+          if (tripEndTime > 0 && tripStartTime > 0) {
+            difference = tripEndTime - tripStartTime; // seconds
+            let hours = Math.floor(difference / 3600);
+            difference = difference % 3600;
+            let minutes = Math.floor(difference / 60);
+            difference = difference % 60;
+            let seconds = difference;
+            if (hours > 0) {
+              duration =
+                hours + " hours " + minutes + " Mins " + seconds + " Sec";
+            } else {
+              duration = minutes + " Mins " + seconds + " Sec";
+            }
           }
 
           let currentTime = Math.floor(+new Date() / 1000);

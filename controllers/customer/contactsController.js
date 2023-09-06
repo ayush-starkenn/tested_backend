@@ -130,7 +130,11 @@ const editContact = async (req, res) => {
       contact_last_name,
       contact_email,
       contact_mobile,
+<<<<<<< HEAD
       contact_status,
+=======
+      contact_status
+>>>>>>> main
     } = req.body;
 
     const { contact_uuid } = req.params;

@@ -55,7 +55,7 @@ exports.updateProfile = async (req, res) => {
         city,
         pincode,
         phone,
-       // user_status,
+        user_status,
        userUUID,
       } = req.body;
     

@@ -232,4 +232,3 @@ exports.getByIdAnalyticsThresholds = async (req, res) => {
     connection.release();
   }
 };
-
