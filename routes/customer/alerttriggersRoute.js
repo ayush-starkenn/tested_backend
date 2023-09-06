@@ -14,6 +14,6 @@ alertRouter.put(
 );
 alertRouter.put("/activate-alert-trigger/:trigger_id", alerttriggersController.ActivateAlertTrigger);
 
-alertRouter.put("/update-alert-trigger/:trigger_id", alerttriggersController.EditAlertTrigger);
+alertRouter.put("/update-alert-trigger/:trigger_id", alerttriggersController.updateAlertTrigger);
 //exports
 module.exports = { alertRouter };

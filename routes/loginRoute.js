@@ -16,12 +16,12 @@ loginRouter.post("/login", Login);
 loginRouter.post("/signup", Signup);
 
 // Forgot Password OTP
-loginRouter.get("/forgot-password-otp/:user_uuid", ForgotPasswordOTP);
+loginRouter.post("/forgot-password-otp/", ForgotPasswordOTP);
 
 //Forgot Password OTP verify
-loginRouter.post("/forgot-password-otp-verify/:user_uuid", ForgotPasswordOTPVerify)
+loginRouter.post("/forgot-password-otp-verify/", ForgotPasswordOTPVerify)
 
 // Forgot Password Change
-loginRouter.post("/forgot-password-Change/:user_uuid", ForgotPasswordChange);
+loginRouter.post("/forgot-password-Change/", ForgotPasswordChange);
 
 module.exports = { loginRouter };
