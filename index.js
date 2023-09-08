@@ -37,7 +37,7 @@ setupMQTT();
 //whatsappRouter();
 
 cronJobForEndTrip();
-setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
+// setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
 // Login Routes
 app.use("/api", loginRouter);
@@ -57,6 +57,8 @@ app.use("/api/drivers", driversRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/rfid", rfidRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
+app.use("/api/alert-triggers", alertRouter);
+app.use("/api/reports", reportsRouter);
 
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);
