@@ -88,7 +88,7 @@ exports.getReports = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Failed to generate report summary' });
       }
-    }
+};
 
 exports.generateReport = async (req, res) => {
     try {
@@ -96,8 +96,8 @@ exports.generateReport = async (req, res) => {
   
       // Construct the query based on the provided parameters
       let query = `
-        SELECT COUNT(*) AS totalVehiclesDrivers
-        FROM drivers
+        SELECT COUNT(*) AS totalVehiclestrip
+        FROM reports
         WHERE date BETWEEN ? AND ?
       `;
       let queryParams = [fromDate, toDate];
@@ -116,20 +116,16 @@ exports.generateReport = async (req, res) => {
   
       // Prepare the report summary object
       let reportSummary = {
-        title: 'Vehicle/Driver Report',
+        title: 'Vehicle Report',
         dateRange: {
           fromDate,
           toDate
         },
-        totalVehiclesDrivers: rows[0].totalVehiclesDrivers
+        totalVehicles: rows[0].totalVehicle
       };
   
-      if (vehicleName && !driverName) {
-        reportSummary.selectedVehicle = vehicleName;
-      }
-  
       if (!vehicleName && vehicleName) {
-        reportSummary.selectedDriver = vehicleName;
+        reportSummary.selectedVehicles = vehicleName;
       }
   
       res.status(200).json({ reportSummary });
@@ -137,5 +133,86 @@ exports.generateReport = async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Failed to generate report' });
     }
-  };
-  
+};
+
+
+exports.getreport1 = async (req, res) => {
+  try {
+    const { vehicle_uuid } = req.params;
+    const { event } = req.body;
+
+    // Create an array of question marks for the IN clause based on the length of the event array
+    const placeholders = event.map(() => '?').join(',');
+
+    const getQuery = `SELECT * FROM tripdata WHERE vehicle_uuid=? AND event IN (${placeholders})`;
+
+    const [results] = await pool.execute(getQuery, [vehicle_uuid, ...event]);
+
+    res.status(200).json({
+      message: "Successfully got all reports",
+      totalCount: results.length,
+      results,
+    });
+  } catch (err) {
+    console.error(`Error in Get All reports, Error: ${err.message}`);
+    res.status(500).json({ message: "An error occurred while getting reports", error: err.message });
+  }
+};
+
+exports.getreport2 = async (req, res) => {
+  try {
+    const { vehicle_uuid } = req.params;
+    const { event } = req.body;
+    const { fromDate, toDate } = req.query;
+
+    // Create an array of question marks for the IN clause based on the length of the event array
+    const placeholders = event.map(() => '?').join(',');
+
+    const getQuery = `
+      SELECT event, COUNT(*) AS totalCount
+      FROM tripdata
+      WHERE vehicle_uuid=? AND event IN (${placeholders})
+      GROUP BY event
+    `;
+
+    const [results] = await pool.execute(getQuery, [vehicle_uuid, ...event]);
+
+    res.status(200).json({
+      message: "Successfully got all reports",
+      totalCountByEvent: results,
+    });
+  } catch (err) {
+    console.error(`Error in Get All reports, Error: ${err.message}`);
+    res.status(500).json({ message: "An error occurred while getting reports", error: err.message });
+  }
+};
+
+exports.getreport = async (req, res) => {
+  try {
+    const { vehicle_uuid } = req.params;
+    const { event } = req.body;
+    const { fromDate, toDate } = req.body;
+
+    // Create an array of question marks for the IN clause based on the length of the event array
+    const placeholders = event.map(() => '?').join(',');
+
+    const getQuery = `
+      SELECT event, COUNT(*) AS totalCount
+      FROM tripdata
+      WHERE vehicle_uuid=? AND event IN (${placeholders})
+        AND created_at >= ? AND created_at <= ?
+      GROUP BY event
+    `;
+
+    const [results] = await pool.execute(getQuery, [vehicle_uuid, ...event, fromDate, toDate]);
+
+    res.status(200).json({
+      message: "Successfully got all reports",
+      totalCountByEvent: results,
+    });
+  } catch (err) {
+    console.error(`Error in Get All reports, Error: ${err.message}`);
+    res.status(500).json({ message: "An error occurred while getting reports", error: err.message });
+  }
+};
+

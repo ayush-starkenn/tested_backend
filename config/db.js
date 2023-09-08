@@ -1,7 +1,6 @@
 const mysql = require("mysql2/promise");
 const logger = require("../logger");
-const redis = require('redis');
-const client = redis.createClient();
+
 require("dotenv").config();
 
 const pool = mysql.createPool({
