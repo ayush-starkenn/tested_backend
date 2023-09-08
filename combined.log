@@ -764,3 +764,21 @@
 9/8/2023, 10:49:32 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
 9/8/2023, 10:49:32 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
 9/8/2023, 10:50:29 AM [INFO]: Received SIGINT signal. Closing connection pool...
+9/8/2023, 10:53:58 AM [INFO]: App is running on port 8080
+9/8/2023, 10:53:58 AM [INFO]: Database connected
+9/8/2023, 10:53:58 AM [ERROR]: Trip completion process failed! Error: Table 'portalbeta.trip_summary' doesn't exist
+9/8/2023, 10:53:58 AM [INFO]: Connected to MQTT broker
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/8/2023, 10:53:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/8/2023, 11:02:42 AM [INFO]: Received SIGINT signal. Closing connection pool...
