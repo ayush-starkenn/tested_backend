@@ -6,8 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const redis = require('redis');
-const client = redis.createClient();
+
 
 const { sendEmail } = require("../../middleware/mailer");
 const { sendWhatsappMessage } = require("../../middleware/whatsapp");
