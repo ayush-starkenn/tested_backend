@@ -2,6 +2,7 @@ const pool = require("../../config/db");
 const moment = require("moment-timezone");
 const { v4: uuidv4 } = require("uuid");
 const logger = require("../../logger.js");
+const { clear } = require("winston");
 
 const getAllContacts = async (req, res) => {
   const connection = await pool.getConnection();
@@ -130,11 +131,7 @@ const editContact = async (req, res) => {
       contact_last_name,
       contact_email,
       contact_mobile,
-<<<<<<< HEAD
       contact_status,
-=======
-      contact_status
->>>>>>> main
     } = req.body;
 
     const { contact_uuid } = req.params;
