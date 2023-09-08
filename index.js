@@ -56,6 +56,8 @@ app.use("/api/contacts", contactsRouter);
 app.use("/api/drivers", driversRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/rfid", rfidRouter);
+app.use("/api/alert-triggers", alertRouter);
+app.use("/api/reports", reportsRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
 
 app.listen(PORT, () => {
