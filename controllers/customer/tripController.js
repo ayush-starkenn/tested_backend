@@ -46,6 +46,7 @@ exports.getOngoingTripdata = async (req, res) => {
     const { vehicle_uuid } = req.params;
 
     const tripID = await getTripdataByVehicleUUID(vehicle_uuid);
+    console.log(tripID);
     if (tripID) {
       const [getTripdata] = await pool.query(
         "SELECT * FROM tripdata WHERE trip_id = ?",

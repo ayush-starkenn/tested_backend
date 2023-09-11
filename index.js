@@ -23,6 +23,7 @@ const {
   vehiclefeaturesetRouter,
 } = require("./routes/customer/vehicleFeaturesetRoute");
 const { alertRouter } = require("./routes/customer/alerttriggersRoute");
+const { tripRouter } = require("./routes/customer/tripRoute");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
