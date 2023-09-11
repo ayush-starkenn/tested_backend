@@ -18,13 +18,11 @@ const { rfidRouter } = require("./routes/customer/rfidRoute");
 const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 const { reportsRouter } = require("./routes/customer/reportsRoute");
 
-
 const cors = require("cors");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
 const {
   vehiclefeaturesetRouter,
 } = require("./routes/customer/vehicleFeaturesetRoute");
-const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
