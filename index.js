@@ -24,6 +24,7 @@ const { featuresetRouter } = require("./routes/admin/featuresetRoute");
 const {
   vehiclefeaturesetRouter,
 } = require("./routes/customer/vehicleFeaturesetRoute");
+const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -59,6 +60,7 @@ app.use("/api/rfid", rfidRouter);
 app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
+app.use("/api/alert-triggers", alertRouter);
 
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);
