@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// hello
 // functions
 exports.saveAlertTrigger = async (req, res) => {
   const connection = await pool.getConnection();
@@ -45,7 +46,7 @@ exports.saveAlertTrigger = async (req, res) => {
       trigger_description,
       vehicle_uuid,
       trigger_type,
-      JSON.stringify(recipients), 
+      JSON.stringify(recipients),
       1,
       currentTimeIST,
       user_uuid,
@@ -63,7 +64,7 @@ exports.saveAlertTrigger = async (req, res) => {
     logger.error(`Error in saving the alert: ${err}`);
     res.status(500).send({
       message: "An error occurred while saving alerts",
-      error: err.message, 
+      error: err.message,
     });
   } finally {
     connection.release();
@@ -78,7 +79,7 @@ exports.getAlertTrigger = async (req, res) => {
     const { trigger_id } = req.params;
     const getquery = `SELECT * FROM alert_triggers WHERE trigger_id = ?`;
 
-    const [alerts] = await connection.execute(getquery,[trigger_id]);
+    const [alerts] = await connection.execute(getquery, [trigger_id]);
 
     res.status(200).send({
       message: "Successfully got the alert",
@@ -129,7 +130,6 @@ exports.DeleteAlertTrigger = async (req, res) => {
 
   try {
     const { trigger_id } = req.params;
-    console.log(trigger_id);
     const deletequery = `UPDATE alert_triggers SET trigger_status = ? WHERE trigger_id = ?`;
 
     const [alerts] = await connection.execute(deletequery, [0, trigger_id]);
@@ -143,60 +143,6 @@ exports.DeleteAlertTrigger = async (req, res) => {
     logger.error(`Error in deleting the alert by trigger_id, Error: ${err} `);
     res.status(500).send({
       message: "An error occurred while deleting the alerts",
-      Error: err,
-    });
-  } finally {
-    connection.release();
-  }
-};
-
-//deactivate the trigger by trigger_id ==> means status 2 now
-exports.DeactivateAlertTrigger = async (req, res) => {
-  const connection = await pool.getConnection();
-
-  try {
-    const { trigger_id } = req.params;
-    console.log(trigger_id);
-    const updatequery = `UPDATE alert_triggers SET trigger_status = ? WHERE trigger_id = ?`;
-
-    const [alerts] = await connection.execute(updatequery, [2, trigger_id]);
-
-    res.status(200).send({
-      message: "Successfully updated the alert",
-      // totalCount: contacts.length,
-      alerts,
-    });
-  } catch (err) {
-    logger.error(`Error in updating the alert by trigger_id, Error: ${err} `);
-    res.status(500).send({
-      message: "An error occurred while updating the alerts",
-      Error: err,
-    });
-  } finally {
-    connection.release();
-  }
-};
-
-// activate the alert trigger
-exports.ActivateAlertTrigger = async (req, res) => {
-  const connection = await pool.getConnection();
-
-  try {
-    const { trigger_id } = req.params;
-    console.log(trigger_id);
-    const updatequery = `UPDATE alert_triggers SET trigger_status = ? WHERE trigger_id = ?`;
-
-    const [alerts] = await connection.execute(updatequery, [1, trigger_id]);
-
-    res.status(200).send({
-      message: "Successfully activated the alert",
-      // totalCount: contacts.length,
-      alerts,
-    });
-  } catch (err) {
-    logger.error(`Error in activating the alert by trigger_id, Error: ${err} `);
-    res.status(500).send({
-      message: "An error occurred while activating the alerts",
       Error: err,
     });
   } finally {
@@ -227,7 +173,7 @@ exports.updateAlertTrigger = async (req, res) => {
       !vehicle_uuid ||
       !trigger_type ||
       !recipients ||
-      !trigger_status||
+      !trigger_status ||
       !user_uuid
     ) {
       return res.status(400).send({ message: "All fields are required." });
