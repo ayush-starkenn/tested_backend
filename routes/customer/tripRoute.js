@@ -9,5 +9,11 @@ tripRouter.get(
   tripController.getTripSummary
 );
 
+// Fetch ongoing trip data by vehicle_uuid
+tripRouter.get(
+  "/get-ongoing-tripdata-by-vehicleUUID/:vehicle_uuid",
+  tripController.getOngoingTripdata
+);
+
 // Export
 module.exports = { tripRouter };

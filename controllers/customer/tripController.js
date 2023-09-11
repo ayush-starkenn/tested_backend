@@ -38,3 +38,55 @@ exports.getTripSummary = async (req, res) => {
     connection.release();
   }
 };
+
+// Get ongoing trip data by trip id
+exports.getOngoingTripdata = async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    const { vehicle_uuid } = req.params;
+
+    const tripID = await getTripdataByVehicleUUID(vehicle_uuid);
+    if (tripID) {
+      const [getTripdata] = await pool.query(
+        "SELECT * FROM tripdata WHERE trip_id = ?",
+        [tripID]
+      );
+      if (getTripdata.length > 0) {
+        res.status(200).json({
+          message: "Successfully fetched trip data",
+          tripdata: getTripdata,
+        });
+      } else {
+        logger.info(`No trip data found for the tripid : ${tripID}`);
+      }
+    } else {
+      res.status(500).json({ message: "Not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error in fetching tripdata!" });
+    logger.error(`Error in fetching tripdata ${error}`);
+  } finally {
+    connection.release();
+  }
+};
+
+const getTripdataByVehicleUUID = async (vehicle_uuid) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const [getData] = await pool.query(
+      "SELECT trip_id FROM trip_summary WHERE vehicle_uuid = ? AND trip_status= ?",
+      [vehicle_uuid, 0]
+    );
+    if (getData.length > 0) {
+      return getData[0].trip_id;
+    } else {
+      logger.info("No data found!");
+      return;
+    }
+  } catch (error) {
+    logger.error(`Error in fetching data ${error}`);
+  } finally {
+    connection.release();
+  }
+};

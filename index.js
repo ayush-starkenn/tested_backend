@@ -15,7 +15,6 @@ const { contactsRouter } = require("./routes/customer/contactsRoute");
 const { profileRouter } = require("./routes/customer/profileRoute");
 const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
-const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 const { reportsRouter } = require("./routes/customer/reportsRoute");
 
 const cors = require("cors");
@@ -23,6 +22,7 @@ const { featuresetRouter } = require("./routes/admin/featuresetRoute");
 const {
   vehiclefeaturesetRouter,
 } = require("./routes/customer/vehicleFeaturesetRoute");
+const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -59,6 +59,7 @@ app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
 app.use("/api/alert-triggers", alertRouter);
+app.use("/api/trips", tripRouter);
 
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);
