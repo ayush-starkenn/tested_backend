@@ -3,6 +3,7 @@ const express = require("express");
 const pool = require("./config/db");
 const setupMQTT = require("./controllers/mqttHandler");
 //const  whatsappRouter = require("./middleware/whatsapp");
+
 // Import all routes
 const { deviceRouter } = require("./routes/admin/deviceRoute");
 const { vehiclesRouter } = require("./routes/customer/vehiclesRoute");
@@ -37,7 +38,7 @@ setupMQTT();
 //whatsappRouter();
 
 cronJobForEndTrip();
-setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
+// setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
 // Login Routes
 app.use("/api", loginRouter);
@@ -60,6 +61,7 @@ app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
 app.use("/api/alert-triggers", alertRouter);
+app.use("/api/reports", reportsRouter);
 app.use("/api/trips", tripRouter);
 
 app.listen(PORT, () => {

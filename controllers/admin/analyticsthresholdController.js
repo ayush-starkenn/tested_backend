@@ -227,7 +227,7 @@ exports.getByIdAnalyticsThresholds = async (req, res) => {
     res
       .status(500)
       .send({ message: "Error In getting Analytics Thresholds", Error: "err" });
-    console.log("data", err);
+    logger.log("data", err);
   } finally {
     connection.release();
   }

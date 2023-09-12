@@ -52,7 +52,7 @@ exports.addRFID = async (req, res) => {
     res.status(201).json({ message: "Driver RFID Added Successfully!" });
   } catch (err) {
     //await connection.rollback(); 
-    console.error("Error adding Driver RFID:", err);
+    logger.error("Error adding Driver RFID:", err);
     res.status(500).send({ message: "Error in Add Driver RFID" });
   } finally {
     connection.release();
