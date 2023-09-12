@@ -1,0 +1,243 @@
+9/11/2023, 6:28:59 PM [INFO]: App is running on port 8080
+9/11/2023, 6:28:59 PM [INFO]: Database connected
+9/11/2023, 6:28:59 PM [INFO]: Connected to MQTT broker
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/11/2023, 6:28:59 PM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/11/2023, 6:36:49 PM [INFO]: Database connected
+9/11/2023, 6:37:02 PM [INFO]: Database connected
+9/11/2023, 6:37:56 PM [INFO]: Database connected
+9/11/2023, 6:55:41 PM [INFO]: Database connected
+9/11/2023, 6:58:21 PM [INFO]: Received SIGINT signal. Closing connection pool...
+9/12/2023, 9:43:58 AM [INFO]: App is running on port 8080
+9/12/2023, 9:43:58 AM [INFO]: Database connected
+9/12/2023, 9:43:58 AM [INFO]: Connected to MQTT broker
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 9:43:58 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 9:44:21 AM [INFO]: Database connected
+9/12/2023, 9:44:21 AM [INFO]: Database connected
+9/12/2023, 10:08:50 AM [INFO]: Connected to MQTT broker
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 10:08:50 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 10:09:30 AM [INFO]: Database connected
+9/12/2023, 10:33:45 AM [INFO]: Database connected
+9/12/2023, 10:57:20 AM [INFO]: App is running on port 8080
+9/12/2023, 10:57:20 AM [INFO]: Database connected
+9/12/2023, 10:57:20 AM [INFO]: Connected to MQTT broker
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 10:57:20 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 10:57:56 AM [INFO]: App is running on port 8080
+9/12/2023, 10:57:56 AM [INFO]: Database connected
+9/12/2023, 10:57:56 AM [INFO]: Connected to MQTT broker
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 10:57:56 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 10:58:47 AM [INFO]: App is running on port 8080
+9/12/2023, 10:58:47 AM [INFO]: Database connected
+9/12/2023, 10:58:47 AM [INFO]: Connected to MQTT broker
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 10:58:47 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 10:59:05 AM [INFO]: App is running on port 8080
+9/12/2023, 10:59:05 AM [INFO]: Database connected
+9/12/2023, 10:59:05 AM [INFO]: Connected to MQTT broker
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 10:59:05 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 10:59:38 AM [INFO]: App is running on port 8080
+9/12/2023, 10:59:38 AM [INFO]: Database connected
+9/12/2023, 10:59:38 AM [INFO]: Connected to MQTT broker
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 10:59:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 10:59:54 AM [INFO]: App is running on port 8080
+9/12/2023, 10:59:54 AM [INFO]: Database connected
+9/12/2023, 10:59:54 AM [INFO]: Connected to MQTT broker
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 10:59:54 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 11:00:22 AM [INFO]: App is running on port 8080
+9/12/2023, 11:00:22 AM [INFO]: Database connected
+9/12/2023, 11:00:22 AM [INFO]: Connected to MQTT broker
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 11:00:22 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 11:00:24 AM [INFO]: App is running on port 8080
+9/12/2023, 11:00:24 AM [INFO]: Database connected
+9/12/2023, 11:00:24 AM [INFO]: Connected to MQTT broker
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 11:00:24 AM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 11:12:20 AM [INFO]: Database connected
+9/12/2023, 11:12:20 AM [INFO]: Database connected
+9/12/2023, 12:02:10 PM [INFO]: Database connected
+9/12/2023, 12:03:12 PM [INFO]: Database connected
+9/12/2023, 12:48:22 PM [INFO]: Connected to MQTT broker
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 12:48:22 PM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 1:11:35 PM [INFO]: Received SIGINT signal. Closing connection pool...
+9/12/2023, 2:14:32 PM [INFO]: App is running on port 8080
+9/12/2023, 2:14:32 PM [INFO]: Database connected
+9/12/2023, 2:14:32 PM [INFO]: Connected to MQTT broker
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 2:14:32 PM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 2:14:59 PM [INFO]: Database connected
+9/12/2023, 2:32:04 PM [INFO]: Database connected
+9/12/2023, 2:32:04 PM [INFO]: Database connected
+9/12/2023, 2:32:04 PM [INFO]: Database connected
+9/12/2023, 3:20:44 PM [INFO]: Received SIGINT signal. Closing connection pool...
+9/12/2023, 3:50:02 PM [INFO]: App is running on port 8080
+9/12/2023, 3:50:02 PM [INFO]: Database connected
+9/12/2023, 3:50:02 PM [INFO]: Connected to MQTT broker
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/FC0776A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/DMS0776A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/DMS0887A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/DMS0556A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/FC0991A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/DMS0991A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/FC0992A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/DMS0992A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/FC0993A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/FC0994A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/DMS0994A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/FC0995A/data
+9/12/2023, 3:50:02 PM [INFO]: Subscribed to topic: starkennInv3/DMS0995A/data
+9/12/2023, 3:50:27 PM [INFO]: Database connected
+9/12/2023, 3:50:27 PM [INFO]: Database connected
+9/12/2023, 3:52:18 PM [INFO]: Database connected
+9/12/2023, 3:53:58 PM [INFO]: Received SIGINT signal. Closing connection pool...

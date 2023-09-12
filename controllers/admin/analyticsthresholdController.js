@@ -173,7 +173,7 @@ exports.deleteAnalyticsThresholds = async (req, res) => {
 
   try {
     const { threshold_uuid } = req.params;
-    const { userUUID} = req.body;
+    const { userUUID } = req.body;
 
     //creating current date and time
     let createdAt = new Date();
@@ -183,7 +183,6 @@ exports.deleteAnalyticsThresholds = async (req, res) => {
 
     const deleteQuery =
       "UPDATE thresholds SET status=?, modified_at=?, modified_by=? WHERE threshold_uuid=?";
-
 
     const [results] = await connection.execute(deleteQuery, [
       0,
@@ -227,7 +226,6 @@ exports.getByIdAnalyticsThresholds = async (req, res) => {
     res
       .status(500)
       .send({ message: "Error In getting Analytics Thresholds", Error: "err" });
-    console.log("data", err);
   } finally {
     connection.release();
   }
