@@ -48,6 +48,7 @@ exports.updateProfile = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const {
+<<<<<<< HEAD
       first_name,
       last_name,
       email,
@@ -60,6 +61,22 @@ exports.updateProfile = async (req, res) => {
       user_status,
       userUUID,
     } = req.body;
+=======
+        first_name,
+        last_name,
+        email,
+        company_name,
+        address,
+        state,
+        city,
+        pincode,
+        phone,
+        user_status,
+       //userUUID,
+      } = req.body;
+    
+      const { user_uuid } = req.params;
+>>>>>>> main
 
     const { user_uuid } = req.params;
 
@@ -86,6 +103,7 @@ exports.updateProfile = async (req, res) => {
       phone,
       user_uuid,
     ]);
+<<<<<<< HEAD
     if (existingUserRows.length === 0) {
       return res.status(404).json({ message: "User not found" });
     } else if (result.length > 0) {
@@ -95,6 +113,44 @@ exports.updateProfile = async (req, res) => {
           error: "Contact already exists with the provided email or mobile",
         });
     }
+=======
+        if (existingUserRows.length === 0) {
+          return res.status(404).json({ message: "User not found" });
+        } else  
+        if (result.length > 0) {
+            return res.status(400).send({ message: "Contact already exists with the provided email or mobile" });
+          }
+        
+        // Generate current time in Asia/Kolkata timezone
+        const currentTimeIST = moment
+          .tz("Asia/Kolkata")
+          .format("YYYY-MM-DD HH:mm:ss");
+    
+          const updateQuery =
+          "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, user_status=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
+        const values = [
+          first_name,
+          last_name,
+          email,
+          company_name,
+          address,
+          state,
+          city,
+          pincode,
+          phone,
+          user_status,
+          currentTimeIST,
+          //userUUID,
+          user_uuid,
+          user_uuid,
+        ];
+        //console.log("values", values);
+    
+        const [results] = await connection.execute(updateQuery, values);
+    
+        // Send OTP on Email
+        await sendEmail(email, values);
+>>>>>>> main
 
     // Generate current time in Asia/Kolkata timezone
     const currentTimeIST = moment
@@ -149,6 +205,7 @@ exports.changePassword = async (req, res) => {
       [user_uuid]
     );
     // Check User Exists in DataBase
+<<<<<<< HEAD
     if (userRows.length === 0) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -182,3 +239,35 @@ exports.changePassword = async (req, res) => {
     }
   }
 };
+=======
+        if (userRows.length === 0) {
+          return res.status(404).json({ message: "User not found." });
+        }
+    
+        // Verify old password
+        const isPasswordMatch = await bcrypt.compare(oldPassword, userRows[0].password);
+    
+        if (!isPasswordMatch) {
+          return res.status(401).json({ message: "Old password is incorrect." });
+        }
+    
+        // Hash the new password
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    
+        // Update the password in the database
+        await connection.execute(
+          "UPDATE users SET password = ? WHERE user_uuid = ?",
+          [hashedNewPassword, user_uuid]
+        );
+    
+        res.status(200).json({ message: "Password changed successfully." });
+      } catch (err) {
+        logger.error("Change password error:", err);
+        res.status(500).json({ message: "An error occurred." });
+      } finally {
+        if (connection) {
+          connection.release();
+        }
+      }
+};   
+>>>>>>> main

@@ -122,6 +122,7 @@ const saveContact = async (req, res) => {
     connection.release();
   }
 };
+
 const editContact = async (req, res) => {
   // Connection to database
   const connection = await pool.getConnection();
