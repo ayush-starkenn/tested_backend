@@ -3,6 +3,7 @@ const express = require("express");
 const pool = require("./config/db");
 const setupMQTT = require("./controllers/mqttHandler");
 //const  whatsappRouter = require("./middleware/whatsapp");
+
 // Import all routes
 const { deviceRouter } = require("./routes/admin/deviceRoute");
 const { vehiclesRouter } = require("./routes/customer/vehiclesRoute");
