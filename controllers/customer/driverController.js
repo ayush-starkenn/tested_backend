@@ -20,7 +20,7 @@ const addDriver = async (req, res) => {
       driver_auth_id,
       driver_license_no,
     } = req.body;
-    console.log(req.body);
+   // console.log(req.body);
 
     const newUuid = uuidv4();
 
@@ -234,4 +234,4 @@ const getUsersDrivers = async (req, res) => {
   }
 };
 
-module.exports = { addDriver, editDriver, deleteDriver, getUsersDrivers };
+module.exports = { addDriver, editDriver, deleteDriver, getUsersDrivers }; 

@@ -7,7 +7,7 @@ const reportsController = require("../../controllers/customer/reportsController"
 
 
 reportsRouter.get(
-    "/getreports-all/:vehicle_uuid",
+    "/getreports-all",
     reportsController.getreport
   );
 

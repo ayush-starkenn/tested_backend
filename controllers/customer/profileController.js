@@ -56,7 +56,7 @@ exports.updateProfile = async (req, res) => {
         pincode,
         phone,
         user_status,
-       userUUID,
+       //userUUID,
       } = req.body;
     
       const { user_uuid } = req.params;
@@ -88,7 +88,7 @@ exports.updateProfile = async (req, res) => {
           return res.status(404).json({ message: "User not found" });
         } else  
         if (result.length > 0) {
-            return res.status(400).send({ error: "Contact already exists with the provided email or mobile" });
+            return res.status(400).send({ message: "Contact already exists with the provided email or mobile" });
           }
         
         // Generate current time in Asia/Kolkata timezone
@@ -110,7 +110,8 @@ exports.updateProfile = async (req, res) => {
           phone,
           user_status,
           currentTimeIST,
-          userUUID,
+          //userUUID,
+          user_uuid,
           user_uuid,
         ];
         //console.log("values", values);
@@ -168,12 +169,11 @@ exports.changePassword = async (req, res) => {
     
         res.status(200).json({ message: "Password changed successfully." });
       } catch (err) {
-        console.error("Change password error:", err);
+        logger.error("Change password error:", err);
         res.status(500).json({ message: "An error occurred." });
       } finally {
         if (connection) {
           connection.release();
         }
       }
-    };
-    
+};   

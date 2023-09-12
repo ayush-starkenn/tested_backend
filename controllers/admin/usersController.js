@@ -396,7 +396,7 @@ exports.ResetPassword = async (req, res) => {
 
     res.status(200).json({ message: "Password changed successfully." });
   } catch (err) {
-    console.error("Change password error:", err);
+    logger.error("Change password error:", err);
     res.status(500).json({ message: "An error occurred." });
   } finally {
     connection.release();

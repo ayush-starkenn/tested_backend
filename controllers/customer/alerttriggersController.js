@@ -9,7 +9,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// hello
 // functions
 exports.saveAlertTrigger = async (req, res) => {
   const connection = await pool.getConnection();
