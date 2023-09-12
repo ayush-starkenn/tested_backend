@@ -5,7 +5,6 @@ const pkg = require("geolib");
 // Complete trip
 const cronJobForEndTrip = async () => {
   const connection = await pool.getConnection();
-  // console.log(validatedJson.device_id);
   try {
     const [tripSum] = await connection.query(
       "SELECT trip_id, device_id FROM trip_summary WHERE trip_status = ?",
