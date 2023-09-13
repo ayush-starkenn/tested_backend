@@ -15,5 +15,17 @@ tripRouter.get(
   tripController.getOngoingTripdata
 );
 
+// Fetch completed trip data by tripid
+tripRouter.get(
+  "/get-completed-tripdata-by-tripid/:trip_id",
+  tripController.getCompletedTripdata
+);
+
+// Fetch trip summary data
+tripRouter.get(
+  "/get-trip-summary-by-tripid/:trip_id",
+  tripController.getTripSummaryByTripId
+);
+
 // Export
 module.exports = { tripRouter };

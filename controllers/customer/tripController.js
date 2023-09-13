@@ -48,7 +48,7 @@ exports.getOngoingTripdata = async (req, res) => {
     const tripID = await getTripdataByVehicleUUID(vehicle_uuid);
     if (tripID) {
       const [getTripdata] = await pool.query(
-        "SELECT * FROM tripdata WHERE trip_id = ?",
+        "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? ORDER BY timestamp DESC",
         [tripID]
       );
       if (getTripdata.length > 0) {
@@ -70,6 +70,7 @@ exports.getOngoingTripdata = async (req, res) => {
   }
 };
 
+// Get trip id from trip summary using vehicle uuid
 const getTripdataByVehicleUUID = async (vehicle_uuid) => {
   const connection = await pool.getConnection();
 
@@ -86,6 +87,58 @@ const getTripdataByVehicleUUID = async (vehicle_uuid) => {
     }
   } catch (error) {
     logger.error(`Error in fetching data ${error}`);
+  } finally {
+    connection.release();
+  }
+};
+
+// Get completed trip data by trip id
+exports.getCompletedTripdata = async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    const { trip_id } = req.params;
+
+    const [getTripdata] = await pool.query(
+      "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? ORDER BY timestamp DESC",
+      [trip_id]
+    );
+    if (getTripdata.length > 0) {
+      res.status(200).json({
+        message: "Successfully fetched trip data",
+        tripdata: getTripdata,
+      });
+    } else {
+      logger.info(`No trip data found for the tripid : ${trip_id}`);
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error in fetching tripdata!" });
+    logger.error(`Error in fetching tripdata ${error}`);
+  } finally {
+    connection.release();
+  }
+};
+
+// Get trip summary using trip id
+exports.getTripSummaryByTripId = async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    const { trip_id } = req.params;
+
+    const [getTripdata] = await pool.query(
+      "SELECT * FROM trip_summary WHERE trip_id = ?",
+      [trip_id]
+    );
+    if (getTripdata.length > 0) {
+      res.status(200).json({
+        message: "Successfully fetched trip data",
+        tripdata: getTripdata,
+      });
+    } else {
+      logger.info(`No trip data found for the tripid : ${trip_id}`);
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error in fetching tripdata!" });
+    logger.error(`Error in fetching tripdata ${error}`);
   } finally {
     connection.release();
   }
