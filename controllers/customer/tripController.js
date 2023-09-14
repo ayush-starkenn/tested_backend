@@ -144,3 +144,29 @@ exports.getTripSummaryByTripId = async (req, res) => {
     connection.release();
   }
 };
+exports.getFaultCountByTrip_Id = async (req, res) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const { trip_id } = req.params;
+
+    const getQuery =
+      "SELECT * FROM tripdata WHERE trip_id=? AND event NOT IN ('IGS','NSQ','LOC','RFID')";
+
+    const [results] = await connection.execute(getQuery, [trip_id]);
+
+    if (results) {
+      res.status(200).send({
+        message: "Successfully got the data of fault count",
+        totalCount: results.length,
+        results,
+      });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Failed to get the data of fault counts", Error: err });
+  } finally {
+    connection.release();
+  }
+};

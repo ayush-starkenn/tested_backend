@@ -27,5 +27,11 @@ tripRouter.get(
   tripController.getTripSummaryByTripId
 );
 
+//get faultCounts
+tripRouter.get(
+  "/get-fault-counts/:trip_id",
+  tripController.getFaultCountByTrip_Id
+);
+
 // Export
 module.exports = { tripRouter };
