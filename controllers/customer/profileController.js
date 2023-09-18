@@ -123,7 +123,7 @@ exports.updateProfile = async (req, res) => {
 
         res
         .status(202)
-        .json({ message: "User updated successfully", customerData: results });
+        .json({ message: "User updated successfully", customerData: results,first_name });
     } catch (err) {
       logger.error("Error updating user:", err);
       res.status(500).send({ message: "Error in updating user" });

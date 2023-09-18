@@ -1,0 +1,21 @@
+9/18/2023, 10:33:38 AM [INFO]: App is running on port 8080
+9/18/2023, 10:33:38 AM [INFO]: Database connected
+9/18/2023, 10:33:38 AM [INFO]: Connected to MQTT broker
+9/18/2023, 10:33:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+9/18/2023, 10:33:38 AM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+9/18/2023, 10:33:38 AM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+9/18/2023, 10:33:38 AM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+9/18/2023, 10:33:38 AM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+9/18/2023, 10:33:38 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+9/18/2023, 10:33:38 AM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+9/18/2023, 11:03:28 AM [INFO]: App is running on port 8080
+9/18/2023, 11:03:28 AM [INFO]: Database connected
+9/18/2023, 11:03:28 AM [INFO]: Connected to MQTT broker
+9/18/2023, 11:03:28 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+9/18/2023, 11:03:28 AM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+9/18/2023, 11:03:28 AM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+9/18/2023, 11:03:28 AM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+9/18/2023, 11:03:28 AM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+9/18/2023, 11:03:28 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+9/18/2023, 11:03:28 AM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+9/18/2023, 11:06:30 AM [INFO]: Received SIGINT signal. Closing connection pool...

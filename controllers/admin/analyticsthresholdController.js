@@ -36,7 +36,7 @@ exports.addAnalyticsThreshold = async (req, res) => {
     const currentTimeIST = moment
       .tz("Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss");
-
+ 
     const threshold_uuid = uuidv4();
 
     const insertQuery = `
