@@ -103,7 +103,7 @@ exports.Signup = async (req, res) => {
       const [rows] = await connection.execute(
         `SELECT ${column} FROM users WHERE ${column} = ?`,
         [value]
-      ); 
+      );
 
       return rows.length > 0;
     };
@@ -151,7 +151,6 @@ exports.Signup = async (req, res) => {
       userUUID,
     ];
 
-    // console.log(values);
     const [results] = await connection.execute(addQuery, values);
 
     // Send OTP on Email
@@ -465,9 +464,8 @@ exports.ForgotPasswordOTP = async (req, res) => {
 exports.ForgotPasswordOTPVerify = async (req, res) => {
   // Connection to database
   const connection = await pool.getConnection();
-  try  {
-   
-   // const { user_uuid } = req.params;
+  try {
+    // const { user_uuid } = req.params;
     const { email, otp } = req.body;
 
     const [userRows] = await connection.execute(
@@ -501,7 +499,6 @@ exports.ForgotPasswordChange = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const { password, email } = req.body;
-    
 
     // Encrypted Password
     const hashedPassword = await bcrypt.hash(password, 10);

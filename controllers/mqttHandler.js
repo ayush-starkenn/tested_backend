@@ -285,8 +285,10 @@ const storeJsonInDatabase = async (validatedJson) => {
     );
     logger.info("Stored Tripdata in the database");
 
-    // Alert triggers
-    await trigerMode(validatedJson.event, vehicle_uuid);
+    if (validatedJson.event === "LMP" || validatedJson.event === "ACD") {
+      // Alert triggers
+      await trigerMode(validatedJson.event, vehicle_uuid);
+    }
   } catch (error) {
     logger.error(`Error storing Tripdata in database: ${error.message}`);
   } finally {
