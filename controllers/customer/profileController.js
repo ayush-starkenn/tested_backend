@@ -97,7 +97,7 @@ exports.updateProfile = async (req, res) => {
       .tz("Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss");
 
-    const updateQuery =
+      const updateQuery =
       "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, user_status=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
     const values = [
       first_name,

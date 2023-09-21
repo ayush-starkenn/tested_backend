@@ -8,4 +8,4 @@ profileRouter.put("/update-profile/:user_uuid", ProfileController.updateProfile)
 
 profileRouter.put("/change-profile-password/:user_uuid", ProfileController.changePassword);
 
-module.exports = { profileRouter };
+module.exports = { profileRouter }; 
