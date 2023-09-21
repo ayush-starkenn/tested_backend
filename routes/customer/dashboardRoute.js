@@ -6,5 +6,8 @@ dashboardRouter.get("/getAlert/:user_uuid",dashboardController.getalertbyId);
 
 dashboardRouter.get("/getOngoingTripDashboard/:user_uuid", dashboardController.getongoingTripDashboard);
 
+dashboardRouter.get("/getVehicleLogs/:user_uuid", dashboardController.getvehicleLogs);
+
+dashboardRouter.get("/get-alert/:user_uuid", dashboardController.getalert);
 
 module.exports = { dashboardRouter };   
