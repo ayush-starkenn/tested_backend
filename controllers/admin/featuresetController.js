@@ -21,7 +21,7 @@ const addFeatureset = async (req, res) => {
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss a");
+      .format("YYYY-MM-DD HH:mm:ss");
 
     const addQuery =
       "INSERT INTO featureset(`featureset_uuid`,`featureset_name`,`featureset_users`,`featureset_version`,`featureset_data`,`featureset_status`,`featureset_created_by`,`featureset_created_at`,`featureset_modified_at`,`featureset_modified_by`) VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -74,7 +74,7 @@ const editFeatureset = async (req, res) => {
     let updatedAt = new Date();
     let currentTimeIST = moment
       .tz(updatedAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss a");
+      .format("YYYY-MM-DD HH:mm:ss");
 
     const editQuery =
       "UPDATE featureset SET  `featureset_name`=?, `featureset_version`=?, `featureset_data`=?, `featureset_status`=?, `featureset_modified_at`=?, `featureset_modified_by`=? WHERE `featureset_uuid`=?";
@@ -120,7 +120,7 @@ const deleteFeatureset = async (req, res) => {
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss a");
+      .format("YYYY-MM-DD HH:mm:ss");
     const deleteQuery =
       "UPDATE featureset SET featureset_status=?,featureset_modified_at=?,featureset_modified_by=? WHERE featureset_uuid=?";
 

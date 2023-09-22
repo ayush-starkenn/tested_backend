@@ -10,7 +10,7 @@ const saveNotification = async (NotificationValues) => {
   let contact_created_at = new Date();
   let currentTimeIST = moment
     .tz(contact_created_at, "Asia/Kolkata")
-    .format("YYYY-MM-DD HH:mm:ss a");
+    .format("YYYY-MM-DD HH:mm:ss");
 
   const connection = await db();
   console.log(NotificationValues);

@@ -13,7 +13,7 @@ const addVehicleFeatureset = async (req, res) => {
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss a");
+      .format("YYYY-MM-DD HH:mm:ss");
 
     const addQuery =
       "INSERT INTO vehiclefeatureset(`vehiclefeatureset_uuid`,`user_uuid`,`vehicle_uuid`,`featureset_data`,`vehiclefeatureset_status`,`vehiclefeatureset_created_by`,`vehiclefeatureset_created_at`,`vehiclefeatureset_modified_by`,`vehiclefeatureset_modified_at`) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -59,7 +59,7 @@ const editVehicleFeatureset = async (req, res) => {
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss a");
+      .format("YYYY-MM-DD HH:mm:ss");
 
     const editQuery =
       "UPDATE vehiclefeatureset SET vehicle_uuid=?,featureset_data=?,vehiclefeatureset_modified_by=?,vehiclefeatureset_modified_at=? WHERE vehiclefeatureset_uuid=?";

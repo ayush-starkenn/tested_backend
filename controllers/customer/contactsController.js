@@ -206,7 +206,7 @@ const deleteContact = async (req, res) => {
 
     // executing ...
     const [results] = await connection.execute(queryMade, [
-      2,
+      0,
       currentTimeIST,
       req.body.user_uuid,
       contact_uuid,
