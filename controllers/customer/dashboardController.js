@@ -12,82 +12,77 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 exports.getongoingTripDashboard = async (req, res) => {
-    const connection = await pool.getConnection();
+  const connection = await pool.getConnection();
   
-    try {
-      const { user_uuid } = req.params;
+  try {
+    const { user_uuid } = req.params;
   
-      // Query vehicles to get vehicle_name and vehicle_uuid
-      const [vehicles] = await connection.query(
-        "SELECT vehicle_name FROM vehicles WHERE user_uuid = ? AND vehicle_status = ?",
-        [user_uuid, 1]
+    // Query vehicles to get vehicle_name and vehicle_uuid
+    const [vehicles] = await connection.query(
+      "SELECT vehicle_name, vehicle_uuid FROM vehicles WHERE user_uuid = ? AND vehicle_status = ?",
+      [user_uuid, 1]
+    );
+
+    // Use Promise.all to parallelize queries
+    const tripDataPromises = vehicles.map(async (vehicle) => {
+      const { vehicle_name, vehicle_uuid } = vehicle;
+
+      // Query trip_summary based on vehicle_uuid
+      const [tripSum] = await connection.query(
+        "SELECT trip_start_time, trip_id FROM trip_summary WHERE user_uuid = ? AND vehicle_uuid = ? AND trip_status = ?",
+        [user_uuid, vehicle_uuid, 0]
       );
-  
-      let allData = [];
-  
-      // Construct tripDataPromises
-      const tripDataPromises = vehicles.map(async (vehicle) => {
-        const { vehicle_name } = vehicle;
-  
-        // Query trip_summary based on vehicle_uuid
-        const [tripSum] = await connection.query(
-          "SELECT trip_start_time, trip_id FROM trip_summary WHERE user_uuid = ? AND  trip_status = ?  ",
-          [user_uuid, 1]
-        );
-  
-        // Extract trip IDs from trip_summary
-        const tripIDs = tripSum.map((tripRow) => tripRow.trip_id);
-  
-        // Check if there are any trip IDs
-        if (tripIDs.length === 0) {
-          return null; // Skip this vehicle if it has no trips
-        }
-  
-        // Query tripdata based on trip IDs
-        const getQuery = `
-          SELECT trip_id, vehicle_uuid
-          FROM tripdata
-          WHERE trip_id IN (${tripIDs.map((id) => '?').join(',')})
-          ORDER BY timestamp ASC
-        `;
-  
-        const [analyticData] = await connection.query(getQuery, tripIDs);
-        // Add vehicle_name to each object inside the trip_data array
-        const tripDataWithVehicleName = analyticData.map((data) => ({
-          ...data,
-          vehicle_name,
-          trip_start_time: tripSum.find((trip) => trip.trip_id === data.trip_id).trip_start_time,
-        }));
-  
-        // Debugging: Log vehicle_uuid and length of analyticData
-        // console.log("Vehicle UUID:", vehicle_uuid);
-        // console.log("Vehicle Name:", vehicle_name);
-        // console.log("Analytic Data Length:", tripDataWithVehicleName.length);
-  
-        return tripDataWithVehicleName;
-      });
-  
-      allData = await Promise.all(tripDataPromises);
-  
-      // Filter out null values (vehicles with no trips)
-      const filteredData = allData.filter((data) => data !== null);
-  
-      res.status(200).json({
-        success: true,
-        message: "Successfully retrieved trip data",
-        data: { trip_data: [].concat(...filteredData) }, // Flatten the array of trip_data
-      });
-    } catch (err) {
-      logger.error(`Error in Get Trip Data: ${err.message}`);
-      res.status(500).json({
-        success: false,
-        message: "An error occurred while retrieving trip data",
-        error: err.message,
-      });
-    } finally {
-      connection.release(); // Release the database connection
-    }
+
+      // Extract trip IDs from trip_summary
+      const tripIDs = tripSum.map((tripRow) => tripRow.trip_id);
+
+      // Skip this vehicle if it has no trips
+      if (tripIDs.length === 0) {
+        return [];
+      }
+
+      // Query tripdata based on trip IDs
+      const getQuery = `
+        SELECT trip_id, vehicle_uuid
+        FROM trip_summary
+        WHERE trip_id IN (${tripIDs.map(() => '?').join(',')})
+          AND trip_status = ?
+        ORDER BY trip_start_time ASC
+      `;
+
+      const [analyticData] = await connection.query(getQuery, [...tripIDs, 0]);
+
+      // Map and add vehicle_name and trip_start_time to each object
+      return analyticData.map((data) => ({
+        ...data,
+        vehicle_name,
+        trip_start_time: tripSum.find((trip) => trip.trip_id === data.trip_id).trip_start_time,
+      }));
+    });
+
+    // Use Promise.all to await all promises in parallel
+    const allData = await Promise.all(tripDataPromises);
+
+    // Flatten and filter out empty arrays (vehicles with no trips)
+    const flattenedData = allData.flat();
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully retrieved trip data",
+      data: { trip_data: flattenedData },
+    });
+  } catch (err) {
+    console.error(`Error in Get Trip Data: ${err.message}`);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while retrieving trip data",
+      error: err.message,
+    });
+  } finally {
+    connection.release(); // Release the database connection
+  }
 };
+
   
 exports.getalertbyId = async (req, res) => {
     const connection = await pool.getConnection();
@@ -153,6 +148,8 @@ exports.getalert = async (req, res) => {
   try {
     const { user_uuid } = req.params;
 
+// V - Vehicles, td - tripData, ts - trip_summary
+
     const query = `
     SELECT
     v.vehicle_uuid,
@@ -195,7 +192,7 @@ ORDER BY
           trip_id: row.trip_id,
           event: row.event,
           message: row.message,
-          timestamp: row.timestamp,
+         timestamp: row.timestamp,
           alert_type: row.alert_type, // Extracted alert_type from jsondata
         });
       }

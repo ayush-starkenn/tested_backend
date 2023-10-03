@@ -6,6 +6,9 @@ const logger = require("../../logger.js");
 const { sendEmail } = require("../../middleware/mailer");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
+const { sendEmail } = require("../../middleware/mailer");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 const addDriver = async (req, res) => {
   // Connection to the database
   const connection = await pool.getConnection();
