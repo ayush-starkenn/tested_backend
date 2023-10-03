@@ -1,0 +1,20 @@
+10/3/2023, 6:26:48 PM [INFO]: App is running on port 8080
+10/3/2023, 6:26:48 PM [INFO]: Database connected
+10/3/2023, 6:26:48 PM [INFO]: Connected to MQTT broker
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001A/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001B/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DMS001B/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DM0001C/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DMS001D/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DMS001E/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DMS001F/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DMS001H/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DMS001I/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/DMS001J/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001D/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001E/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001F/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001G/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001H/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001I/data
+10/3/2023, 6:26:48 PM [INFO]: Subscribed to topic: starkennInv3/IOT001J/data
