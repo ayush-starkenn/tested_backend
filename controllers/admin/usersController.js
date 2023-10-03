@@ -8,7 +8,6 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
 const { sendEmail } = require("../../middleware/mailer");
-//const { notification } = require("../../middleware/notify");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 const app = express();
@@ -207,7 +206,7 @@ exports.updateCustomers = async (req, res) => {
       city,
       pincode,
       phone,
-      // user_status,
+      // uset_status,
       userUUID,
     } = req.body;
     
@@ -267,6 +266,7 @@ exports.updateCustomers = async (req, res) => {
       city,
       pincode,
       phone,
+      //user_status,
       currentTimeIST,
       userUUID,
       user_uuid,

@@ -6,6 +6,9 @@ const logger = require("../../logger.js");
 const { sendEmail } = require("../../middleware/mailer");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
+const { sendEmail } = require("../../middleware/mailer");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 const addDriver = async (req, res) => {
   // Connection to the database
   const connection = await pool.getConnection();
@@ -168,7 +171,7 @@ const editDriver = async (req, res) => {
     const [results] = await connection.execute(editQuery, values);
 
     // Send OTP on Email
-   // await sendEmail(driver_email, values);
+    await sendEmail(driver_email, values);
     //await sendWhatsappMessage(driver_mobile);
 
     res.status(201).send({
