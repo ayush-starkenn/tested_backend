@@ -60,7 +60,6 @@ app.use("/api/rfid", rfidRouter);
 app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
-app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/trips", tripRouter);
 
