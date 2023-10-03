@@ -6,9 +6,10 @@ const reportsController = require("../../controllers/customer/reportsController"
 
 
 
-reportsRouter.get(
-    "/getreports-all",
-    reportsController.getreport
+reportsRouter.post(
+    "/getreports-all/:user_uuid",
+    reportsController.getAllreport 
   );
 
   module.exports = { reportsRouter };
+  

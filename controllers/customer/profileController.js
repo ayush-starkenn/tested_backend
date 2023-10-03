@@ -55,8 +55,8 @@ exports.updateProfile = async (req, res) => {
         city,
         pincode,
         phone,
-        user_status,
-       //userUUID,
+       // user_status,
+        //userUUID,
       } = req.body;
     
       const { user_uuid } = req.params;
@@ -97,7 +97,7 @@ exports.updateProfile = async (req, res) => {
           .format("YYYY-MM-DD HH:mm:ss");
     
           const updateQuery =
-          "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, user_status=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
+          "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
         const values = [
           first_name,
           last_name,
@@ -108,10 +108,10 @@ exports.updateProfile = async (req, res) => {
           city,
           pincode,
           phone,
-          user_status,
+          //user_status,
           currentTimeIST,
-          //userUUID,
           user_uuid,
+          //user_uuid,
           user_uuid,
         ];
         //console.log("values", values);
@@ -119,7 +119,7 @@ exports.updateProfile = async (req, res) => {
         const [results] = await connection.execute(updateQuery, values);
     
         // Send OTP on Email
-        await sendEmail(email, values);
+        await sendEmail(email);
 
         res
         .status(202)
@@ -138,6 +138,14 @@ exports.changePassword = async (req, res) => {
         const connection = await pool.getConnection();
 
     try {
+
+      // app.use((req, res, next) => {
+      //   // Simulating decoded user information (replace with your actual logic)
+      //   req.decoded = { email: 'email' };
+      //   next();
+      // });
+
+        //const { email } = req.decoded;
         const { user_uuid } = req.params;
         const { oldPassword, newPassword } = req.body;
     
@@ -150,7 +158,7 @@ exports.changePassword = async (req, res) => {
         if (userRows.length === 0) {
           return res.status(404).json({ message: "User not found." });
         }
-    
+
         // Verify old password
         const isPasswordMatch = await bcrypt.compare(oldPassword, userRows[0].password);
     
@@ -167,6 +175,9 @@ exports.changePassword = async (req, res) => {
           [hashedNewPassword, user_uuid]
         );
     
+     // Send OTP on Email
+     await sendEmail(email);
+
         res.status(200).json({ message: "Password changed successfully." });
       } catch (err) {
         logger.error("Change password error:", err);
