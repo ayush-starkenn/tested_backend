@@ -10,66 +10,79 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-exports.getongoingTripDashboard = async (req, res) => {
+exports.getOngoingTripData = async (req, res) => {
   const connection = await pool.getConnection();
-  
+
   try {
     const { user_uuid } = req.params;
-  
-    // Query vehicles to get vehicle_name and vehicle_uuid
-    const [vehicles] = await connection.query(
-      "SELECT vehicle_name, vehicle_uuid FROM vehicles WHERE user_uuid = ? AND vehicle_status = ?",
-      [user_uuid, 1]
+
+    const [getOnTrip] = await pool.query(
+      "SELECT ts.trip_id, ts.vehicle_uuid, ts.trip_start_time, v.vehicle_name FROM trip_summary ts INNER JOIN vehicles v ON ts.vehicle_uuid = v.vehicle_uuid WHERE ts.user_uuid = ? AND ts.trip_status = ? ORDER BY ts.trip_start_time DESC",
+      [user_uuid, 0]
     );
 
-    // Use Promise.all to parallelize queries
-    const tripDataPromises = vehicles.map(async (vehicle) => {
-      const { vehicle_name, vehicle_uuid } = vehicle;
+    if (getOnTrip.length > 0) {
+      res.status(200).json({
+        message: "Data fetched successfully!",
+        result: getOnTrip,
+      });
+    } else {
+      res.status(200).json({
+        message: "Ongoing trip data not found!",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong!", error: error });
+  } finally {
+    connection.release();
+  }
+};
 
-      // Query trip_summary based on vehicle_uuid
-      const [tripSum] = await connection.query(
-        "SELECT trip_start_time, trip_id FROM trip_summary WHERE user_uuid = ? AND vehicle_uuid = ? AND trip_status = ?",
-        [user_uuid, vehicle_uuid, 0]
-      );
+exports.getalertbyId = async (req, res) => {
+  const connection = await pool.getConnection();
 
-      // Extract trip IDs from trip_summary
-      const tripIDs = tripSum.map((tripRow) => tripRow.trip_id);
+  try {
+    const { user_uuid } = req.params;
 
-      // Skip this vehicle if it has no trips
-      if (tripIDs.length === 0) {
-        return [];
+    // Query vehicles to get vehicle_name and vehicle_uuid
+    const [vehicles] = await connection.query(
+      "SELECT v.vehicle_uuid, v.vehicle_name, ts.trip_id, ts.trip_start_time, td.event, td.timestamp " +
+        "FROM vehicles v " +
+        "LEFT JOIN trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid " +
+        "LEFT JOIN tripdata td ON ts.trip_id = td.trip_id " +
+        "WHERE v.user_uuid = ? AND v.vehicle_status = ? AND ts.trip_status = ? AND td.event IN (?, ?, ?) " +
+        "ORDER BY td.timestamp ASC",
+      [user_uuid, 1, 1, "ACC", "LMP", "ACD"]
+    );
+
+    // Group the data by vehicle_uuid
+    const groupedData = vehicles.reduce((result, row) => {
+      const key = row.vehicle_uuid;
+      if (!result[key]) {
+        result[key] = {
+          vehicle_uuid: key,
+          vehicle_name: row.vehicle_name,
+          trip_start_time: row.trip_start_time,
+          trip_data: [],
+        };
       }
+      if (row.trip_id) {
+        result[key].trip_data.push({
+          trip_id: row.trip_id,
+          event: row.event,
+          timestamp: row.timestamp,
+        });
+      }
+      return result;
+    }, {});
 
-      // Query tripdata based on trip IDs
-      const getQuery = `
-        SELECT trip_id, vehicle_uuid
-        FROM trip_summary
-        WHERE trip_id IN (${tripIDs.map(() => '?').join(',')})
-          AND trip_status = ?
-        ORDER BY trip_start_time ASC
-      `;
-
-      const [analyticData] = await connection.query(getQuery, [...tripIDs, 0]);
-
-      // Map and add vehicle_name and trip_start_time to each object
-      return analyticData.map((data) => ({
-        ...data,
-        vehicle_name,
-        trip_start_time: tripSum.find((trip) => trip.trip_id === data.trip_id).trip_start_time,
-      }));
-    });
-
-    // Use Promise.all to await all promises in parallel
-    const allData = await Promise.all(tripDataPromises);
-
-    // Flatten and filter out empty arrays (vehicles with no trips)
-    const flattenedData = allData.flat();
+    // Convert the grouped data object into an array
+    const tripData = Object.values(groupedData);
 
     res.status(200).json({
       success: true,
       message: "Successfully retrieved trip data",
-      data: { trip_data: flattenedData },
+      data: { trip_data: tripData },
     });
   } catch (err) {
     console.error(`Error in Get Trip Data: ${err.message}`);
@@ -83,72 +96,13 @@ exports.getongoingTripDashboard = async (req, res) => {
   }
 };
 
-  
-exports.getalertbyId = async (req, res) => {
-    const connection = await pool.getConnection();
-    
-    try {
-      const { user_uuid } = req.params;
-  
-      // Query vehicles to get vehicle_name and vehicle_uuid
-      const [vehicles] = await connection.query(
-        "SELECT v.vehicle_uuid, v.vehicle_name, ts.trip_id, ts.trip_start_time, td.event, td.timestamp " +
-        "FROM vehicles v " +
-        "LEFT JOIN trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid " +
-        "LEFT JOIN tripdata td ON ts.trip_id = td.trip_id " +
-        "WHERE v.user_uuid = ? AND v.vehicle_status = ? AND ts.trip_status = ? AND td.event IN (?, ?, ?) " +
-        "ORDER BY td.timestamp ASC",
-        [user_uuid, 1, 1, "ACC", "LMP", "ACD"]
-      );
-  
-      // Group the data by vehicle_uuid
-      const groupedData = vehicles.reduce((result, row) => {
-        const key = row.vehicle_uuid;
-        if (!result[key]) {
-          result[key] = {
-            vehicle_uuid: key,
-            vehicle_name: row.vehicle_name,
-            trip_start_time: row.trip_start_time,
-            trip_data: [],
-          };
-        }
-        if (row.trip_id) {
-          result[key].trip_data.push({
-            trip_id: row.trip_id,
-            event: row.event,
-            timestamp: row.timestamp,
-          });
-        }
-        return result;
-      }, {});
-  
-      // Convert the grouped data object into an array
-      const tripData = Object.values(groupedData);
-  
-      res.status(200).json({
-        success: true,
-        message: "Successfully retrieved trip data",
-        data: { trip_data: tripData },
-      });
-    } catch (err) {
-      console.error(`Error in Get Trip Data: ${err.message}`);
-      res.status(500).json({
-        success: false,
-        message: "An error occurred while retrieving trip data",
-        error: err.message,
-      });
-    } finally {
-      connection.release(); // Release the database connection
-    }
-};
-  
 exports.getalert = async (req, res) => {
   const connection = await pool.getConnection();
-  
+
   try {
     const { user_uuid } = req.params;
 
-// V - Vehicles, td - tripData, ts - trip_summary
+    // V - Vehicles, td - tripData, ts - trip_summary
 
     const query = `
     SELECT
@@ -172,9 +126,17 @@ WHERE
     AND ts.trip_status = ? 
     AND td.event IN (?,?,?,?)
 ORDER BY
-    td.timestamp ASC`
+    td.timestamp ASC`;
 
-    const [vehicles] = await connection.query(query, [user_uuid, 1, 1,"DMS","LMP","ACD","ACC"]);
+    const [vehicles] = await connection.query(query, [
+      user_uuid,
+      1,
+      1,
+      "DMS",
+      "LMP",
+      "ACD",
+      "ACC",
+    ]);
 
     // Group the data by vehicle_uuid
     const groupedData = vehicles.reduce((result, row) => {
@@ -192,7 +154,7 @@ ORDER BY
           trip_id: row.trip_id,
           event: row.event,
           message: row.message,
-         timestamp: row.timestamp,
+          timestamp: row.timestamp,
           alert_type: row.alert_type, // Extracted alert_type from jsondata
         });
       }
@@ -232,7 +194,7 @@ exports.getvehicleLogs = async (req, res) => {
       Distraction: 2,
       "No Driver": 3,
     };
-    
+
     const query = `
     SELECT
     v.vehicle_uuid,
@@ -266,7 +228,7 @@ ORDER BY
       ...eventList,
       ...Object.values(alertTypeMapping), // Use values from the mapping object
     ];
-console.log(params);
+    console.log(params);
     const [vehicles] = await connection.query(query, params);
 
     // Filter the data based on alert_type
@@ -318,17 +280,3 @@ console.log(params);
     connection.release(); // Release the database connection
   }
 };
-
-
-
-
-  
-  
-   
-  
-  
-  
-  
-  
-
-  
