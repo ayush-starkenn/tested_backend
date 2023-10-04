@@ -10,4 +10,6 @@ dashboardRouter.get("/getVehicleLogs/:user_uuid", dashboardController.getvehicle
 
 dashboardRouter.get("/get-alert/:user_uuid", dashboardController.getalert);
 
+dashboardRouter.get("/getOngoingLoc/:user_uuid",dashboardController.getOngoingLOC);
+
 module.exports = { dashboardRouter };   

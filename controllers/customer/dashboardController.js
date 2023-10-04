@@ -83,7 +83,6 @@ exports.getongoingTripDashboard = async (req, res) => {
   }
 };
 
-  
 exports.getalertbyId = async (req, res) => {
     const connection = await pool.getConnection();
     
@@ -319,16 +318,53 @@ console.log(params);
   }
 };
 
+exports.getOngoingLOC = async (req, res) => {
+  try {
+    const { user_uuid } = req.params;
+    const vehicle_status = 1;
+    const trip_status = 0;
 
+    const query = `
+    SELECT
+      v.vehicle_uuid,
+      v.vehicle_name,
+      ts.trip_id,
+      ts.trip_start_time,
+      td.event,
+      td.lat,
+      td.lng,
+      MAX(td.timestamp) AS latest_timestamp
+    FROM
+      vehicles v
+    LEFT JOIN
+      trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
+    LEFT JOIN
+      tripdata td ON ts.trip_id = td.trip_id
+    WHERE
+      v.user_uuid = ?
+      AND v.vehicle_status = ?
+      AND ts.trip_status = ?
+      AND td.event = 'LOC'
+    GROUP BY
+      v.vehicle_uuid, ts.trip_id
+    ORDER BY
+      latest_timestamp ASC;
+    `;
 
+    const params = [user_uuid, vehicle_status, trip_status];
+    const [results] = await pool.query(query, params);
 
-  
-  
-   
-  
-  
-  
-  
-  
-
-  
+    res.status(200).json({
+      success: true,
+      message: "Successfully retrieved trip data",
+      data: { trip_data: results },
+    });
+  } catch (err) {
+    console.error(`Error in Get Trip Data: ${err.message}`);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while retrieving trip data",
+      error: err.message,
+    });
+  }
+};
