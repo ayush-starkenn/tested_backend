@@ -45,7 +45,7 @@ exports.saveAlertTrigger = async (req, res) => {
       trigger_description,
       vehicle_uuid,
       trigger_type,
-      JSON.stringify(recipients),
+      recipients,
       1,
       currentTimeIST,
       user_uuid,
