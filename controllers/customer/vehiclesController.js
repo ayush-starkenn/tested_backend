@@ -23,7 +23,7 @@ const addVehicle = async (req, res) => {
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss a");
+      .format("YYYY-MM-DD HH:mm:ss");
 
     const checkQuery =
       "SELECT COUNT(*) as count FROM vehicles WHERE vehicle_registration = ?";
@@ -93,7 +93,7 @@ const editVehicle = async (req, res) => {
     let createdAt = new Date();
     let currentTimeIST = moment
       .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss a");
+      .format("YYYY-MM-DD HH:mm:ss");
 
     // Check if the vehicle with the same registration number already exists
     const checkQuery =
@@ -202,7 +202,7 @@ const deleteVehicle = async (req, res) => {
       .format("YYYY-MM-DD HH:mm:ss");
 
     const deleteQuery =
-      "UPDATE vehicles SET vehicle_status=?,modified_at=?,modified_by=?  WHERE vehicle_uuid=?";
+      "UPDATE vehicles SET vehicle_status=?,modified_at=?,modified_by=?,ecu='NULL',iot='NULL',dms='NULL'  WHERE vehicle_uuid=?";
 
     const values = [0, currentTimeIST, user_uuid, vehicle_uuid];
 
