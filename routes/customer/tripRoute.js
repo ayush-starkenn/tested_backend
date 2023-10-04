@@ -33,5 +33,17 @@ tripRouter.get(
   tripController.getFaultCountByTrip_Id
 );
 
+// Get ongoing trip data by trip id
+tripRouter.get(
+  "/get-ongoing-tripdata-by-tripid/:trip_id",
+  tripController.getOngoingTripdataByTripId
+);
+
+// Get ongoing trip fault counts
+tripRouter.get(
+  "/get-ongoing-fault-counts/:tripID/:epochstart/:epochend",
+  tripController.getOngoingFaultData
+);
+
 // Export
 module.exports = { tripRouter };

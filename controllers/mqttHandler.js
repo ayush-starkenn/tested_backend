@@ -4,6 +4,7 @@ const { client } = require("../config/mqtt");
 const { v4: uuidv4 } = require("uuid");
 const pkg = require("geolib");
 const { sendEmail } = require("../middleware/mailer");
+const { deleteFeatureset } = require("./admin/featuresetController");
 
 const setupMQTT = () => {
   // On connect to MQTT then Function to retrieve topics from the database
@@ -345,7 +346,7 @@ const createTripSummary = async (tripSummaryData, vehicle_uuid, deviceIDD) => {
         );
 
         // Send Feature set
-        sendFeatureSetToDevice(deviceIDD, vehicle_uuid);
+        sendFeatureSetToDevice(deviceIDD);
 
         // Log the inserted trip ID
         return tripSummaryData[0];
@@ -363,14 +364,47 @@ const createTripSummary = async (tripSummaryData, vehicle_uuid, deviceIDD) => {
 };
 
 // Set feature set for the particular device id
-const sendFeatureSetToDevice = async (deviceIDD, vehicle_uuid) => {
+const sendFeatureSetToDevice = async (deviceIDD) => {
+  const connection = await pool.getConnection();
   try {
-    const featureSet =
-      '"{"device_id":"EC0001A","message":"105","data":{"system_mode":1,"version_type":1,"cas":{"enabled":1,"activation_speed":40,"alarm_threshold":20.0,"brake_threshold":10.0,"brake_speed":50,"detect_stationary_obj":1,"allow_complete_brake":1,"detect_oncoming_obstacle":1,"safety_mode":2,"ttc_threshold":175,"brake_on_dur":1000,"brake_off_dur":1000,"start_time":12,"stop_time":12},"sleep_alert":{"enabled":1,"pre_warning":5,"slp_alert_interval":60,"activation_spd":40,"start_time":11,"stop_time":6,"braking":1,"braking_act_time":20},"driver_eval":{"enabled":1,"max_lane_chng_threshold":0.35,"min_lane_chng_threshold":-0.35,"max_harsh_acceleration_threshold":0.25,"min_harsh_acceleration_threshold":-0.4,"sudden_braking_threshold":-0.4,"max_spd_bump_threshold":0.5,"min_spd_bump_threshold":-0.5},"speed_governor":{"enabled":1,"speed_limit":100},"cruise":{"enabled":1,"activation_speed":100,"vehicle_type":1},"obd":{"enabled":0,"protocol_no":1},"tpms":{"enabled":1},"veh_settings":{"acc_type":0,"brake_type":1,"gyro_type":2},"sensor":{"laser_sensor":1,"rf_sensor":2,"rf_angle":0,"actication_spd":0},"speed_setting":{"source":1,"const_speed":0,"slope":0.26,"offset":-1.24},"shutdown_delay":{"delay":5},"rfid":{"enabled":1},"time_errors":{"no_alarm":30,"speed":30,"acc_bypass":30,"tpms":0},"speed_errors":{"rf_sen_absent":30,"gyro_absent":50,"hmi_absent":50,"tns":60,"brake_err":0,"tpms_err":0,"obd_absent":0,"no_alarm":0,"laser_sen_absent":0,"rfid_absent":0,"iot_absent":0,"acc_board":0,"dd_mod_dis":60,"alco_sen_dis":0,"temp_sen_dis":30},"firmware_update":{"status":0},"alchohol_detection":{"enable":0,"alchohol_ta_int":120,"actication_spd":40,"start_time":23,"stop_time":6,"alchohol_threshold":1},"dms":{"enable":0,"alert_type":1,"severity":1,"act_spd":40,"start_time":23,"stop_time":6},"temp_sensor":{"enable":0,"threshold":0}},"timestamp":1419038000}"';
+    const [getFS] = await pool.query(
+      "SELECT * FROM mqttfeatureset WHERE device_id = ? AND status = ?",
+      [deviceIDD, 0]
+    );
+    if (getFS.length > 0) {
+      client.publish(`starkennOutv3/${deviceIDD}/data`, getFS[0].featureset);
 
-    client.publish(`starkennOutv3/${deviceIDD}/data`, featureSet);
+      // onces send to device delete from local database
+      deleteLocalFeatureset(getFS[0].id);
+    } else {
+      return;
+    }
   } catch (error) {
     logger.error(`Error in sending featureset ${error}`);
+    return;
+  } finally {
+    connection.release();
+  }
+};
+
+// Delete local feature set
+const deleteLocalFeatureset = async (fs_id) => {
+  const connection = await pool.getConnection();
+  try {
+    const deleteQ = await pool.query(
+      "DELETE FROM mqttfeatureset WHERE id = ?",
+      [fs_id]
+    );
+    if (deleteQ) {
+      console.log("deleted");
+    } else {
+      console.log("not deleted");
+    }
+  } catch (error) {
+    logger.error(`Error in delete featureset ${error}`);
+    return;
+  } finally {
+    connection.release();
   }
 };
 
