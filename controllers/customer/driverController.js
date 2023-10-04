@@ -3,6 +3,9 @@ const moment = require("moment-timezone");
 const { v4: uuidv4 } = require("uuid");
 const logger = require("../../logger.js");
 
+const { sendEmail } = require("../../middleware/mailer");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 const addDriver = async (req, res) => {
   // Connection to the database
   const connection = await pool.getConnection();
@@ -75,6 +78,10 @@ const addDriver = async (req, res) => {
       user_uuid,
     ];
     const [results] = await connection.execute(addQuery, values);
+
+    // Send OTP on Email
+    await sendEmail(driver_email, values);
+    //await sendWhatsappMessage(driver_mobile);
 
     res.status(201).json({
       message: "Driver added successfully",
@@ -159,6 +166,10 @@ const editDriver = async (req, res) => {
     ];
 
     const [results] = await connection.execute(editQuery, values);
+
+    // Send OTP on Email
+   // await sendEmail(driver_email, values);
+    //await sendWhatsappMessage(driver_mobile);
 
     res.status(201).send({
       message: "Successfully driver updated",
