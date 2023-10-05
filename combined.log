@@ -1,0 +1,5 @@
+10/5/2023, 3:14:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/5/2023, 3:14:04 PM [INFO]: Stored Tripdata in the database
+10/5/2023, 3:14:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/5/2023, 3:14:14 PM [INFO]: Stored Tripdata in the database
+10/5/2023, 3:14:26 PM [INFO]: Received SIGINT signal. Closing connection pool...

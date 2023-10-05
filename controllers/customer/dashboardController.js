@@ -377,7 +377,7 @@ exports.getOngoingLOC = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Successfully retrieved trip data",
+      message: "Successfully fetched trip data",
       data: { trip_data: results },
     });
   } catch (err) {
