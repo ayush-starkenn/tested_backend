@@ -9,6 +9,7 @@ const authentication = (req, res, next) => {
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    req.decoded = decoded;
     if (err) {
       return res
         .status(401)

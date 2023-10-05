@@ -169,6 +169,7 @@ const editDriver = async (req, res) => {
 
     // Send OTP on Email
    // await sendEmail(driver_email, values);
+    await sendEmail(driver_email, values);
     //await sendWhatsappMessage(driver_mobile);
 
     res.status(201).send({

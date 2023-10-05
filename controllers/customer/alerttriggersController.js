@@ -45,7 +45,7 @@ exports.saveAlertTrigger = async (req, res) => {
       trigger_description,
       vehicle_uuid,
       trigger_type,
-      JSON.stringify(recipients),
+      recipients,
       1,
       currentTimeIST,
       user_uuid,
@@ -188,7 +188,7 @@ exports.updateAlertTrigger = async (req, res) => {
       trigger_description,
       vehicle_uuid,
       trigger_type,
-      recipients,
+      JSON.stringify(recipients),
       trigger_status,
       currentTimeIST,
       user_uuid,
@@ -213,3 +213,4 @@ exports.updateAlertTrigger = async (req, res) => {
     connection.release();
   }
 };
+ 

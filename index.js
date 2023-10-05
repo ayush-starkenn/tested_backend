@@ -18,6 +18,7 @@ const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 const { reportsRouter } = require("./routes/customer/reportsRoute");
 const { dashboardRouter } = require("./routes/customer/dashboardRoute");
+// const { notification } = require ("./middleware/notify");
 
 const cors = require("cors");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
@@ -45,12 +46,13 @@ cronJobForEndTrip();
 app.use("/api", loginRouter);
 
 app.use(authentication);
-
+//app.use(notification);
 // Admin Panel Routes
 app.use("/api/devices", deviceRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/analytics-threshold", ATRouter);
 app.use("/api/featuresets", featuresetRouter);
+
 
 // Customer Panel Routes
 app.use("/api/vehicles", vehiclesRouter);
@@ -61,7 +63,6 @@ app.use("/api/rfid", rfidRouter);
 app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
-app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/trips", tripRouter);
 app.use("/api/dashboardCustomers", dashboardRouter);

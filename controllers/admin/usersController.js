@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
 const { sendEmail } = require("../../middleware/mailer");
-const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 const app = express();
 
@@ -86,6 +86,7 @@ exports.Signup = async (req, res) => {
       pincode,
       phone,
     } = req.body;
+    var type = 1;
 
     // Hash the password. You can adjust the salt rounds (10) as needed
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -154,8 +155,10 @@ exports.Signup = async (req, res) => {
     const [results] = await connection.execute(addQuery, values);
 
     // Send OTP on Email
-    await sendEmail(email, values);
-    await sendWhatsappMessage(phone);
+    await sendEmail(email, type);
+    //await notification(values);
+    
+    //await sendWhatsappMessage(phone);
 
     res.status(201).json({ message: "Customer Added Successfully!", results });
   } catch (err) {
@@ -203,10 +206,12 @@ exports.updateCustomers = async (req, res) => {
       city,
       pincode,
       phone,
+      // uset_status,
       userUUID,
     } = req.body;
-
+    
     const { user_uuid } = req.params;
+    var type = 4;
 
     // Ensure pincode and phone are numeric values
     const isNumeric = (value) => /^\d+$/.test(value);
@@ -227,15 +232,19 @@ exports.updateCustomers = async (req, res) => {
       "SELECT * FROM users WHERE user_uuid = ?",
       [user_uuid]
     );
+
+    
+
     // Check if the updated email or mobile already exist for another contact
     const queriesToGet = `
-      SELECT * FROM users WHERE (email = ? OR phone= ?) AND user_uuid != ?`;
+      SELECT * FROM users WHERE (email = ? OR phone = ?) AND user_uuid != ?`;
 
     const [result] = await connection.execute(queriesToGet, [
       email,
       phone,
       user_uuid,
     ]);
+
     if (existingUserRows.length === 0) {
       return res.status(404).json({ message: "User not found" });
     } else if (result.length > 0) {
@@ -243,6 +252,7 @@ exports.updateCustomers = async (req, res) => {
         message: "User already exists with the provided email or mobile",
       });
     }
+    
 
     const updateQuery =
       "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
@@ -256,6 +266,7 @@ exports.updateCustomers = async (req, res) => {
       city,
       pincode,
       phone,
+      //user_status,
       currentTimeIST,
       userUUID,
       user_uuid,
@@ -263,8 +274,13 @@ exports.updateCustomers = async (req, res) => {
 
     const [results] = await connection.execute(updateQuery, values);
 
-    // Send OTP on Email
-    await sendEmail(email, values);
+    // Send OTP on Email with first_name and company_name
+    await sendEmail(
+      email,
+      type,
+      first_name, // Swap the order of first_name and existingUserRows[0].company_name
+      existingUserRows[0].company_name,
+    );
 
     res
       .status(201)
@@ -276,6 +292,7 @@ exports.updateCustomers = async (req, res) => {
     connection.release();
   }
 };
+
 
 // Get customer details by customer ID
 exports.GetCustomerById = async (req, res) => {
@@ -373,6 +390,8 @@ exports.ResetPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
+   
+
     // Verify old password
     const isPasswordMatch = await bcrypt.compare(
       oldPassword,
@@ -391,6 +410,9 @@ exports.ResetPassword = async (req, res) => {
       "UPDATE users SET password = ? WHERE user_uuid = ?",
       [hashedNewPassword, user_uuid]
     );
+
+ // Send OTP on Email
+   await sendEmail(email);
 
     res.status(200).json({ message: "Password changed successfully." });
   } catch (err) {
@@ -426,8 +448,8 @@ exports.getTotalCustomers = async (req, res) => {
 exports.ForgotPasswordOTP = async (req, res) => {
   const connection = await pool.getConnection();
   try {
-    const { email } = req.body;
-    //const { user_uuid } = req.params;
+    const { email } = req.body; // Use email as the identifier
+    var type = 3;
 
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000);
@@ -436,21 +458,19 @@ exports.ForgotPasswordOTP = async (req, res) => {
       "SELECT * FROM users WHERE email = ?",
       [email]
     );
+
     // Check User Exists in DataBase
     if (userRows.length === 0) {
       return res.status(404).json({ message: "User not found." });
     }
 
     // Send OTP on Email
-    await sendEmail(email, otp);
+    await sendEmail(email, type, otp, userRows[0].first_name,userRows[0].company_name,);
 
-    await connection.execute("UPDATE users SET otp = ? WHERE email = ?", [
-      otp,
-      email,
-    ]);
-    //let expiry = Date.now() + 60 * 1000 * 15;
-    //user_uuid.resetPasswordToken = otp;
-    // user_uuid.resetPasswordExpires = expiry;
+    await connection.execute(
+      "UPDATE users SET otp = ? WHERE email = ?",
+      [otp, email]
+    );
 
     res.status(200).json({ message: "OTP generated " });
   } catch (err) {
@@ -514,6 +534,9 @@ exports.ForgotPasswordChange = async (req, res) => {
     const values = [hashedPassword, currentTimeIST, email];
 
     const [results] = await connection.execute(updatePasswordQuery, values);
+
+ // Send OTP on Email
+ await sendEmail(email, values);
 
     res
       .status(200)
