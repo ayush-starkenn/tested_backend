@@ -108,6 +108,7 @@ exports.getalert = async (req, res) => {
     SELECT
     v.vehicle_uuid,
     v.vehicle_name,
+    v.vehicle_registration,
     ts.trip_id,
     ts.trip_start_time,
     td.event,
@@ -128,46 +129,55 @@ WHERE
 ORDER BY
     td.timestamp ASC`;
 
-    const [vehicles] = await connection.query(query, [
-      user_uuid,
+    // const [vehicles] = await connection.query(query, [
+    //   user_uuid,
+    //   1,
+    //   1,
+    //   "DMS",
+    //   "LMP",
+    //   "ACD",
+    //   "ACC",
+    // ]);
+    const params = [ user_uuid,
       1,
       1,
       "DMS",
       "LMP",
       "ACD",
-      "ACC",
-    ]);
+      "ACC",]
+
+ const [results] = await pool.query(query, params)
 
     // Group the data by vehicle_uuid
-    const groupedData = vehicles.reduce((result, row) => {
-      const key = row.vehicle_uuid;
-      if (!result[key]) {
-        result[key] = {
-          vehicle_uuid: key,
-          vehicle_name: row.vehicle_name,
-          trip_start_time: row.trip_start_time,
-          trip_data: [],
-        };
-      }
-      if (row.trip_id) {
-        result[key].trip_data.push({
-          trip_id: row.trip_id,
-          event: row.event,
-          message: row.message,
-          timestamp: row.timestamp,
-          alert_type: row.alert_type, // Extracted alert_type from jsondata
-        });
-      }
-      return result;
-    }, {});
+    // const groupedData = vehicles.reduce((result, row) => {
+    //   const key = row.vehicle_uuid;
+    //   if (!result[key]) {
+    //     result[key] = {
+    //       vehicle_uuid: key,
+    //       vehicle_name: row.vehicle_name,
+    //       trip_start_time: row.trip_start_time,
+    //       trip_data: [],
+    //     };
+    //   }
+    //   if (row.trip_id) {
+    //     result[key].trip_data.push({
+    //       trip_id: row.trip_id,
+    //       event: row.event,
+    //       message: row.message,
+    //       timestamp: row.timestamp,
+    //       alert_type: row.alert_type, // Extracted alert_type from jsondata
+    //     });
+    //   }
+    //   return result;
+    // }, {});
 
-    // Convert the grouped data object into an array
-    const tripData = Object.values(groupedData);
+    // // Convert the grouped data object into an array
+    // const tripData = Object.values(groupedData);
 
     res.status(200).json({
       success: true,
       message: "Successfully retrieved trip data",
-      data: { trip_data: tripData },
+      trip_data:  results ,
     });
   } catch (err) {
     logger.error(`Error in Get Trip Data: ${err.message}`);
