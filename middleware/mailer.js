@@ -185,8 +185,8 @@ if (type == 4) {
     `
   }
 }
-console.log("first_name",first_name,);
-console.log("company_name",company_name,);
+// console.log("first_name",first_name,);
+// console.log("company_name",company_name,);
 if (type == 5) {
 
   {

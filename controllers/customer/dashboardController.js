@@ -176,14 +176,14 @@ ORDER BY
 
     res.status(200).json({
       success: true,
-      message: "Successfully retrieved trip data",
+      message: "Successfully Get Trip Alert's",
       trip_data:  results ,
     });
   } catch (err) {
-    logger.error(`Error in Get Trip Data: ${err.message}`);
+    logger.error(`Error in Get Trip Alert's: ${err.message}`);
     res.status(500).json({
       success: false,
-      message: "An error occurred while retrieving trip data",
+      message: "An error occurred while  trip data alert's",
       error: err.message,
     });
   } finally {
@@ -238,7 +238,7 @@ ORDER BY
       ...eventList,
       ...Object.values(alertTypeMapping), // Use values from the mapping object
     ];
-    console.log(params);
+    //console.log(params);
     const [vehicles] = await connection.query(query, params);
 
     // Filter the data based on alert_type
@@ -329,11 +329,11 @@ exports.getOngoingLOC = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Successfully retrieved trip data",
-      data: { trip_data: results },
+      message: "Successfully retrieved location of latest Vehicle trip data ",
+      Trip_data: results ,
     });
   } catch (err) {
-    console.error(`Error in Get Trip Data: ${err.message}`);
+    logger.error(`Error in Get Trip Data: ${err.message}`);
     res.status(500).json({
       success: false,
       message: "An error occurred while retrieving trip data",
