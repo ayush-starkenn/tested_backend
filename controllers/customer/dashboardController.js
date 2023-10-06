@@ -138,15 +138,9 @@ ORDER BY
     //   "ACD",
     //   "ACC",
     // ]);
-    const params = [ user_uuid,
-      1,
-      1,
-      "DMS",
-      "LMP",
-      "ACD",
-      "ACC",]
+    const params = [user_uuid, 1, 1, "DMS", "LMP", "ACD", "ACC"];
 
- const [results] = await pool.query(query, params)
+    const [results] = await pool.query(query, params);
 
     // Group the data by vehicle_uuid
     // const groupedData = vehicles.reduce((result, row) => {
@@ -177,7 +171,7 @@ ORDER BY
     res.status(200).json({
       success: true,
       message: "Successfully Get Trip Alert's",
-      trip_data:  results ,
+      trip_data: results,
     });
   } catch (err) {
     logger.error(`Error in Get Trip Alert's: ${err.message}`);
@@ -204,7 +198,7 @@ exports.getvehicleLogs = async (req, res) => {
       Distraction: 2,
       "No Driver": 3,
     };
-    
+
     const query = `
     SELECT
     v.vehicle_uuid,
@@ -330,7 +324,7 @@ exports.getOngoingLOC = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Successfully retrieved location of latest Vehicle trip data ",
-      Trip_data: results ,
+      Trip_data: results,
     });
   } catch (err) {
     logger.error(`Error in Get Trip Data: ${err.message}`);

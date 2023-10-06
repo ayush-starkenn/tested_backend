@@ -100,8 +100,8 @@ exports.getCompletedTripdata = async (req, res) => {
     const { trip_id } = req.params;
 
     const [getTripdata] = await pool.query(
-      "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? ORDER BY timestamp DESC",
-      [trip_id]
+      "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? AND event = ? ORDER BY timestamp DESC",
+      [trip_id, "LOC"]
     );
     if (getTripdata.length > 0) {
       res.status(200).json({
