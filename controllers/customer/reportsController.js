@@ -14,7 +14,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+// This api use to get Vehicles for reports
 exports.getVehicle = async (req, res) => {
 
     const connection = await pool.getConnection();
@@ -40,6 +40,7 @@ exports.getVehicle = async (req, res) => {
 
 };
 
+// This Api user to get All conatcts for  reports
 exports.getAllContacts = async (req, res) => {
   const connection = await pool.getConnection();
   try {
@@ -65,6 +66,7 @@ exports.getAllContacts = async (req, res) => {
   }
 };
 
+// This api use only Get The new reports(Testing Purpose) 
 exports.getAllreport = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -195,130 +197,185 @@ ORDER BY
   }
 };
 
-exports.createAllreport1 = async (req, res) => {
-  const connection = await pool.getConnection();
+// This api use to Create/Genrate Reports
+// exports.createAllreport = async (req, res) => {
+//   const connection = await pool.getConnection();
 
-  try {
-    const {
-      title,
-      selected_events,
-      from_date,
-      to_date,
-      contact_uuid,
-      selected_vehicles,
+//   try {
+//     const {
+//       title,
+//       selected_events,
+//       from_date,
+//       to_date,
+//       contact_uuid,
+//       selected_vehicles,
       
-    } = req.body;
-    const {user_uuid} = req.params;
+//     } = req.body;
+//     const {user_uuid} = req.params;
 
-    const newUuid = uuidv4();
+//     const newUuid = uuidv4();
 
-    let createdAt = new Date();
-    let currentTimeIST = moment
-      .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss");
+//     let createdAt = new Date();
+//     let currentTimeIST = moment
+//       .tz(createdAt, "Asia/Kolkata")
+//       .format("YYYY-MM-DD HH:mm:ss");
 
-    // Validate input parameters
-    if (
-      !Array.isArray(selected_events) ||
-      !from_date ||
-      !to_date ||
-      !title ||
-      !contact_uuid ||
-      !Array.isArray(selected_vehicles) ||
-      selected_vehicles.length === 0
-    ) {
-      return res.status(400).json({ message: "Invalid request parameters" });
-    }
+//     // Validate input parameters
+//     if (
+//       !Array.isArray(selected_events) ||
+//       !from_date ||
+//       !to_date ||
+//       !title ||
+//       !contact_uuid ||
+//       !Array.isArray(selected_vehicles) ||
+//       selected_vehicles.length === 0
+//     ) {
+//       return res.status(400).json({ message: "Invalid request parameters" });
+//     }
 
-    // Convert fromDate and toDate to Date objects and validate
-    const fromDateObj = new Date(from_date);
-    const toDateObj = new Date(to_date);
+//     // Convert fromDate and toDate to Date objects and validate
+//     const fromDateObj = new Date(from_date);
+//     const toDateObj = new Date(to_date);
 
-    if (isNaN(fromDateObj) || isNaN(toDateObj)) {
-      return res.status(400).json({ message: "Invalid date format" });
-    }
+//     if (isNaN(fromDateObj) || isNaN(toDateObj)) {
+//       return res.status(400).json({ message: "Invalid date format" });
+//     }
 
-    // Ensure fromDate is before toDate
-    if (fromDateObj >= toDateObj) {
-      return res
-        .status(400)
-        .json({ message: "fromDate must be earlier than toDate" });
-    }
+//     // Ensure fromDate is before toDate
+//     if (fromDateObj >= toDateObj) {
+//       return res
+//         .status(400)
+//         .json({ message: "fromDate must be earlier than toDate" });
+//     }
 
-    const eventPlaceholders = selected_events.map(() => "?").join(",");
-    const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
+//     const eventPlaceholders = selected_events.map(() => "?").join(",");
+//     const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
 
-    // INSERT query to add the report data into a database table
-    const getQuery = `
-     SELECT
-        v.user_uuid,
-        v.vehicle_uuid,
-        td.event,
-        td.timestamp
-      FROM
-        vehicles v
-      LEFT JOIN
-        trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
-      LEFT JOIN
-        tripdata td ON ts.trip_id = td.trip_id
-      WHERE
-        v.user_uuid = ?
-        AND v.vehicle_status = ?
-        AND td.created_at >= ?
-        AND td.created_at <= ?
-        AND ts.trip_status = ?
-        AND td.event IN (${eventPlaceholders})
-        AND v.vehicle_uuid IN (${vehiclePlaceholders})
-    `;
+//     // INSERT query to add the report data into a database table
+//     const getQuery = `
+//     SELECT
+//     v.vehicle_uuid,
+//     v.vehicle_name,
+//     v.vehicle_registration,
+//     ts.trip_id,
+//     td.event AS event_type, 
+//     COUNT(*) AS event_count,
+//     td.timestamp,
+//     JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.data.alert_type')) AS alert_type,
+//     JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.message')) AS message
+// FROM
+//     vehicles v 
+// LEFT JOIN
+//     trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
+// LEFT JOIN
+//     tripdata td ON ts.trip_id = td.trip_id
+// WHERE
+//     v.user_uuid = ? 
+//     AND v.vehicle_status = ? 
+//     AND td.created_at >= ?
+//     AND td.created_at <= ? 
+//     AND ts.trip_status = ? 
+//     AND td.event IN (${eventPlaceholders})
+//     AND v.vehicle_uuid IN (${vehiclePlaceholders})
+// GROUP BY
+//     v.vehicle_uuid,
+//     v.vehicle_name,
+//     v.vehicle_registration,
+//     td.event  
+// ORDER BY
+//     v.vehicle_uuid ASC
+//   `;
 
-        // Execute the GET query
-        await connection.query(getQuery, [
-          user_uuid,
-          1,
-          fromDateObj,
-          toDateObj,
-          1,
-          ...selected_events,
-          ...selected_vehicles,
-        ]);
+//         // Execute the GET query
+//         const [vehicles] = await connection.query(getQuery, [
+//           user_uuid,
+//           1,
+//           fromDateObj,
+//           toDateObj,
+//           1,
+//           ...selected_events,
+//           ...selected_vehicles,
+//         ]);
+        
+//         const groupedData = vehicles.reduce((result, row) => {
+//           const key = row.vehicle_uuid;
+//           if (!result[key]) {
+//             result[key] = {
+//               vehicle_uuid: key,
+//               vehicle_name: row.vehicle_name,
+//               vehicle_registration: row.vehicle_registration,
+//               events: [],
+//             };0
+//           }
+//           if (row.trip_id) {
+//             result[key].events.push({
+//              // trip_id: row.trip_id,
+//               eventType: row.event_type,
+//               eventCount: row.event_count, 
+//             });
+//           }
+//           return result;
+//         }, {});
+//     // console.log("vehicles---------",vehicles);
+//     // console.log("groupedData---------",groupedData);
 
-    const insertQuery = `
-    INSERT INTO reports (title, report_uuid, user_uuid, vehicles, from_date, to_date, contact_uuid, report_status, report_created_at, report_created_by)
-    VALUES (?,?,?,?,?,?,?,?,?,?);`
+//         const insertQuery = `
+//         INSERT INTO reports (title, report_uuid, user_uuid, vehicles, from_date, to_date, contact_uuid, report_status, report_created_at, report_created_by)
+//         VALUES (?,?,?,?,?,?,?,?,?,?);
+//       `;
+      
+//       const values = [
+//         title,
+//         newUuid,
+//         user_uuid,
+//         JSON.stringify(groupedData), // Save the formatted data as a JSON string
+//         from_date,
+//         to_date,
+//         contact_uuid,
+//         1,
+//         currentTimeIST,
+//         user_uuid,
+//       ];
+//       // Execute the INSERT query
+//       // await connection.query(insertQuery, [
+//       //   title,
+//       //   newUuid,
+//       //   user_uuid,
+//       //   JSON.stringify(groupedData), // Save the formatted data as a JSON string
+//       //   from_date,
+//       //   to_date,
+//       //   contact_uuid,
+//       //   1,
+//       //   currentTimeIST,
+//       //   user_uuid,
+//       // ]);
+// //console.log("values-----------",values);
+//       const results = await connection.execute(insertQuery, values);
+//     //  console.log("results-----------",results);
 
-    // Execute the INSERT query
-await connection.query(insertQuery, [
-  title,
-  newUuid,
-  user_uuid,
-  JSON.stringify(selected_vehicles), 
-  from_date,
-  to_date,
-  contact_uuid,
-  1,
-  currentTimeIST,
-  user_uuid
-])
+//     res.status(200).json({
+//       success: true,
+//       message: "Report data successfully created", 
+//      // Reports: values,
+//       title:title,
+//       from_date:from_date,
+//       to_date:to_date,
+//       user_uuid:user_uuid,
+//       vehicles:groupedData,
+//       contact_uuid:contact_uuid
 
-    res.status(200).json({
-      success: true,
-      message: "Report data successfully created",
-      report_title: title,
-      from_date: from_date,
-      to_date: to_date,
-      user_uuid: user_uuid,
-    });
-  } catch (err) {
-    logger.error(`Error in creating report: ${err.message}`);
-    res.status(500).json({
-      success: false,
-      message: "An error occurred while creating the report",
-      error: err.message,
-    });
-  } finally {
-    connection.release(); // Release the database connection
-  }
-};
+//     });
+//   } catch (err) {
+//     logger.error(`Error in creating report: ${err.message}`);
+//     res.status(500).json({
+//       success: false,
+//       message: "An error occurred while creating the report",
+//       error: err.message,
+//     });
+//   } finally {
+//     connection.release(); // Release the database connection
+//   }
+// };
 
 exports.createAllreport = async (req, res) => {
   const connection = await pool.getConnection();
@@ -364,11 +421,11 @@ exports.createAllreport = async (req, res) => {
     }
 
     // Ensure fromDate is before toDate
-    if (fromDateObj >= toDateObj) {
-      return res
-        .status(400)
-        .json({ message: "fromDate must be earlier than toDate" });
-    }
+    // if (fromDateObj >= toDateObj) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: "fromDate must be earlier than toDate" });
+    // }
 
     const eventPlaceholders = selected_events.map(() => "?").join(",");
     const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
@@ -427,7 +484,7 @@ ORDER BY
               vehicle_name: row.vehicle_name,
               vehicle_registration: row.vehicle_registration,
               events: [],
-            };0
+            };
           }
           if (row.trip_id) {
             result[key].events.push({
@@ -445,14 +502,14 @@ ORDER BY
         INSERT INTO reports (title, report_uuid, user_uuid, vehicles, from_date, to_date, contact_uuid, report_status, report_created_at, report_created_by)
         VALUES (?,?,?,?,?,?,?,?,?,?);
       `;
-      
+     // console.log(insertQuery);
       const values = [
         title,
         newUuid,
         user_uuid,
         JSON.stringify(groupedData), // Save the formatted data as a JSON string
-        from_date,
-        to_date,
+        fromDateObj,
+        toDateObj,
         contact_uuid,
         1,
         currentTimeIST,
@@ -472,19 +529,21 @@ ORDER BY
       //   user_uuid,
       // ]);
 //console.log("values-----------",values);
-      const results = await connection.execute(insertQuery, values);
-    //  console.log("results-----------",results);
+      const [results] = await connection.execute(insertQuery, values);
+     //console.log("results-----------",results);
 
     res.status(200).json({
       success: true,
       message: "Report data successfully created", 
+      report_uuid : newUuid,
+      //ReportId: insertId,
      // Reports: values,
-      title:title,
-      from_date:from_date,
-      to_date:to_date,
-      user_uuid:user_uuid,
-      vehicles:groupedData,
-      contact_uuid:contact_uuid
+      //title:title,
+      //from_date:from_date,
+     // to_date:to_date,
+     // user_uuid:user_uuid,
+     // vehicles:groupedData,
+      //contact_uuid:contact_uuid
 
     });
   } catch (err) {
@@ -496,5 +555,72 @@ ORDER BY
     });
   } finally {
     connection.release(); // Release the database connection
+  }
+};
+
+exports.getReports = async (req, res) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const { report_uuid } = req.params;
+    let { events } = req.query;
+
+    const [reportResult] = await connection.execute(
+      "SELECT * FROM reports WHERE report_uuid = ?",
+      [report_uuid]
+    );
+
+    if (reportResult.length === 0) {
+      return res.status(404).send({ error: "Report not found" });
+    }
+
+    const report = reportResult[0];
+    const fromDate = report.from_date; // Use from_date from the report
+    const toDate = report.to_date;     // Use to_date from the report
+
+    const vehiclesData = JSON.parse(report.vehicles);
+    const vehicle_uuids = Object.keys(vehiclesData).map(vehicleKey => vehiclesData[vehicleKey].vehicle_uuid);
+
+    events = events ? events.split(',') : [];
+    const selectedEvents = events.length > 0 ? events : ['ACC', 'ACD', 'DMS', 'LMP'];
+    const vehicleResults = [];
+
+    for (const vehicle_uuid of vehicle_uuids) {
+      const vehicleData = vehiclesData[vehicle_uuid];
+      const tripdataQuery = `
+        SELECT DATE(created_at) AS day, vehicle_uuid, event, COUNT(*) AS eventCount
+        FROM tripdata
+        WHERE vehicle_uuid = ?
+          AND created_at >= ?
+          AND created_at <= ?
+          AND event IN (${selectedEvents.map(() => '?').join(',')})
+        GROUP BY day, vehicle_uuid, event
+      `;
+
+      const [tripdataResult] = await connection.execute(tripdataQuery, [
+        vehicle_uuid,
+        fromDate,
+        toDate,
+        ...selectedEvents,
+      ]);
+
+      vehicleResults.push({
+        vehicle_uuid,
+        vehicle_name: vehicleData.vehicle_name,
+        vehicle_registration: vehicleData.vehicle_registration,
+        tripdata: tripdataResult,
+      });
+    }
+
+    res.status(200).send({
+      message: "Successfully retrieved report and tripdata for multiple vehicles",
+      report,
+      vehicleResults,
+    });
+  } catch (err) {
+    logger.error("Error in getting report and tripdata:", err);
+    res.status(500).send({ message: "Error in getting report and tripdata", Error: err.message });
+  } finally {
+    connection.release();
   }
 };

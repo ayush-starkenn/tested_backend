@@ -11,5 +11,8 @@ reportsRouter.get("/getreports-all-vehicles/:user_uuid",reportsController.getVeh
 
 reportsRouter.get("/getreports-all-contacts/:user_uuid",reportsController.getAllContacts);
 
+reportsRouter.get("/get_Reports/:report_uuid", reportsController.getReports);
+
+
 module.exports = { reportsRouter };
   
