@@ -10,6 +10,7 @@ const {
   getUnassignUsers,
   assignuser,
   unassignuser,
+  clientFeatureset,
 } = require("../../controllers/admin/featuresetController");
 
 const featuresetRouter = express.Router();
@@ -17,6 +18,11 @@ const featuresetRouter = express.Router();
 featuresetRouter.post("/add-featureset", addFeatureset);
 
 featuresetRouter.put("/edit-featureset/:featureset_uuid", editFeatureset);
+
+featuresetRouter.put(
+  "/edit-client-featureset/:featureset_uuid",
+  clientFeatureset
+);
 
 featuresetRouter.put("/delete-featureset/:featureset_uuid", deleteFeatureset);
 
