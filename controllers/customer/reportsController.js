@@ -4,6 +4,8 @@ const express = require("express");
 const moment = require("moment-timezone");
 const { v4: uuidv4 } = require("uuid");
 const bodyParser = require("body-parser");
+const { createAndScheduleReport } = require('../path-to-createAndScheduleReport');
+
 
 const { sendEmail } = require("../../middleware/mailer");
 const { sendWhatsappMessage } = require("../../middleware/whatsapp");
@@ -14,7 +16,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// This api use to get Vehicles for reports
+// This api use to get Vehicles for reports .
 exports.getVehicle = async (req, res) => {
 
     const connection = await pool.getConnection();
@@ -40,7 +42,7 @@ exports.getVehicle = async (req, res) => {
 
 };
 
-// This Api user to get All conatcts for  reports
+// This Api user to get All conatcts for  reports .
 exports.getAllContacts = async (req, res) => {
   const connection = await pool.getConnection();
   try {
@@ -66,7 +68,7 @@ exports.getAllContacts = async (req, res) => {
   }
 };
 
-// This api use only Get The new reports(Testing Purpose) 
+// This api use only Get The new reports(Testing Purpose)  .
 exports.getAllreport = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -197,186 +199,7 @@ ORDER BY
   }
 };
 
-// This api use to Create/Genrate Reports
-// exports.createAllreport = async (req, res) => {
-//   const connection = await pool.getConnection();
-
-//   try {
-//     const {
-//       title,
-//       selected_events,
-//       from_date,
-//       to_date,
-//       contact_uuid,
-//       selected_vehicles,
-      
-//     } = req.body;
-//     const {user_uuid} = req.params;
-
-//     const newUuid = uuidv4();
-
-//     let createdAt = new Date();
-//     let currentTimeIST = moment
-//       .tz(createdAt, "Asia/Kolkata")
-//       .format("YYYY-MM-DD HH:mm:ss");
-
-//     // Validate input parameters
-//     if (
-//       !Array.isArray(selected_events) ||
-//       !from_date ||
-//       !to_date ||
-//       !title ||
-//       !contact_uuid ||
-//       !Array.isArray(selected_vehicles) ||
-//       selected_vehicles.length === 0
-//     ) {
-//       return res.status(400).json({ message: "Invalid request parameters" });
-//     }
-
-//     // Convert fromDate and toDate to Date objects and validate
-//     const fromDateObj = new Date(from_date);
-//     const toDateObj = new Date(to_date);
-
-//     if (isNaN(fromDateObj) || isNaN(toDateObj)) {
-//       return res.status(400).json({ message: "Invalid date format" });
-//     }
-
-//     // Ensure fromDate is before toDate
-//     if (fromDateObj >= toDateObj) {
-//       return res
-//         .status(400)
-//         .json({ message: "fromDate must be earlier than toDate" });
-//     }
-
-//     const eventPlaceholders = selected_events.map(() => "?").join(",");
-//     const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
-
-//     // INSERT query to add the report data into a database table
-//     const getQuery = `
-//     SELECT
-//     v.vehicle_uuid,
-//     v.vehicle_name,
-//     v.vehicle_registration,
-//     ts.trip_id,
-//     td.event AS event_type, 
-//     COUNT(*) AS event_count,
-//     td.timestamp,
-//     JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.data.alert_type')) AS alert_type,
-//     JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.message')) AS message
-// FROM
-//     vehicles v 
-// LEFT JOIN
-//     trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
-// LEFT JOIN
-//     tripdata td ON ts.trip_id = td.trip_id
-// WHERE
-//     v.user_uuid = ? 
-//     AND v.vehicle_status = ? 
-//     AND td.created_at >= ?
-//     AND td.created_at <= ? 
-//     AND ts.trip_status = ? 
-//     AND td.event IN (${eventPlaceholders})
-//     AND v.vehicle_uuid IN (${vehiclePlaceholders})
-// GROUP BY
-//     v.vehicle_uuid,
-//     v.vehicle_name,
-//     v.vehicle_registration,
-//     td.event  
-// ORDER BY
-//     v.vehicle_uuid ASC
-//   `;
-
-//         // Execute the GET query
-//         const [vehicles] = await connection.query(getQuery, [
-//           user_uuid,
-//           1,
-//           fromDateObj,
-//           toDateObj,
-//           1,
-//           ...selected_events,
-//           ...selected_vehicles,
-//         ]);
-        
-//         const groupedData = vehicles.reduce((result, row) => {
-//           const key = row.vehicle_uuid;
-//           if (!result[key]) {
-//             result[key] = {
-//               vehicle_uuid: key,
-//               vehicle_name: row.vehicle_name,
-//               vehicle_registration: row.vehicle_registration,
-//               events: [],
-//             };0
-//           }
-//           if (row.trip_id) {
-//             result[key].events.push({
-//              // trip_id: row.trip_id,
-//               eventType: row.event_type,
-//               eventCount: row.event_count, 
-//             });
-//           }
-//           return result;
-//         }, {});
-//     // console.log("vehicles---------",vehicles);
-//     // console.log("groupedData---------",groupedData);
-
-//         const insertQuery = `
-//         INSERT INTO reports (title, report_uuid, user_uuid, vehicles, from_date, to_date, contact_uuid, report_status, report_created_at, report_created_by)
-//         VALUES (?,?,?,?,?,?,?,?,?,?);
-//       `;
-      
-//       const values = [
-//         title,
-//         newUuid,
-//         user_uuid,
-//         JSON.stringify(groupedData), // Save the formatted data as a JSON string
-//         from_date,
-//         to_date,
-//         contact_uuid,
-//         1,
-//         currentTimeIST,
-//         user_uuid,
-//       ];
-//       // Execute the INSERT query
-//       // await connection.query(insertQuery, [
-//       //   title,
-//       //   newUuid,
-//       //   user_uuid,
-//       //   JSON.stringify(groupedData), // Save the formatted data as a JSON string
-//       //   from_date,
-//       //   to_date,
-//       //   contact_uuid,
-//       //   1,
-//       //   currentTimeIST,
-//       //   user_uuid,
-//       // ]);
-// //console.log("values-----------",values);
-//       const results = await connection.execute(insertQuery, values);
-//     //  console.log("results-----------",results);
-
-//     res.status(200).json({
-//       success: true,
-//       message: "Report data successfully created", 
-//      // Reports: values,
-//       title:title,
-//       from_date:from_date,
-//       to_date:to_date,
-//       user_uuid:user_uuid,
-//       vehicles:groupedData,
-//       contact_uuid:contact_uuid
-
-//     });
-//   } catch (err) {
-//     logger.error(`Error in creating report: ${err.message}`);
-//     res.status(500).json({
-//       success: false,
-//       message: "An error occurred while creating the report",
-//       error: err.message,
-//     });
-//   } finally {
-//     connection.release(); // Release the database connection
-//   }
-// };
-
+// This api Genrate a Report to the Selected Vehicles .
 exports.createAllreport = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -388,16 +211,11 @@ exports.createAllreport = async (req, res) => {
       to_date,
       contact_uuid,
       selected_vehicles,
-      
     } = req.body;
-    const {user_uuid} = req.params;
+    const { user_uuid } = req.params;
 
     const newUuid = uuidv4();
-
-    let createdAt = new Date();
-    let currentTimeIST = moment
-      .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss");
+    const createdAt = moment().tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
 
     // Validate input parameters
     if (
@@ -412,7 +230,6 @@ exports.createAllreport = async (req, res) => {
       return res.status(400).json({ message: "Invalid request parameters" });
     }
 
-    // Convert fromDate and toDate to Date objects and validate
     const fromDateObj = new Date(from_date);
     const toDateObj = new Date(to_date);
 
@@ -420,131 +237,95 @@ exports.createAllreport = async (req, res) => {
       return res.status(400).json({ message: "Invalid date format" });
     }
 
-    // Ensure fromDate is before toDate
-    // if (fromDateObj >= toDateObj) {
-    //   return res
-    //     .status(400)
-    //     .json({ message: "fromDate must be earlier than toDate" });
-    // }
+    const eventPlaceholders = Array(selected_events.length).fill("?").join(",");
+    const vehiclePlaceholders = Array(selected_vehicles.length).fill("?").join(",");
 
-    const eventPlaceholders = selected_events.map(() => "?").join(",");
-    const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
-
-    // INSERT query to add the report data into a database table
     const getQuery = `
-    SELECT
-    v.vehicle_uuid,
-    v.vehicle_name,
-    v.vehicle_registration,
-    ts.trip_id,
-    td.event AS event_type, 
-    COUNT(*) AS event_count,
-    td.timestamp,
-    JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.data.alert_type')) AS alert_type,
-    JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.message')) AS message
-FROM
-    vehicles v 
-LEFT JOIN
-    trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
-LEFT JOIN
-    tripdata td ON ts.trip_id = td.trip_id
-WHERE
-    v.user_uuid = ? 
-    AND v.vehicle_status = ? 
-    AND td.created_at >= ?
-    AND td.created_at <= ? 
-    AND ts.trip_status = ? 
-    AND td.event IN (${eventPlaceholders})
-    AND v.vehicle_uuid IN (${vehiclePlaceholders})
-GROUP BY
-    v.vehicle_uuid,
-    v.vehicle_name,
-    v.vehicle_registration,
-    td.event  
-ORDER BY
-    v.vehicle_uuid ASC
-  `;
+      SELECT
+        v.vehicle_uuid,
+        v.vehicle_name,
+        v.vehicle_registration,
+        ts.trip_id,
+        td.event AS event_type, 
+        COUNT(*) AS event_count,
+        td.timestamp,
+        JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.data.alert_type')) AS alert_type,
+        JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.message')) AS message
+      FROM
+        vehicles v 
+      LEFT JOIN
+        trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
+      LEFT JOIN
+        tripdata td ON ts.trip_id = td.trip_id
+      WHERE
+        v.user_uuid = ? 
+        AND v.vehicle_status = ? 
+        AND td.created_at BETWEEN ? AND ? 
+        AND ts.trip_status = ? 
+        AND td.event IN (${eventPlaceholders})
+        AND v.vehicle_uuid IN (${vehiclePlaceholders})
+      GROUP BY
+        v.vehicle_uuid,
+        v.vehicle_name,
+        v.vehicle_registration,
+        td.event  
+      ORDER BY
+        v.vehicle_uuid ASC
+    `;
 
-        // Execute the GET query
-        const [vehicles] = await connection.query(getQuery, [
-          user_uuid,
-          1,
-          fromDateObj,
-          toDateObj,
-          1,
-          ...selected_events,
-          ...selected_vehicles,
-        ]);
-        
-        const groupedData = vehicles.reduce((result, row) => {
-          const key = row.vehicle_uuid;
-          if (!result[key]) {
-            result[key] = {
-              vehicle_uuid: key,
-              vehicle_name: row.vehicle_name,
-              vehicle_registration: row.vehicle_registration,
-              events: [],
-            };
-          }
-          if (row.trip_id) {
-            result[key].events.push({
-             // trip_id: row.trip_id,
-              eventType: row.event_type,
-              eventCount: row.event_count, 
-            });
-          }
-          return result;
-        }, {});
-    // console.log("vehicles---------",vehicles);
-    // console.log("groupedData---------",groupedData);
+    const [vehicles] = await connection.query(getQuery, [
+      user_uuid,
+      1,
+      fromDateObj,
+      toDateObj,
+      1,
+      ...selected_events,
+      ...selected_vehicles,
+    ]);
 
-        const insertQuery = `
-        INSERT INTO reports (title, report_uuid, user_uuid, vehicles, from_date, to_date, contact_uuid, report_status, report_created_at, report_created_by)
-        VALUES (?,?,?,?,?,?,?,?,?,?);
-      `;
-     // console.log(insertQuery);
-      const values = [
-        title,
-        newUuid,
-        user_uuid,
-        JSON.stringify(groupedData), // Save the formatted data as a JSON string
-        fromDateObj,
-        toDateObj,
-        contact_uuid,
-        1,
-        currentTimeIST,
-        user_uuid,
-      ];
-      // Execute the INSERT query
-      // await connection.query(insertQuery, [
-      //   title,
-      //   newUuid,
-      //   user_uuid,
-      //   JSON.stringify(groupedData), // Save the formatted data as a JSON string
-      //   from_date,
-      //   to_date,
-      //   contact_uuid,
-      //   1,
-      //   currentTimeIST,
-      //   user_uuid,
-      // ]);
-//console.log("values-----------",values);
-      const [results] = await connection.execute(insertQuery, values);
-     //console.log("results-----------",results);
+    const groupedData = vehicles.reduce((result, row) => {
+      const key = row.vehicle_uuid;
+      if (!result[key]) {
+        result[key] = {
+          vehicle_uuid: key,
+          vehicle_name: row.vehicle_name,
+          vehicle_registration: row.vehicle_registration,
+          events: [],
+        };
+      }
+      if (row.trip_id) {
+        result[key].events.push({
+          eventType: row.event_type,
+          eventCount: row.event_count,
+        });
+      }
+      return result;
+    }, {});
+
+    const insertQuery = `
+      INSERT INTO reports (title, report_uuid, user_uuid, vehicles, from_date, to_date, contact_uuid, report_status, report_created_at, report_created_by)
+      VALUES (?,?,?,?,?,?,?,?,?,?);
+    `;
+
+    const values = [
+      title,
+      newUuid,
+      user_uuid,
+      JSON.stringify(groupedData),
+      fromDateObj,
+      toDateObj,
+      contact_uuid,
+      1,
+      createdAt,
+      user_uuid,
+    ];
+
+    const [results] = await connection.execute(insertQuery, values);
 
     res.status(200).json({
       success: true,
-      message: "Report data successfully created", 
-      report_uuid : newUuid,
-      //ReportId: insertId,
-     // Reports: values,
-      //title:title,
-      //from_date:from_date,
-     // to_date:to_date,
-     // user_uuid:user_uuid,
-     // vehicles:groupedData,
-      //contact_uuid:contact_uuid
-
+      message: "Report data successfully created",
+      report_uuid: newUuid,
     });
   } catch (err) {
     logger.error(`Error in creating report: ${err.message}`);
@@ -554,10 +335,11 @@ ORDER BY
       error: err.message,
     });
   } finally {
-    connection.release(); // Release the database connection
+    connection.release();
   }
 };
 
+// This api Get a report to the genrated .
 exports.getReports = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -575,42 +357,43 @@ exports.getReports = async (req, res) => {
     }
 
     const report = reportResult[0];
-    const fromDate = report.from_date; // Use from_date from the report
-    const toDate = report.to_date;     // Use to_date from the report
+    const { from_date: fromDate, to_date: toDate } = report;
 
     const vehiclesData = JSON.parse(report.vehicles);
-    const vehicle_uuids = Object.keys(vehiclesData).map(vehicleKey => vehiclesData[vehicleKey].vehicle_uuid);
+    const vehicle_uuids = Object.keys(vehiclesData).map(
+      (vehicleKey) => vehiclesData[vehicleKey].vehicle_uuid
+    );
 
-    events = events ? events.split(',') : [];
-    const selectedEvents = events.length > 0 ? events : ['ACC', 'ACD', 'DMS', 'LMP'];
-    const vehicleResults = [];
+    events = events ? events.split(",") : [];
+    const selectedEvents = events.length > 0 ? events : ["ACC", "ACD", "DMS", "LMP"];
+    const vehicleResults = await Promise.all(
+      vehicle_uuids.map(async (vehicle_uuid) => {
+        const vehicleData = vehiclesData[vehicle_uuid];
+        const tripdataQuery = `
+          SELECT trip_id, DATE(created_at) AS date, event, COUNT(*) AS eventCount
+          FROM tripdata
+          WHERE vehicle_uuid = ?
+            AND created_at >= ?
+            AND created_at <= ?
+            AND event IN (${selectedEvents.map(() => "?").join(",")})
+          GROUP BY trip_id, date, event 
+        `;
 
-    for (const vehicle_uuid of vehicle_uuids) {
-      const vehicleData = vehiclesData[vehicle_uuid];
-      const tripdataQuery = `
-        SELECT DATE(created_at) AS day, vehicle_uuid, event, COUNT(*) AS eventCount
-        FROM tripdata
-        WHERE vehicle_uuid = ?
-          AND created_at >= ?
-          AND created_at <= ?
-          AND event IN (${selectedEvents.map(() => '?').join(',')})
-        GROUP BY day, vehicle_uuid, event
-      `;
+        const [tripdataResult] = await connection.execute(tripdataQuery, [
+          vehicle_uuid,
+          fromDate,
+          toDate,
+          ...selectedEvents,
+        ]);
 
-      const [tripdataResult] = await connection.execute(tripdataQuery, [
-        vehicle_uuid,
-        fromDate,
-        toDate,
-        ...selectedEvents,
-      ]);
-
-      vehicleResults.push({
-        vehicle_uuid,
-        vehicle_name: vehicleData.vehicle_name,
-        vehicle_registration: vehicleData.vehicle_registration,
-        tripdata: tripdataResult,
-      });
-    }
+        return {
+          vehicle_uuid,
+          vehicle_name: vehicleData.vehicle_name,
+          vehicle_registration: vehicleData.vehicle_registration,
+          tripdata: tripdataResult,
+        };
+      })
+    );
 
     res.status(200).send({
       message: "Successfully retrieved report and tripdata for multiple vehicles",
@@ -624,3 +407,80 @@ exports.getReports = async (req, res) => {
     connection.release();
   }
 };
+
+exports.scheduleReports = async (req, res) => {
+  try {
+    // Parse request parameters
+    const { user_uuid } = req.params;
+    const { title, selected_events, from_date, to_date, contact_uuid, selected_vehicles } = req.body;
+
+    // Add validation and processing logic here
+
+    // Schedule the report creation using node-schedule
+    const newUuid = uuidv4();
+    const createdAt = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+
+    // Define the schedule for creating reports (modify as needed)
+    const scheduleTime = new Date(); // Replace with your desired schedule time
+    scheduleTime.setHours(1, 0, 0, 0); // Set the time to 01:00:00 AM
+
+    // Schedule the report creation
+    schedule.scheduleJob(scheduleTime, async () => {
+      const connection = await pool.getConnection();
+      try {
+        // Your existing report creation code goes here
+        // ...
+
+        // Respond with a success message or any relevant information
+        res.status(200).json({
+          success: true,
+          message: 'Report scheduled for creation',
+          report_uuid: newUuid,
+        });
+      } catch (err) {
+        logger.error(`Error in scheduling report: ${err.message}`);
+        res.status(500).json({
+          success: false,
+          message: 'An error occurred while scheduling the report',
+          error: err.message,
+        });
+      } finally {
+        connection.release(); // Release the database connection
+      }
+    });
+  } catch (err) {
+    logger.error(`Error in scheduling report: ${err.message}`);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while scheduling the report',
+      error: err.message,
+    });
+  };
+}
+
+exports.scheduleReports = async (req, res) => {
+  try {
+    const { user_uuid } = req.params;
+    const { title, selected_events, from_date, to_date, contact_uuid, selected_vehicles } = req.body;
+
+    const result = await createAndScheduleReport(
+      user_uuid,
+      title,
+      selected_events,
+      from_date,
+      to_date,
+      contact_uuid,
+      selected_vehicles
+    );
+
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while scheduling the report',
+      error: err.message,
+    });
+  }
+}
+
+module.exports = router;
