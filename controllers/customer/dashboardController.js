@@ -96,6 +96,7 @@ exports.getalertbyId = async (req, res) => {
   }
 };
 
+// Alert logs for dashboard
 exports.getalert = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -125,9 +126,9 @@ WHERE
     v.user_uuid = ? 
     AND v.vehicle_status = ? 
     AND ts.trip_status = ? 
-    AND td.event IN (?,?,?,?)
+    AND td.event IN (?,?,?)
 ORDER BY
-    td.timestamp ASC`;
+    td.timestamp DESC`;
 
     // const [vehicles] = await connection.query(query, [
     //   user_uuid,
@@ -138,7 +139,7 @@ ORDER BY
     //   "ACD",
     //   "ACC",
     // ]);
-    const params = [user_uuid, 1, 1, "DMS", "LMP", "ACD", "ACC"];
+    const params = [user_uuid, 1, 1, "LMP", "ACD", "ACC"];
 
     const [results] = await pool.query(query, params);
 
@@ -288,37 +289,12 @@ ORDER BY
 exports.getOngoingLOC = async (req, res) => {
   try {
     const { user_uuid } = req.params;
-    const vehicle_status = 1;
+    const event = "LOC";
     const trip_status = 0;
 
-    const query = `
-    SELECT
-      v.vehicle_uuid,
-      v.vehicle_name,
-      ts.trip_id,
-      ts.trip_start_time,
-      td.event,
-      td.lat,
-      td.lng,
-      MAX(td.timestamp) AS latest_timestamp
-    FROM
-      vehicles v
-    LEFT JOIN
-      trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
-    LEFT JOIN
-      tripdata td ON ts.trip_id = td.trip_id
-    WHERE
-      v.user_uuid = ?
-      AND v.vehicle_status = ?
-      AND ts.trip_status = ?
-      AND td.event = 'LOC'
-    GROUP BY
-      v.vehicle_uuid, ts.trip_id
-    ORDER BY
-      latest_timestamp ASC;
-    `;
+    const query = `SELECT td.event, td.timestamp, td.lat, td.lng, td.spd, td.created_at, v.vehicle_name, v.vehicle_registration, ts.trip_id FROM tripdata AS td INNER JOIN trip_summary AS ts ON td.trip_id = ts.trip_id INNER JOIN vehicles AS v ON ts.vehicle_uuid = v.vehicle_uuid WHERE ts.trip_status = ? AND td.event = ? AND ts.user_uuid = ? ORDER BY td.timestamp DESC LIMIT 1;`;
 
-    const params = [user_uuid, vehicle_status, trip_status];
+    const params = [trip_status, event, user_uuid];
     const [results] = await pool.query(query, params);
 
     res.status(200).json({
