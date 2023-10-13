@@ -30,6 +30,8 @@ const addVehicleFeatureset = async (req, res) => {
       user_uuid,
     ];
 
+    console.log(values);
+
     const [results] = await connection.execute(addQuery, values);
 
     if (results) {
