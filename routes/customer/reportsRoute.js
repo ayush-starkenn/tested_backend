@@ -19,7 +19,7 @@ reportsRouter.post("/createReports-all/:user_uuid",reportsController.createAllre
 reportsRouter.get("/get_Reports/:report_uuid", reportsController.getReports);
 
 // This  Api Get a Schedule Reports
-reportsRouter.get("/get_Reports_schedule/:user_uuid", reportsController.scheduleReports);
+//reportsRouter.get("/get_Reports_schedule/:user_uuid", reportsController.scheduleReports);
 
 module.exports = { reportsRouter };
   

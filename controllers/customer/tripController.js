@@ -16,7 +16,7 @@ exports.getTripSummary = async (req, res) => {
     const { vehicle_uuid } = req.params;
 
     const query =
-      "SELECT * FROM trip_summary WHERE vehicle_uuid = ? AND trip_status = ?";
+      "SELECT * FROM trip_summary WHERE vehicle_uuid = ? AND trip_status = ? ORDER BY ts_id DESC";
 
     const [results] = await connection.execute(query, [vehicle_uuid, 1]);
 
@@ -205,14 +205,14 @@ exports.getOngoingFaultData = async (req, res) => {
 
   try {
     const { tripID, epochstart, epochend } = req.params;
-    const [faultData] = await pool.query(
-      `SELECT * FROM tripdata WHERE trip_id = ? AND event != 'IGS' AND event != 'NSQ' AND event != 'LOC' AND event != 'RFID'  AND timestamp >= ${epochstart} AND timestamp <= ${epochend}`,
+    const [results] = await pool.query(
+      `SELECT * FROM tripdata WHERE trip_id = ? AND event != 'IGS' AND event != 'NSQ' AND event != 'LOC' AND event != 'RFID'  AND timestamp >= ? AND timestamp <= ?`,
       [tripID, epochstart, epochend]
     );
-    if (faultData.length > 0) {
+    if (results.length > 0) {
       res.status(200).json({
         message: "Successfully fetched fault data",
-        faultdata: faultData,
+        results,
       });
     } else {
       logger.info(`No fault data found for the tripid : ${tripID}`);
