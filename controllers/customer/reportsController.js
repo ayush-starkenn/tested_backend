@@ -4,8 +4,7 @@ const express = require("express");
 const moment = require("moment-timezone");
 const { v4: uuidv4 } = require("uuid");
 const bodyParser = require("body-parser");
-const { createAndScheduleReport } = require('../path-to-createAndScheduleReport');
-
+// const { createAndScheduleReport } = require('../path-to-createAndScheduleReport');
 
 const { sendEmail } = require("../../middleware/mailer");
 const { sendWhatsappMessage } = require("../../middleware/whatsapp");
@@ -18,8 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // This api use to get Vehicles for reports .
 exports.getVehicle = async (req, res) => {
-
-    const connection = await pool.getConnection();
+  const connection = await pool.getConnection();
   try {
     const { user_uuid } = req.params;
     const getQuery =
@@ -39,7 +37,6 @@ exports.getVehicle = async (req, res) => {
   } finally {
     connection.release();
   }
-
 };
 
 // This Api user to get All conatcts for  reports .
@@ -73,39 +70,46 @@ exports.getAllreport = async (req, res) => {
   const connection = await pool.getConnection();
 
   try {
-    const { title, selected_events, from_date, to_date, contact_uuid, selected_vehicles} = req.body;
+    const {
+      title,
+      selected_events,
+      from_date,
+      to_date,
+      contact_uuid,
+      selected_vehicles,
+    } = req.body;
     const { user_uuid } = req.params;
 
-// Validate input parameters
-if (
-  !Array.isArray(selected_events) ||
-  !from_date ||
-  !to_date ||
-  !title ||
-  !contact_uuid ||
-  !Array.isArray(selected_vehicles) || 
-  selected_vehicles.length === 0
-  ) {
-  return res.status(400).json({ message: "Invalid request parameters" });
-  }
+    // Validate input parameters
+    if (
+      !Array.isArray(selected_events) ||
+      !from_date ||
+      !to_date ||
+      !title ||
+      !contact_uuid ||
+      !Array.isArray(selected_vehicles) ||
+      selected_vehicles.length === 0
+    ) {
+      return res.status(400).json({ message: "Invalid request parameters" });
+    }
 
-   // Convert fromDate and toDate to Date objects and validate
-   const fromDateObj = new Date(from_date);
-   const toDateObj = new Date(to_date);
-  
-   if (isNaN(fromDateObj) || isNaN(toDateObj)) {
-   return res.status(400).json({ message: "Invalid date format" });
-   }
-  
-   // Ensure fromDate is before toDate
-   if (fromDateObj >= toDateObj) {
-   return res
-   .status(400)
-   .json({ message: "fromDate must be earlier than toDate" });
-   }
+    // Convert fromDate and toDate to Date objects and validate
+    const fromDateObj = new Date(from_date);
+    const toDateObj = new Date(to_date);
 
-   const eventPlaceholders = selected_events.map(() => "?").join(",");
-   const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
+    if (isNaN(fromDateObj) || isNaN(toDateObj)) {
+      return res.status(400).json({ message: "Invalid date format" });
+    }
+
+    // Ensure fromDate is before toDate
+    if (fromDateObj >= toDateObj) {
+      return res
+        .status(400)
+        .json({ message: "fromDate must be earlier than toDate" });
+    }
+
+    const eventPlaceholders = selected_events.map(() => "?").join(",");
+    const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
     // V - Vehicles, td - tripData, ts - trip_summary
 
     const query = `
@@ -153,7 +157,6 @@ ORDER BY
       ...selected_vehicles,
     ]);
 
-
     // Group the data by vehicle_uuid
     const groupedData = vehicles.reduce((result, row) => {
       const key = row.vehicle_uuid;
@@ -167,9 +170,9 @@ ORDER BY
       }
       if (row.trip_id) {
         result[key].events.push({
-         // trip_id: row.trip_id,
+          // trip_id: row.trip_id,
           eventType: row.event_type,
-          eventCount: row.event_count, 
+          eventCount: row.event_count,
         });
       }
       return result;
@@ -185,7 +188,7 @@ ORDER BY
       from_date: from_date,
       to_date: to_date,
       user_uuid: user_uuid,
-      vehicles: tripData, 
+      vehicles: tripData,
     });
   } catch (err) {
     logger.error(`Error in Get Trip Alert's: ${err.message}`);
@@ -238,7 +241,9 @@ exports.createAllreport = async (req, res) => {
     }
 
     const eventPlaceholders = Array(selected_events.length).fill("?").join(",");
-    const vehiclePlaceholders = Array(selected_vehicles.length).fill("?").join(",");
+    const vehiclePlaceholders = Array(selected_vehicles.length)
+      .fill("?")
+      .join(",");
 
     const getQuery = `
       SELECT
@@ -365,7 +370,8 @@ exports.getReports = async (req, res) => {
     );
 
     events = events ? events.split(",") : [];
-    const selectedEvents = events.length > 0 ? events : ["ACC", "ACD", "DMS", "LMP"];
+    const selectedEvents =
+      events.length > 0 ? events : ["ACC", "ACD", "DMS", "LMP"];
     const vehicleResults = await Promise.all(
       vehicle_uuids.map(async (vehicle_uuid) => {
         const vehicleData = vehiclesData[vehicle_uuid];
@@ -396,13 +402,17 @@ exports.getReports = async (req, res) => {
     );
 
     res.status(200).send({
-      message: "Successfully retrieved report and tripdata for multiple vehicles",
+      message:
+        "Successfully retrieved report and tripdata for multiple vehicles",
       report,
       vehicleResults,
     });
   } catch (err) {
     logger.error("Error in getting report and tripdata:", err);
-    res.status(500).send({ message: "Error in getting report and tripdata", Error: err.message });
+    res.status(500).send({
+      message: "Error in getting report and tripdata",
+      Error: err.message,
+    });
   } finally {
     connection.release();
   }
@@ -412,13 +422,20 @@ exports.scheduleReports = async (req, res) => {
   try {
     // Parse request parameters
     const { user_uuid } = req.params;
-    const { title, selected_events, from_date, to_date, contact_uuid, selected_vehicles } = req.body;
+    const {
+      title,
+      selected_events,
+      from_date,
+      to_date,
+      contact_uuid,
+      selected_vehicles,
+    } = req.body;
 
     // Add validation and processing logic here
 
     // Schedule the report creation using node-schedule
     const newUuid = uuidv4();
-    const createdAt = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+    const createdAt = moment().tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
 
     // Define the schedule for creating reports (modify as needed)
     const scheduleTime = new Date(); // Replace with your desired schedule time
@@ -434,14 +451,14 @@ exports.scheduleReports = async (req, res) => {
         // Respond with a success message or any relevant information
         res.status(200).json({
           success: true,
-          message: 'Report scheduled for creation',
+          message: "Report scheduled for creation",
           report_uuid: newUuid,
         });
       } catch (err) {
         logger.error(`Error in scheduling report: ${err.message}`);
         res.status(500).json({
           success: false,
-          message: 'An error occurred while scheduling the report',
+          message: "An error occurred while scheduling the report",
           error: err.message,
         });
       } finally {
@@ -452,35 +469,35 @@ exports.scheduleReports = async (req, res) => {
     logger.error(`Error in scheduling report: ${err.message}`);
     res.status(500).json({
       success: false,
-      message: 'An error occurred while scheduling the report',
-      error: err.message,
-    });
-  };
-}
-
-exports.scheduleReports = async (req, res) => {
-  try {
-    const { user_uuid } = req.params;
-    const { title, selected_events, from_date, to_date, contact_uuid, selected_vehicles } = req.body;
-
-    const result = await createAndScheduleReport(
-      user_uuid,
-      title,
-      selected_events,
-      from_date,
-      to_date,
-      contact_uuid,
-      selected_vehicles
-    );
-
-    res.status(200).json(result);
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: 'An error occurred while scheduling the report',
+      message: "An error occurred while scheduling the report",
       error: err.message,
     });
   }
-}
+};
 
-module.exports = router;
+// exports.scheduleReports = async (req, res) => {
+//   try {
+//     const { user_uuid } = req.params;
+//     const { title, selected_events, from_date, to_date, contact_uuid, selected_vehicles } = req.body;
+
+//     const result = await createAndScheduleReport(
+//       user_uuid,
+//       title,
+//       selected_events,
+//       from_date,
+//       to_date,
+//       contact_uuid,
+//       selected_vehicles
+//     );
+
+//     res.status(200).json(result);
+//   } catch (err) {
+//     res.status(500).json({
+//       success: false,
+//       message: 'An error occurred while scheduling the report',
+//       error: err.message,
+//     });
+//   }
+// }
+
+// module.exports = router;
