@@ -1,0 +1,14 @@
+10/12/2023, 3:57:03 PM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/12/2023, 3:57:10 PM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/12/2023, 4:19:32 PM [ERROR]: Error in creating report: Unknown column 'selected_events' in 'field list'
+10/12/2023, 4:19:59 PM [ERROR]: Error in creating report: Unknown column 'selected_events' in 'field list'
+10/12/2023, 4:20:37 PM [ERROR]: Error in creating report: Unknown column 'contact_uuid' in 'field list'
+10/12/2023, 4:21:00 PM [ERROR]: Error in creating report: Unknown column 'contact_uuid' in 'field list'
+10/12/2023, 6:05:35 PM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/13/2023, 11:06:35 AM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/13/2023, 11:08:19 AM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/13/2023, 11:14:19 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:14:56 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:17:55 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:18:28 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:18:40 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1

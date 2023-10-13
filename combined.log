@@ -1,1 +1,1989 @@
 10/12/2023, 12:11:10 PM [INFO]: Received SIGINT signal. Closing connection pool...
+10/12/2023, 3:01:11 PM [INFO]: App is running on port 8080
+10/12/2023, 3:01:11 PM [INFO]: Database connected
+10/12/2023, 3:01:12 PM [INFO]: Connected to MQTT broker
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+10/12/2023, 3:01:12 PM [INFO]: Subscribed to topic: starkennInv3/DMS_CHI_DEMO_3/data
+10/12/2023, 3:01:20 PM [INFO]: Database connected
+10/12/2023, 3:01:20 PM [INFO]: Database connected
+10/12/2023, 3:01:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:01:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:01:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:01:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:01:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:01:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:01:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:01:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:02:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:02:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:03:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:03:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:03:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:03:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:03:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:03:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:03:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:03:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:03:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:03:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:03:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:03:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:04:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:04:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:04:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:04:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:04:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:04:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:04:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:04:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:04:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:04:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:04:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:04:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:05:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:05:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:05:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:05:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:05:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:05:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:05:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:05:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:05:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:05:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:05:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:05:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:05:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:05:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:06:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:06:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:06:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:06:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:06:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:06:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:06:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:06:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:06:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:06:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:06:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:06:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:07:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:07:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:07:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:07:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:07:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:07:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:07:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:07:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:07:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:07:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:07:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:07:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:08:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:08:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:10:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:10:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:11:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:11:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:11:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:11:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:11:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:11:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:11:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:11:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:11:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:11:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:11:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:11:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:12:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:12:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:12:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:12:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:12:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:12:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:12:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:12:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:12:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:12:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:12:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:12:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:13:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:13:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:14:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:14:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:14:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:14:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:14:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:14:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:14:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:14:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:14:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:14:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:14:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:14:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:15:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:15:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:15:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:15:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:15:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:15:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:15:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:15:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:15:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:15:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:15:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:15:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:16:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:16:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:16:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:16:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:16:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:16:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:16:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:16:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:16:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:16:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:16:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:16:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:16:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:16:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:17:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:17:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:17:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:17:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:17:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:17:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:17:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:17:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:17:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:17:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:17:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:17:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:18:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:18:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:18:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:18:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:18:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:18:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:18:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:18:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:18:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:18:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:18:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:18:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:19:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:19:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:19:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:19:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:19:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:19:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:19:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:19:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:19:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:19:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:19:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:19:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:20:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:20:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:20:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:20:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:20:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:20:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:20:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:20:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:20:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:20:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:20:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:20:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:21:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:21:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:21:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:21:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:21:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:21:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:21:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:21:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:21:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:21:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:21:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:21:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:22:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:22:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:22:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:22:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:22:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:22:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:22:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:22:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:22:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:22:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:22:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:22:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:23:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:23:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:23:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:23:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:23:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:23:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:23:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:23:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:23:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:23:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:23:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:23:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:24:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:24:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:24:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:24:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:24:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:24:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:24:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:24:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:24:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:24:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:24:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:24:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:25:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:25:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:25:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:25:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:25:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:25:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:25:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:25:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:25:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:25:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:25:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:25:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:26:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:26:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:26:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:26:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:26:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:26:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:26:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:26:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:26:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:26:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:26:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:26:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:27:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:27:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:27:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:27:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:27:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:27:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:27:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:27:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:27:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:27:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:27:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:27:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:28:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:28:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:28:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:28:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:28:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:28:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:28:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:28:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:28:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:28:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:28:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:28:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:29:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:29:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:29:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:29:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:29:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:29:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:29:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:29:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:29:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:29:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:29:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:29:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:30:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:30:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:30:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:30:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:30:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:30:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:30:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:30:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:30:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:30:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:30:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:30:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:31:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:31:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:31:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:31:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:31:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:31:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:31:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:31:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:31:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:31:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:32:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:32:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:32:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:32:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:32:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:32:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:32:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:32:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:32:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:32:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:32:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:32:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:33:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:33:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:33:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:33:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:33:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:33:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:33:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:33:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:33:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:33:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:33:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:33:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:34:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:34:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:34:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:34:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:34:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:34:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:34:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:34:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:34:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:34:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:34:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:34:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:35:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:35:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:35:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:35:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:35:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:35:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:35:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:35:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:35:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:35:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:35:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:35:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:36:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:36:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:36:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:36:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:36:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:36:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:36:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:36:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:36:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:36:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:36:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:36:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:37:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:37:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:38:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:38:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:38:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:38:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:38:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:38:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:38:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:38:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:38:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:38:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:38:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:38:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:39:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:39:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:39:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:39:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:39:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:39:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:39:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:39:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:39:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:39:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:39:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:39:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:40:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:40:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:40:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:40:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:40:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:40:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:40:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:40:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:40:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:40:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:40:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:40:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:41:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:41:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:42:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:42:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:42:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:42:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:42:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:42:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:42:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:42:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:42:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:42:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:42:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:42:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:42:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:42:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:43:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:43:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:43:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:43:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:43:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:43:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:43:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:43:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:43:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:43:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:43:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:43:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:43:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:43:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:44:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:44:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:44:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:44:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:44:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:44:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:44:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:44:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:44:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:44:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:44:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:44:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:45:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:45:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:45:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:45:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:45:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:45:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:45:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:45:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:45:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:45:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:45:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:45:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:46:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:46:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:46:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:46:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:46:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:46:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:46:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:46:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:46:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:46:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:46:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:46:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:47:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:47:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:47:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:47:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:47:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:47:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:47:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:47:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:47:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:47:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:47:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:47:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:48:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:48:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:49:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:49:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:49:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:49:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:49:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:49:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:49:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:49:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:49:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:49:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:49:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:49:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:50:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:50:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:50:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:50:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:50:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:50:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:50:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:50:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:50:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:50:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:51:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:51:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:51:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:51:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:51:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:51:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:51:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:51:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:51:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:51:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:51:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:51:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:52:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:52:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:52:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:52:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:52:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:52:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:52:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:52:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:52:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:52:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:52:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:52:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:53:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:53:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:53:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:53:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:53:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:53:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:53:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:53:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:53:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:53:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:53:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:53:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:54:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:54:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:55:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:55:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:55:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:55:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:55:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:55:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:55:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:55:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:55:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:55:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:55:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:55:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:56:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:56:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:56:06 PM [INFO]: Database connected
+10/12/2023, 3:56:06 PM [INFO]: Database connected
+10/12/2023, 3:56:06 PM [INFO]: Database connected
+10/12/2023, 3:56:06 PM [INFO]: Database connected
+10/12/2023, 3:56:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:56:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:56:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:56:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:56:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:56:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:56:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:56:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:56:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:56:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:57:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:57:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:57:03 PM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/12/2023, 3:57:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:57:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:57:10 PM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/12/2023, 3:57:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:57:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:57:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:57:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:57:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:57:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:57:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:57:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:57:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:57:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:58:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:58:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:58:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:58:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:58:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:58:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:58:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:58:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:58:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:58:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 3:58:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 3:58:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:02:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:02:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:02:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:02:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:03:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:03:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:03:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:03:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:03:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:03:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:03:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:03:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:03:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:03:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:03:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:03:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:04:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:04:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:04:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:04:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:04:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:04:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:04:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:04:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:04:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:04:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:04:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:04:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:05:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:05:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:05:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:05:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:05:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:05:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:05:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:05:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:05:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:05:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:05:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:05:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:05:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:05:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:06:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:06:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:06:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:06:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:06:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:06:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:06:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:06:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:06:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:06:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:06:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:06:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:06:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:06:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:07:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:07:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:07:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:07:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:07:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:07:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:07:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:07:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:07:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:07:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:07:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:07:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:07:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:07:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:08:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:08:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:08:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:08:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:08:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:08:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:08:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:08:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:08:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:08:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:09:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:09:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:09:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:09:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:09:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:09:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:09:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:09:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:09:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:09:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:09:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:09:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:10:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:10:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:10:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:10:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:10:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:10:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:10:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:10:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:10:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:10:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:10:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:10:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:11:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:11:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:11:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:11:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:11:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:11:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:11:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:11:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:11:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:11:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:11:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:11:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:12:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:12:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:12:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:12:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:12:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:12:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:12:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:12:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:12:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:12:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:12:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:12:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:13:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:13:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:13:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:13:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:13:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:13:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:13:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:13:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:13:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:13:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:13:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:13:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:14:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:14:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:14:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:14:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:14:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:14:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:14:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:14:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:14:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:14:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:14:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:14:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:15:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:15:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:15:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:15:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:15:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:15:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:15:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:15:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:15:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:15:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:15:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:15:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:16:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:16:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:16:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:16:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:16:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:16:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:16:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:16:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:16:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:16:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:16:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:16:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:17:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:17:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:17:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:17:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:17:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:17:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:17:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:17:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:17:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:17:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:17:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:17:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:18:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:18:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:18:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:18:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:18:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:18:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:18:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:18:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:18:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:18:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:18:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:18:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:18:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:18:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:19:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:19:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:19:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:19:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:19:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:19:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:19:32 PM [ERROR]: Error in creating report: Unknown column 'selected_events' in 'field list'
+10/12/2023, 4:19:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:19:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:19:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:19:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:19:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:19:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:19:59 PM [ERROR]: Error in creating report: Unknown column 'selected_events' in 'field list'
+10/12/2023, 4:20:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:20:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:20:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:20:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:20:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:20:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:20:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:20:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:20:37 PM [ERROR]: Error in creating report: Unknown column 'contact_uuid' in 'field list'
+10/12/2023, 4:20:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:20:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:20:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:20:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:21:00 PM [ERROR]: Error in creating report: Unknown column 'contact_uuid' in 'field list'
+10/12/2023, 4:21:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:21:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:21:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:21:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:21:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:21:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:21:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:21:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:21:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:21:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:21:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:21:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:22:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:22:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:22:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:22:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:22:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:22:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:22:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:22:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:44:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:44:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:45:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:45:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:45:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:45:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:45:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:45:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:45:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:45:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:45:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:45:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:45:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:45:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:46:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:46:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:46:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:46:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:46:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:46:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:46:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:46:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:46:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:46:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:46:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:46:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:47:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:47:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:47:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:47:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:47:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:47:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:47:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:47:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:47:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:47:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:47:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:47:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:48:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:48:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:48:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:48:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:48:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:48:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:48:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:48:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:48:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:48:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:48:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:48:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:49:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:49:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:49:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:49:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:49:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:49:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:49:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:49:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:49:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:49:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:49:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:49:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:50:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:50:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:50:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:50:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:50:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:50:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:50:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:50:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:50:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:50:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:50:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:50:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:51:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:51:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:51:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:51:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:51:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:51:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:51:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:51:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:51:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:51:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:52:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:52:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:52:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:52:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:52:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:52:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:52:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:52:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:52:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:52:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:52:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:52:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:53:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:53:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:53:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:53:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:53:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:53:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:53:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:53:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:53:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:53:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:53:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:53:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:54:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:54:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:54:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:54:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:54:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:54:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:54:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:54:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:54:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:54:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:54:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:54:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:55:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:55:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:55:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:55:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:55:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:55:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:55:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:55:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:55:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:55:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:55:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:55:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:56:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:56:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:56:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:56:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:56:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:56:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:56:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:56:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:56:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:56:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:56:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:56:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:57:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:57:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:57:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:57:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:57:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:57:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:57:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:57:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:57:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:57:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:57:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:57:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:58:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:58:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:58:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:58:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:58:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:58:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:58:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:58:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:58:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:58:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:58:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:58:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:59:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:59:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:59:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:59:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:59:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:59:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:59:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:59:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:59:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:59:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 4:59:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 4:59:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:00:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:00:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:00:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:00:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:00:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:00:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:00:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:00:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:00:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:00:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:00:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:00:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:01:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:01:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:01:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:01:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:01:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:01:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:01:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:01:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:01:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:01:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:01:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:01:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:02:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:02:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:02:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:02:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:02:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:02:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:02:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:02:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:02:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:02:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:02:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:02:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:03:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:03:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:03:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:03:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:03:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:03:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:03:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:03:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:03:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:03:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:03:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:03:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:04:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:04:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:04:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:04:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:04:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:04:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:04:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:04:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:04:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:04:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:04:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:04:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:05:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:05:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:05:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:05:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:05:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:05:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:05:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:05:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:05:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:05:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:05:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:05:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:06:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:06:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:06:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:06:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:06:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:06:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:06:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:06:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:06:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:06:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:06:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:06:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:07:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:07:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:07:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:07:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:07:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:07:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:07:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:07:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:07:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:07:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:07:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:07:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:08:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:08:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:08:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:08:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:08:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:08:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:08:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:08:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:08:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:08:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:08:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:08:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:09:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:09:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:09:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:09:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:09:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:09:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:09:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:09:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:09:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:09:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:09:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:09:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:10:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:10:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:10:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:10:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:10:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:10:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:10:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:10:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:10:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:10:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:10:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:10:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:11:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:11:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:11:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:11:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:11:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:11:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:11:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:11:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:11:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:11:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:11:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:11:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:12:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:12:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:12:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:12:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:12:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:12:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:12:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:12:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:12:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:12:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:12:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:12:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:13:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:13:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:13:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:13:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:13:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:13:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:13:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:13:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:13:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:13:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:13:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:13:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:14:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:14:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:15:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:15:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:15:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:15:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:15:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:15:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:15:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:15:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:15:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:15:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:15:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:15:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:15:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:15:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:16:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:16:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:16:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:16:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:16:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:16:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:16:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:16:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:16:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:16:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:16:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:16:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:16:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:16:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:17:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:17:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:17:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:17:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:17:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:17:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:17:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:17:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:17:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:17:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:17:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:17:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:18:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:18:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:18:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:18:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:18:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:18:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:18:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:18:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:18:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:18:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:19:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:19:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:19:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:19:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:19:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:19:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:19:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:19:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:19:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:19:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:19:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:19:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:20:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:20:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:20:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:20:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:20:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:20:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:20:30 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:20:30 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:20:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:20:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:20:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:20:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:21:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:21:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:21:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:21:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:21:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:21:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:21:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:21:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:21:41 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:21:41 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:21:51 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:21:51 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:22:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:22:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:22:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:22:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:22:21 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:22:21 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:22:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:22:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:22:42 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:22:42 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:22:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:22:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:23:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:23:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:23:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:23:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:23:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:23:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:23:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:23:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:23:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:23:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:23:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:23:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:24:02 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:24:02 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:24:12 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:24:12 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:24:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:24:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:24:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:24:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:24:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:24:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:24:52 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:24:52 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:25:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:25:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:25:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:25:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:25:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:25:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:25:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:25:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:25:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:25:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:25:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:25:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:26:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:26:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:26:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:26:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:26:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:26:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:26:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:26:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:26:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:26:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:26:53 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:26:53 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:27:03 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:27:03 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:27:13 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:27:13 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:27:23 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:27:23 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:27:33 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:27:33 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:27:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:27:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:27:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:27:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:28:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:28:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:28:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:28:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:28:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:28:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:28:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:28:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:28:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:28:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:28:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:28:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:29:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:29:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:29:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:29:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:29:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:29:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:29:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:29:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:29:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:29:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:29:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:29:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:30:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:30:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:30:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:30:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:30:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:30:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:30:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:30:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:30:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:30:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:30:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:30:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:31:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:31:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:31:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:31:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:31:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:31:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:31:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:31:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:31:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:31:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:31:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:31:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:32:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:32:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:32:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:32:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:32:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:32:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:32:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:32:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:32:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:32:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:32:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:32:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:33:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:33:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:33:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:33:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:33:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:33:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:33:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:33:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:33:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:33:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:33:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:33:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:34:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:34:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:34:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:34:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:34:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:34:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:34:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:34:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:34:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:34:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:34:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:34:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:35:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:35:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:35:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:35:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:35:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:35:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:35:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:35:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:35:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:35:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:35:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:35:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:36:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:36:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:36:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:36:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:36:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:36:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:36:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:36:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:36:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:36:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:36:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:36:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:36:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:36:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:56:46 PM [INFO]: Connected to MQTT broker
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+10/12/2023, 5:56:46 PM [INFO]: Subscribed to topic: starkennInv3/DMS_CHI_DEMO_3/data
+10/12/2023, 5:56:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:56:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:57:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:57:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:57:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:57:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:57:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:57:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:57:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:57:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:57:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:57:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:57:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:57:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:04 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:14 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:14 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:24 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:24 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:34 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:34 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:58:54 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:58:54 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:59:04 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:59:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:59:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:59:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:59:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:59:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:59:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:59:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:59:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:59:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 5:59:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 5:59:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:00:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:00:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:00:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:00:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:00:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:00:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:00:35 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:00:35 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:00:45 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:00:45 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:00:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:00:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:01:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:01:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:01:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:01:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:01:25 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:01:25 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:01:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:01:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:01:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:01:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:01:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:01:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:02:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:02:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:02:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:02:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:02:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:02:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:02:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:02:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:02:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:02:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:02:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:02:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:03:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:03:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:03:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:03:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:03:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:03:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:03:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:03:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:03:43 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:03:43 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:03:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:03:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:03:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:03:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:04:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:04:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:04:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:04:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:04:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:04:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:04:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:04:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:04:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:04:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:04:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:04:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:04:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:04:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:05:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:05:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:05:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:05:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:05:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:05:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:05:35 PM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/12/2023, 6:05:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:05:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:05:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:05:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:05:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:05:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:06:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:06:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:06:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:06:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:06:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:06:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:06:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:06:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:06:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:06:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:06:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:06:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:07:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:07:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:07:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:07:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:07:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:07:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:07:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:07:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:07:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:07:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:07:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:07:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:08:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:08:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:08:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:08:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:08:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:08:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:08:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:08:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:08:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:08:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:08:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:08:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:09:08 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:09:08 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:09:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:09:18 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:09:28 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:09:28 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:09:38 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:09:38 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:09:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:09:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:09:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:09:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:10:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:10:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:10:18 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:10:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:10:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:10:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:10:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:10:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:10:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:10:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:10:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:10:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:11:09 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:11:09 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:11:19 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:11:19 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:11:29 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:11:29 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:11:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:11:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:11:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:11:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:11:59 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:11:59 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:12:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:12:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:12:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:12:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:12:31 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:12:31 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:12:40 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:12:40 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:12:50 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:12:50 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:13:00 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:13:00 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:13:10 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:13:10 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:13:20 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:13:20 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:13:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:13:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:13:44 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:13:44 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:14:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:14:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:14:48 PM [INFO]: Database connected
+10/12/2023, 6:14:48 PM [INFO]: Database connected
+10/12/2023, 6:14:48 PM [INFO]: Database connected
+10/12/2023, 6:14:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:14:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:14:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:14:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:14:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:14:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:14:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:14:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:14:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:14:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:14:55 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:14:55 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:15:01 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:15:01 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:15:11 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:15:11 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:15:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:15:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:15:32 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:15:32 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:15:48 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:15:48 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:15:49 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:15:49 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:15:58 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:15:58 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:16:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:16:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:16:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:16:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:16:22 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:16:22 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:16:39 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:16:39 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:24:04 PM [INFO]: App is running on port 8080
+10/12/2023, 6:24:04 PM [INFO]: Database connected
+10/12/2023, 6:24:04 PM [INFO]: Connected to MQTT broker
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+10/12/2023, 6:24:04 PM [INFO]: Subscribed to topic: starkennInv3/DMS_CHI_DEMO_3/data
+10/12/2023, 6:24:05 PM [INFO]: Database connected
+10/12/2023, 6:24:05 PM [INFO]: Database connected
+10/12/2023, 6:24:05 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:24:05 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:24:15 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:24:15 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:24:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:24:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:24:29 PM [INFO]: Database connected
+10/12/2023, 6:24:29 PM [INFO]: Database connected
+10/12/2023, 6:24:29 PM [INFO]: Database connected
+10/12/2023, 6:24:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:24:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:24:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:24:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:24:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:24:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:25:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:25:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:25:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:25:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:25:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:25:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:25:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:25:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:25:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:25:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:25:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:25:56 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:26:06 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:26:06 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:26:16 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:26:16 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:26:26 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:26:26 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:26:36 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:26:36 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:26:46 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:26:46 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:26:56 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:26:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:27:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:27:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:27:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:27:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:27:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:27:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:27:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:27:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:27:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:27:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:27:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:27:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:28:07 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:28:07 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:28:17 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:28:17 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:28:27 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:28:27 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:28:37 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:28:37 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:28:47 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:28:47 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:28:57 PM [INFO]: Ongoing trip found. Trip will continue
+10/12/2023, 6:28:57 PM [INFO]: Stored Tripdata in the database
+10/12/2023, 6:44:53 PM [INFO]: Received SIGINT signal. Closing connection pool...
+10/13/2023, 11:03:42 AM [INFO]: App is running on port 8080
+10/13/2023, 11:03:42 AM [INFO]: Database connected
+10/13/2023, 11:03:42 AM [INFO]: Connected to MQTT broker
+10/13/2023, 11:03:42 AM [INFO]: Database connected
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+10/13/2023, 11:03:42 AM [INFO]: Subscribed to topic: starkennInv3/DMS_CHI_DEMO_3/data
+10/13/2023, 11:03:58 AM [INFO]: Database connected
+10/13/2023, 11:03:58 AM [INFO]: Database connected
+10/13/2023, 11:03:58 AM [INFO]: Database connected
+10/13/2023, 11:03:58 AM [INFO]: Database connected
+10/13/2023, 11:03:58 AM [INFO]: Database connected
+10/13/2023, 11:06:35 AM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/13/2023, 11:08:19 AM [ERROR]: Error in getting featureset of user: SyntaxError: Unexpected token ' in JSON at position 1
+10/13/2023, 11:12:34 AM [INFO]: Database connected
+10/13/2023, 11:14:19 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:14:56 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:17:46 AM [INFO]: App is running on port 8080
+10/13/2023, 11:17:46 AM [INFO]: Database connected
+10/13/2023, 11:17:46 AM [INFO]: Connected to MQTT broker
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+10/13/2023, 11:17:46 AM [INFO]: Subscribed to topic: starkennInv3/DMS_CHI_DEMO_3/data
+10/13/2023, 11:17:55 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:18:26 AM [INFO]: App is running on port 8080
+10/13/2023, 11:18:26 AM [INFO]: Database connected
+10/13/2023, 11:18:26 AM [INFO]: Connected to MQTT broker
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+10/13/2023, 11:18:26 AM [INFO]: Subscribed to topic: starkennInv3/DMS_CHI_DEMO_3/data
+10/13/2023, 11:18:28 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:18:37 AM [INFO]: App is running on port 8080
+10/13/2023, 11:18:37 AM [INFO]: Database connected
+10/13/2023, 11:18:37 AM [INFO]: Connected to MQTT broker
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_8/data
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/CV43433/data
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/EC02190/data
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/DM0001A/data
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/PIY_001/data
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/DMS_NCL_15/data
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/IUEG/data
+10/13/2023, 11:18:37 AM [INFO]: Subscribed to topic: starkennInv3/DMS_CHI_DEMO_3/data
+10/13/2023, 11:18:40 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: 'f35f58b9-c2a8-47b5-83c2-85e6b7904617' for column `portalbeta`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
+10/13/2023, 11:19:35 AM [INFO]: Received SIGINT signal. Closing connection pool...
