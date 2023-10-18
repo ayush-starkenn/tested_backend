@@ -20,7 +20,7 @@ exports.saveAlertTrigger = async (req, res) => {
       trigger_description,
       vehicle_uuid,
       trigger_type,
-      recipients,
+      selectedContacts,
     } = req.body;
 
     // Input validation
@@ -29,9 +29,21 @@ exports.saveAlertTrigger = async (req, res) => {
       !trigger_description ||
       !vehicle_uuid ||
       !trigger_type ||
-      !recipients
+      !selectedContacts
     ) {
       return res.status(400).send({ message: "All fields are required." });
+    }
+
+    // Check if the alert trigger already exists
+    const checkQuery =
+      "SELECT * FROM alert_triggers WHERE vehicle_uuid = ? AND trigger_type = ?";
+    const [existingAlerts] = await connection.execute(checkQuery, [
+      vehicle_uuid,
+      trigger_type,
+    ]);
+
+    if (existingAlerts.length > 0) {
+      return res.status(409).send({ message: "Alert trigger already exists." });
     }
 
     const trigger_created_at = new Date();
@@ -45,7 +57,7 @@ exports.saveAlertTrigger = async (req, res) => {
       trigger_description,
       vehicle_uuid,
       trigger_type,
-      recipients,
+      JSON.stringify(selectedContacts),
       1,
       currentTimeIST,
       user_uuid,
@@ -178,9 +190,24 @@ exports.updateAlertTrigger = async (req, res) => {
       return res.status(400).send({ message: "All fields are required." });
     }
 
-    const trigger_created_at = new Date();
+    const checkQuery =
+      "SELECT vehicle_uuid, trigger_type FROM alert_triggers WHERE vehicle_uuid = ? AND trigger_type = ? AND trigger_id <> ?";
+    const [existingAlerts] = await connection.execute(checkQuery, [
+      vehicle_uuid,
+      trigger_type,
+      trigger_id,
+    ]);
+
+    if (existingAlerts.length > 0) {
+      return res.status(409).send({
+        message:
+          "Alert trigger with the same vehicle and trigger type already exists.",
+      });
+    }
+
+    const trigger_modified_at = new Date();
     const currentTimeIST = moment
-      .tz(trigger_created_at, "Asia/Kolkata")
+      .tz(trigger_modified_at, "Asia/Kolkata")
       .format("YYYY-MM-DD HH:mm:ss");
 
     const dataSent = [
