@@ -49,7 +49,7 @@ exports.getOngoingTripdata = async (req, res) => {
     console.log(tripID);
     if (tripID) {
       const [getTripdata] = await pool.query(
-        "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? ORDER BY timestamp DESC",
+        "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? ORDER BY timestamp ASC",
         [tripID]
       );
       if (getTripdata.length > 0) {
@@ -100,7 +100,7 @@ exports.getCompletedTripdata = async (req, res) => {
     const { trip_id } = req.params;
 
     const [getTripdata] = await pool.query(
-      "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? AND event = ? ORDER BY timestamp DESC",
+      "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? AND event = ? ORDER BY timestamp ASC",
       [trip_id, "LOC"]
     );
     if (getTripdata.length > 0) {
