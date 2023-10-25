@@ -59,7 +59,6 @@ app.use("/api/customers", customerRouter);
 app.use("/api/analytics-threshold", ATRouter);
 app.use("/api/featuresets", featuresetRouter);
 
-
 // Customer Panel Routes
 app.use("/api/vehicles", vehiclesRouter);
 app.use("/api/contacts", contactsRouter);

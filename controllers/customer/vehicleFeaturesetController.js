@@ -24,10 +24,10 @@ const addVehicleFeatureset = async (req, res) => {
       vehicle_uuid,
       featureset_data,
       1,
-      currentTimeIST,
       user_uuid,
       currentTimeIST,
       user_uuid,
+      currentTimeIST,
     ];
 
     const [results] = await connection.execute(addQuery, values);

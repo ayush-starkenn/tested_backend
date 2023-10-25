@@ -29,7 +29,7 @@ const addFeatureset = async (req, res) => {
     const values = [
       newUuid,
       featureset_name,
-      JSON.stringify(featureset_users), 
+      JSON.stringify(featureset_users),
       featuerset_version,
       JSON.stringify(featureset_data),
       1,
@@ -66,6 +66,7 @@ const editFeatureset = async (req, res) => {
     const {
       user_uuid,
       featureset_name,
+      featureset_users,
       featuerset_version,
       featureset_data,
       featureset_status,
@@ -77,10 +78,11 @@ const editFeatureset = async (req, res) => {
       .format("YYYY-MM-DD HH:mm:ss");
 
     const editQuery =
-      "UPDATE featureset SET  `featureset_name`=?, `featureset_version`=?, `featureset_data`=?, `featureset_status`=?, `featureset_modified_at`=?, `featureset_modified_by`=? WHERE `featureset_uuid`=?";
+      "UPDATE featureset SET  `featureset_name`=?,`featureset_users`=?, `featureset_version`=?, `featureset_data`=?, `featureset_status`=?, `featureset_modified_at`=?, `featureset_modified_by`=? WHERE `featureset_uuid`=?";
 
     const values = [
       featureset_name,
+      JSON.stringify(featureset_users),
       featuerset_version,
       JSON.stringify(featureset_data),
       featureset_status,
@@ -96,6 +98,60 @@ const editFeatureset = async (req, res) => {
         message: "Successfully featureset updated",
         totalCount: results.length,
         results,
+      });
+    }
+  } catch (err) {
+    logger.error(`Error in updating featureset: ${err}`);
+    res
+      .status(500)
+      .send({ message: "Error in updating featureset", error: err });
+  } finally {
+    connection.release();
+  }
+};
+
+const clientFeatureset = async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    const { featureset_uuid } = req.params;
+    const { featureset_data, user_uuid } = req.body;
+
+    const updatedAt = moment.tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
+
+    const editQuery =
+      "UPDATE featureset SET `featureset_data`=?, `featureset_modified_at`=?, `featureset_modified_by`=? WHERE `featureset_uuid`=?";
+
+    const values = [
+      JSON.stringify(featureset_data),
+      updatedAt,
+      user_uuid,
+      featureset_uuid,
+    ];
+
+    const [results] = await connection.execute(editQuery, values);
+
+    if (results.affectedRows > 0) {
+      const deleteQuery = "DELETE FROM vehiclefeatureset WHERE `user_uuid`=?";
+      const [deleteResults] = await connection.execute(deleteQuery, [
+        user_uuid,
+      ]);
+
+      if (deleteResults.affectedRows >= 0) {
+        res.status(200).send({
+          message:
+            "Successfully featureset updated and related records deleted",
+          updatedRows: results.affectedRows,
+          deletedRows: deleteResults.affectedRows,
+        });
+      } else {
+        res.status(500).send({
+          message: "Failed to delete related records",
+          error: "Related records deletion failed",
+        });
+      }
+    } else {
+      res.status(404).send({
+        message: "No matching featureset found for the given ID",
       });
     }
   } catch (err) {
@@ -219,6 +275,7 @@ const getFeaturesetOFUser = async (req, res) => {
           matchingFeaturesets.push({
             featureset_uuid: result.featureset_uuid,
             featureset_name: result.featureset_name,
+            featureset_data: results,
           });
         }
       }
@@ -391,6 +448,7 @@ const unassignuser = async (req, res) => {
 module.exports = {
   addFeatureset,
   editFeatureset,
+  clientFeatureset,
   deleteFeatureset,
   getAllFeatureset,
   getFeaturesetOFUser,

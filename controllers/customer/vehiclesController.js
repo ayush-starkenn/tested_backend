@@ -264,6 +264,29 @@ const getVehicleData = async (req, res) => {
   }
 };
 
+const getVehicleByVehicleId = async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    const { vehicle_uuid } = req.params;
+    const getQuery =
+      "SELECT vehicle_name, vehicle_registration, ecu, iot, dms FROM vehicles WHERE vehicle_uuid=?";
+
+    const [results] = await connection.execute(getQuery, [vehicle_uuid]);
+
+    if (results) {
+      res.status(200).send({
+        message: "Successfully received vehicle data.",
+        vehicleData: results,
+      });
+    }
+  } catch (error) {
+    logger.error(`Error in fetching the vehicle data by vehicle_uuid ${err}`);
+    res.status(501).json({ message: "Unable to fetch vehicle!" });
+  } finally {
+    connection.release();
+  }
+};
+
 module.exports = {
   addVehicle,
   editVehicle,
@@ -272,4 +295,5 @@ module.exports = {
   deleteVehicle,
   totalVehicles,
   getVehicleData,
+  getVehicleByVehicleId,
 };
