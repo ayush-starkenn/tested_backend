@@ -16,10 +16,10 @@ reportsRouter.get("/getreports-all-contacts/:user_uuid",reportsController.getAll
 reportsRouter.post("/createReports-all/:user_uuid",reportsController.createAllreport);
 
 // This  Api Get a Reports
-reportsRouter.get("/get_Reports/:report_uuid", reportsController.getReports);
+reportsRouter.get("/get_Reports/:user_uuid", reportsController.getreportsall);
 
 // This  Api Get a Schedule Reports
-reportsRouter.post("/get_Reports_schedule/:user_uuid", reportsController.scheduleReports);
+//reportsRouter.post("/get_Reports_schedule/:user_uuid", reportsController.scheduleReports);
 
 module.exports = { reportsRouter };
   
