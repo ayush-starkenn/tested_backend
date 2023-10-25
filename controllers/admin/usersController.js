@@ -352,6 +352,8 @@ exports.deleteCustomer = async (req, res) => {
 
 // Logout
 exports.Logout = async (req, res) => {
+  const connection = await pool.getConnection();
+//  const { user_uuid } = req.params;
   try {
     const token = req.headers.authorization;
 
