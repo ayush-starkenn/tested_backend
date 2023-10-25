@@ -365,6 +365,88 @@ exports.createAllreport = async (req, res) => {
   }
 };
 
+// This api Get a report to the genrated .
+exports.getReports = async (req, res) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const { report_uuid } = req.params;
+    const { events } = req.query;
+
+    const [reportResult] = await connection.execute(
+      "SELECT * FROM reports WHERE report_uuid = ?",
+      [report_uuid]
+    );
+
+    if (reportResult.length === 0) {
+      return res.status(404).send({ error: "Report not found" });
+    }
+
+    const report = reportResult[0];
+    const {
+      from_date: fromDate,
+      to_date: toDate,
+      selected_events: reportSelectedEvents,
+    } = report;
+
+    const vehiclesData = JSON.parse(report.vehicles);
+    const vehicle_uuids = Object.keys(vehiclesData).map(
+      (vehicleKey) => vehiclesData[vehicleKey].vehicle_uuid
+    );
+
+    const selectedEvents = Array.isArray(reportSelectedEvents)
+      ? reportSelectedEvents
+      : JSON.parse(reportSelectedEvents);
+
+    const vehicleResults = await Promise.all(
+      vehicle_uuids.map(async (vehicle_uuid) => {
+        const vehicleData = vehiclesData[vehicle_uuid];
+        const tripdataQuery = `
+          SELECT trip_id, DATE(created_at) AS date, event, COUNT(*) AS eventCount
+          FROM tripdata
+          WHERE vehicle_uuid = ?
+            AND created_at >= ?
+            AND created_at <= ?
+            AND event IN (${selectedEvents.map(() => "?").join(",")})
+          GROUP BY trip_id, date, event 
+        `;
+
+        const [tripdataResult] = await connection.execute(tripdataQuery, [
+          vehicle_uuid,
+          fromDate,
+          toDate,
+          ...selectedEvents,
+        ]);
+        //console.log(tripdataResult);
+        return {
+          vehicle_uuid,
+          vehicle_name: vehicleData.vehicle_name,
+          vehicle_registration: vehicleData.vehicle_registration,
+          tripdata: tripdataResult,
+        };
+      })
+    );
+
+    res.status(200).send({
+      message:
+        "Successfully retrieved report and tripdata for multiple vehicles",
+      report: {
+        ...report,
+        selected_events: selectedEvents,
+      },
+      vehicleResults,
+    });
+  } catch (err) {
+    logger.error("Error in getting report and tripdata:", err);
+    res.status(500).send({
+      message: "Error in getting report and tripdata",
+      Error: err.message,
+    });
+  } finally {
+    connection.release();
+  }
+};
+
 // Get All Reports
 exports.getreportsall = async (req, res) => {
   const connection = await pool.getConnection();
@@ -390,3 +472,5 @@ exports.getreportsall = async (req, res) => {
     connection.release();
   }
 };
+
+

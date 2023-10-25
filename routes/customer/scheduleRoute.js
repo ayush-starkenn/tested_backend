@@ -7,7 +7,7 @@ scheduleRouter.post("/create_Reports_schedule/:user_uuid", scheduleController.sc
 
 // schedule_reportsRouter.put("/update_Reports_schedule/:report_uuid", schedule_reportsController.scheduleReports);
 
-scheduleRouter.put("/get_Reports_schedule/:report_uuid", scheduleController.scheduleupdateReports);
+scheduleRouter.get("/get_Reports_schedule/:report_uuid", scheduleController.scheduleupdateReports);
 
 
 module.exports = { scheduleRouter };

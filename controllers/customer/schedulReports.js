@@ -110,6 +110,7 @@ exports.scheduleReports1 = async (req, res) => {
   }
 };
 
+
 // This code optimaztie and updated
 exports.scheduleReports = async (req, res) => {
   const connection = await pool.getConnection();
@@ -145,7 +146,7 @@ exports.scheduleReports = async (req, res) => {
         if (contacts.length > 0) {
           const emailAddresses = contacts.map((contact) => contact.contact_email);
           const schedule = {
-            'daily': '18 15 * * *',
+            'daily': '36 15 * * *',
             'weekly': '10 0 * * 1',
             'monthly': '15 0 1 * *'
           }[reports_schedule_type];
@@ -176,7 +177,7 @@ exports.scheduleReports = async (req, res) => {
 };
 
 
-exports.scheduleupdateReports = async (req, res) => {
+exports.scheduleupdateReports22 = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const { report_uuid } = req.params;
@@ -349,6 +350,8 @@ exports.scheduleupdateReports = async (req, res) => {
           success: true,
           message: "Report successfully updated",
           report_uuid: report_uuid,
+          reports:values2
+
           
         });
       } else {
@@ -364,5 +367,211 @@ exports.scheduleupdateReports = async (req, res) => {
 };
 
 
+exports.scheduleupdateReports = async (req, res) => {
+  const connection = await pool.getConnection();
 
+  try {
+    const { report_uuid } = req.params;
+
+    let timeAgo;
+    let interval;
+
+    // Query the database to retrieve the last report and its schedule type
+    const getLastReportQuery = `
+      SELECT *
+      FROM reports
+      WHERE report_uuid = ?`;
+    const getLastReportValues = [report_uuid];
+    const [lastReport] = await connection.execute(getLastReportQuery, getLastReportValues);
+
+    if (lastReport.length !== 1) {
+      res.status(404).json({ message: "Report not found" });
+      return;
+    }
+
+    // Extract the schedule type from the database
+    const reports_schedule_type = (lastReport[0] && lastReport[0].reports_schedule_type) || '';
+
+    // Determine the time interval based on the retrieved schedule type
+    if (reports_schedule_type === 'daily') {
+      timeAgo = 1; // 1 day
+      interval = 'day';
+    } else if (reports_schedule_type === 'weekly') {
+      timeAgo = 1; // 1 week
+      interval = 'week';
+    } else if (reports_schedule_type === 'monthly') {
+      timeAgo = 1; // 1 month
+      interval = 'month';
+    } else {
+      res.status(400).json({ message: "Invalid report_schedule_type" });
+      return;
+    }
+
+    const timeAgoFormatted = moment()
+      .tz("Asia/Kolkata")
+      .subtract(timeAgo, interval)
+      .format("YYYY-MM-DD HH:mm:ss");
+
+    if (lastReport.length === 0) {
+      res.status(404).json({ message: "Report not found" });
+    } else {
+      let eventPlaceholders;
+      let vehiclePlaceholders;
+
+      if (lastReport[0]) {
+        try {
+          // Check if the fields are defined and not empty
+          if (lastReport[0].selected_events && lastReport[0].selected_events.trim() !== '') {
+            eventPlaceholders = JSON.parse(lastReport[0].selected_events);
+          }
+          if (lastReport[0].selected_vehicles && lastReport[0].selected_vehicles.trim() !== '') {
+            vehiclePlaceholders = JSON.parse(lastReport[0].selected_vehicles);
+          }
+        } catch (error) {
+          logger.error(`Error parsing JSON: ${error.message}`);
+          res.status(500).json({ message: "Error parsing JSON" });
+          return;
+        }
+      } else {
+        res.status(404).json({ message: "Report not found" });
+        return;
+      }
+
+      const user = lastReport[0].user_uuid;
+
+      const getQuery = `
+        SELECT 
+          ts.vehicle_uuid,
+          r.report_uuid,
+          r.reports_schedule_type,
+          r.selected_vehicles,
+          r.selected_events,
+          v.vehicle_uuid,
+          v.vehicle_name,
+          v.vehicle_registration,
+          td2.trip_id,
+          td1.created_at AS event_created_at, 
+          td2.event AS event_type,
+          COALESCE(COUNT(*), 0) AS event_count
+        FROM 
+          reports r
+        LEFT JOIN
+          vehicles v ON JSON_CONTAINS(r.selected_vehicles, JSON_ARRAY(v.vehicle_uuid))
+        LEFT JOIN
+          trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
+        LEFT JOIN
+          tripdata td1 ON ts.trip_id = td1.trip_id 
+        LEFT JOIN 
+          tripdata td2 ON JSON_CONTAINS(r.selected_events, JSON_ARRAY(td2.event))
+        WHERE
+          r.report_uuid = ?
+          AND r.reports_schedule_type = ?
+          AND v.user_uuid = ?
+          AND v.vehicle_status = ?
+          AND ts.trip_status = ? 
+          AND (td1.event IN (${Array(eventPlaceholders.length).fill('?').join(', ')})
+          OR td1.event IS NULL)
+          AND (td2.vehicle_uuid IN (${Array(vehiclePlaceholders.length).fill('?').join(', ')})
+          OR td2.vehicle_uuid IS NULL)
+          AND td1.created_at >= ?
+        GROUP BY
+          r.reports_schedule_type,
+          v.vehicle_uuid,
+          v.vehicle_name,
+          v.vehicle_registration,
+          td2.event  
+        ORDER BY
+          r.report_uuid ASC
+      `;
+
+      const placeholders = [...eventPlaceholders, ...vehiclePlaceholders];
+      const values = [
+        report_uuid,
+        reports_schedule_type,
+        user,
+        1,
+        1,
+        ...placeholders,
+        timeAgoFormatted,
+      ];
+
+      const [s_reports] = await connection.execute(getQuery, values);
+
+      const groupedData = s_reports.reduce((result, row) => {
+        const key = row.vehicle_uuid;
+        if (!result[key]) {
+          result[key] = {
+            vehicle_uuid: key,
+            vehicle_name: row.vehicle_name,
+            vehicle_registration: row.vehicle_registration,
+            events: [],
+          };
+        }
+        if (row.trip_id) {
+          result[key].events.push({
+            trip_id: row.trip_id,
+            eventType: row.event_type,
+            eventCount: row.event_count,
+            event_created_at: row.event_created_at,  // Include event_created_at
+          });
+        }
+        return result;
+      }, {});
+
+      const createdAt = moment().tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
+      const updateQuery = `
+        UPDATE reports 
+        SET vehicles = ?,
+            report_created_at = ?
+        WHERE report_uuid = ?`;
+
+      const values2 = [
+        JSON.stringify(groupedData),
+        createdAt,
+        report_uuid,
+      ];
+
+      const [results] = await connection.execute(updateQuery, values2);
+
+      if (results.affectedRows > 0) {
+        // Construct a response object similar to the one in getReports
+        const report = {
+          report_uuid: report_uuid,
+          from_date: timeAgoFormatted,
+          to_date: createdAt,
+          selected_events: eventPlaceholders,
+        };
+
+        const vehicleResults = Object.values(groupedData).map((vehicleData) => {
+          // Filter the events based on the selected schedule type
+          const filteredEvents = vehicleData.events.filter((event) => {
+            return moment(event.event_created_at).isBetween(report.from_date, report.to_date);
+          });
+
+          return {
+            vehicle_uuid: vehicleData.vehicle_uuid,
+            vehicle_name: vehicleData.vehicle_name,
+            vehicle_registration: vehicleData.vehicle_registration,
+            tripdata: filteredEvents,
+          };
+        });
+
+        res.status(200).json({
+          message: "Report successfully updated",
+          report: {...report,
+            
+            vehicleResults: vehicleResults},
+          
+        });
+      } else {
+        res.status(404).json({ message: "No reports were updated" });
+      }
+    }
+  } catch (error) {
+    logger.error(`Error : ${error.message}`);
+    res.status(500).json({ message: "Internal server error" });
+  } finally {
+    connection.release();
+  }
+};
 
