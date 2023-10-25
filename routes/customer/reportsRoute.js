@@ -15,11 +15,11 @@ reportsRouter.get("/getreports-all-contacts/:user_uuid",reportsController.getAll
 // This Api Create a Reports to the selected Vehicles
 reportsRouter.post("/createReports-all/:user_uuid",reportsController.createAllreport);
 
-// This  Api Get a Reports
-reportsRouter.get("/get_Reports/:user_uuid", reportsController.getreportsall);
-
 // This  Api Get a Schedule Reports
-//reportsRouter.post("/get_Reports_schedule/:user_uuid", reportsController.scheduleReports);
+reportsRouter.get("/get_Reports/:report_uuid", reportsController.getReports);
+
+// This  Api Get a Reports
+reportsRouter.get("/get_Reports-all/:user_uuid", reportsController.getreportsall);
 
 module.exports = { reportsRouter };
   

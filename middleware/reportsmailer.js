@@ -17,7 +17,7 @@ async function sendReportsByEmail(title, recipients, newUuid) {
     const emailBody = `
       <p>Report Title: ${title}</p>
       <p>Contacts: ${recipients.join(', ')}</p>
-      <p>Click here to view your Reports: <a href="${newUuid}">${newUuid}</a></p>
+      <p>Click here to view your Reports: <a href="http://localhost:3000/customer/scheduled_report/${newUuid}">http://localhost:3000/customer/scheduled_report/${newUuid}</a></p>
     `;
 
     
