@@ -21,6 +21,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//First Step of selected Vehicles
 // This api use to get Vehicles for reports .
 exports.getVehicle = async (req, res) => {
   const connection = await pool.getConnection();
@@ -45,6 +46,7 @@ exports.getVehicle = async (req, res) => {
   }
 };
 
+// Selected Vehicles
 // This Api user to get All conatcts for  reports .
 exports.getAllContacts = async (req, res) => {
   const connection = await pool.getConnection();
@@ -242,7 +244,9 @@ exports.createAllreport = async (req, res) => {
       return res.status(400).json({ message: "Invalid request parameters" });
     }
 
-    const fromDateObj = new Date(frcreated_atate);
+    // Convert fromDate and toDate to Date objects and validate
+    const fromDateObj = new Date(from_date);
+    const toDateObj = new Date(to_date);
 
     if (isNaN(fromDateObj) || isNaN(toDateObj)) {
       return res.status(400).json({ message: "Invalid date format" });
@@ -361,114 +365,28 @@ exports.createAllreport = async (req, res) => {
   }
 };
 
-// This api Get a report to the genrated .
-exports.getReports = async (req, res) => {
+// Get All Reports
+exports.getreportsall = async (req, res) => {
   const connection = await pool.getConnection();
 
   try {
-    const { report_uuid } = req.params;
-    const { events } = req.query;
+    const { user_uuid } = req.params;
 
     const [reportResult] = await connection.execute(
-      "SELECT * FROM reports WHERE report_uuid = ?",
-      [report_uuid]
-    );
-
-    if (reportResult.length === 0) {
-      return res.status(404).send({ error: "Report not found" });
-    }
-
-    const report = reportResult[0];
-    const {
-      from_date: fromDate,
-      to_date: toDate,
-      selected_events: reportSelectedEvents,
-    } = report;
-
-    const vehiclesData = JSON.parse(report.vehicles);
-    const vehicle_uuids = Object.keys(vehiclesData).map(
-      (vehicleKey) => vehiclesData[vehicleKey].vehicle_uuid
-    );
-
-    const selectedEvents = Array.isArray(reportSelectedEvents)
-      ? reportSelectedEvents
-      : JSON.parse(reportSelectedEvents);
-
-    const vehicleResults = await Promise.all(
-      vehicle_uuids.map(async (vehicle_uuid) => {
-        const vehicleData = vehiclesData[vehicle_uuid];
-        const tripdataQuery = `
-          SELECT trip_id, DATE(created_at) AS date, event, COUNT(*) AS eventCount
-          FROM tripdata
-          WHERE vehicle_uuid = ?
-            AND created_at >= ?
-            AND created_at <= ?
-            AND event IN (${selectedEvents.map(() => "?").join(",")})
-          GROUP BY trip_id, date, event 
-        `;
-
-        const [tripdataResult] = await connection.execute(tripdataQuery, [
-          vehicle_uuid,
-          fromDate,
-          toDate,
-          ...selectedEvents,
-        ]);
-        //console.log(tripdataResult);
-        return {
-          vehicle_uuid,
-          vehicle_name: vehicleData.vehicle_name,
-          vehicle_registration: vehicleData.vehicle_registration,
-          tripdata: tripdataResult,
-        };
-      })
+      "SELECT * FROM reports WHERE user_uuid = ? AND reports_type IN (?,?)  ORDER BY r_id DESC",
+      [user_uuid , 1,2]
     );
 
     res.status(200).send({
-      message:
-        "Successfully retrieved report and tripdata for multiple vehicles",
-      report: {
-        ...report,
-        selected_events: selectedEvents,
-      },
-      vehicleResults,
+      message: "Successfully got list of all Reports",
+      totalCount: reportResult.length,
+      reportResult,
     });
   } catch (err) {
-    logger.error("Error in getting report and tripdata:", err);
-    res.status(500).send({
-      message: "Error in getting report and tripdata",
-      Error: err.message,
-    });
+    res
+      .status(500)
+      .send({ message: "Error in getting user reports list", Error: err });
   } finally {
     connection.release();
   }
 };
-
-//   try {
-//     const transporter = nodemailer.createTransport({
-//       service: "Gmail",
-//       auth: {
-//         user: process.env.EMAIL_USERNAME_NOREPLY,
-//         pass: process.env.EMAIL_USERNAME_NOREPLY_PASS,
-//       },
-//     });
-
-//     const mailOptions = {
-//       from: process.env.EMAIL_USERNAME_NOREPLY,
-//       to: 'rohitshekhawat@starkenn.com',
-//       subject: 'Daily/Weekly Reports',tripData,
-//       text: 'Attached are your daily/weekly reports.',
-//     };
-
-//     await transporter.sendMail(mailOptions);
-
-//     console.log("Email sent successfully");
-//   } catch (error) {
-//     console.log("Error sending email:", error);
-//     logger.error("sendEmail error:", error);
-//     // Handle the error appropriately, such as sending an alert or retrying.
-//   } finally {
-//     connection.release();
-//   }
-// } 
-
-// module.exports = { sendReportsByEmail };

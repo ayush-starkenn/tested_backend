@@ -1,10 +1,9 @@
 const nodemailer = require('nodemailer');
-const cron = require("node-cron");
 const logger = require("../logger");
 const pool = require("../config/db");
 require("dotenv").config();
 
-async function sendReportsByEmail(title,selected_vehicles,selected_events,reports_schedule_type,newUuid) {
+async function sendReportsByEmail(title, recipients, newUuid) {
   const connection = await pool.getConnection();
   try {
     const transporter = nodemailer.createTransport({
@@ -15,11 +14,17 @@ async function sendReportsByEmail(title,selected_vehicles,selected_events,report
       },
     });
 
-    const emailBody = `Report Title: ${title}\nVehicles: ${selected_vehicles}\nEvents: ${selected_events}\nReports_Schedule_Type: ${reports_schedule_type}\nClick here to your Reports: <a href="${newUuid}">${newUuid}</a>`;
+    const emailBody = `
+      <p>Report Title: ${title}</p>
+      <p>Contacts: ${recipients.join(', ')}</p>
+      <p>Click here to view your Reports: <a href="${newUuid}">${newUuid}</a></p>
+    `;
+
+    
 
     const mailOptions = {
       from: process.env.EMAIL_USERNAME_NOREPLY,
-      to: 'rohitshekhawat@starkenn.com',
+      to: recipients.join(', '),
       subject: 'Daily/Weekly Reports',
       html: emailBody,
     };
@@ -34,6 +39,6 @@ async function sendReportsByEmail(title,selected_vehicles,selected_events,report
   } finally {
     connection.release();
   }
-} 
+}
 
 module.exports = { sendReportsByEmail };

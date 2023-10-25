@@ -21,8 +21,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Insert The Data For Schedule Report
-exports.scheduleReports = async (req, res) => {
+// Insert The Data For Schedule Report(Testing)
+exports.scheduleReports1 = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const { title, selected_vehicles, selected_events, contact_uuid ,reports_schedule_type} = req.body;
@@ -65,17 +65,33 @@ exports.scheduleReports = async (req, res) => {
     const [results] = await connection.execute(insertQuery, values);
     //connection.release();
    // console.log(results);
-    if (results.affectedRows > 0) {
-      // Schedule an email to be sent every day at 12:05 AM
-      cron.schedule('41 11 * * *', () => { // Changed the cron schedule to 12:05 AM
-        try {
-          // Send your reports by email here
-          sendReportsByEmail(title, selected_vehicles, selected_events,reports_schedule_type, newUuid);
-          console.log("Scheduled email sent ");
-        } catch (error) {
-          logger.error(`Error in scheduled email: ${error.message}`);
-        }
+   if (results.affectedRows > 0) {
+    // Schedule an email based on the reports_schedule_type
+    if (reports_schedule_type === 'daily' || reports_schedule_type === 'weekly' || reports_schedule_type === 'monthly') {
+      const getquery = `SELECT contact_email FROM contacts WHERE user_uuid = ? AND contact_uuid = ?`;
+      const [contacts] = await connection.execute(getquery, [user_uuid,contact_uuid]);
+  
+      if (contacts.length > 0) {
+        const emailAddresses = contacts.map((contact) => contact.contact_email);
+  
+        if (reports_schedule_type === 'daily') {
+          cron.schedule('10 15 * * *', () => {
+            sendReportsByEmail(title, emailAddresses, newUuid);
+            console.log("Scheduled daily email sent");
+          });
+    } else if (reports_schedule_type === 'weekly') {
+      cron.schedule('10 0 * * 1', () => {
+        sendReportsByEmail(title, emailAddresses, newUuid);
+        console.log("Scheduled weekly email sent");
       });
+    } else if (reports_schedule_type === 'monthly') {
+      cron.schedule('15 0 1 * *', () => {
+        sendReportsByEmail(title, emailAddresses, newUuid);
+        console.log("Scheduled monthly email sent");
+      });
+    }
+  }
+}
       res.status(200).json({ 
         message: "Report inserted successfully" ,
         report_uuid: newUuid,
@@ -93,6 +109,72 @@ exports.scheduleReports = async (req, res) => {
     connection.release();
   }
 };
+
+// This code optimaztie and updated
+exports.scheduleReports = async (req, res) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const { title, selected_vehicles, selected_events, contact_uuid, reports_schedule_type } = req.body;
+    const { user_uuid } = req.params;
+
+    // Validate input parameters
+    if (!title || !Array.isArray(selected_vehicles) || !Array.isArray(selected_events) || !contact_uuid || !user_uuid) {
+      return res.status(400).json({ message: "Invalid request parameters" });
+    }
+
+    const selectedEventsJson = JSON.stringify(selected_events);
+    const selectedvehiclesJson = JSON.stringify(selected_vehicles);
+    const newUuid = uuidv4();
+
+    const insertQuery = `
+      INSERT INTO reports (title, report_uuid, user_uuid, selected_vehicles, selected_events, contact_uuid, reports_type, reports_schedule_type)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+    `;
+
+    const values = [title, newUuid, user_uuid, selectedvehiclesJson, selectedEventsJson, contact_uuid, 2, reports_schedule_type];
+
+    const [results] = await connection.execute(insertQuery, values);
+
+    if (results.affectedRows > 0) {
+      // Schedule an email based on the reports_schedule_type
+      if (['daily', 'weekly', 'monthly'].includes(reports_schedule_type)) {
+        const getquery = `SELECT contact_email FROM contacts WHERE user_uuid = ? AND contact_uuid = ?`;
+        const [contacts] = await connection.execute(getquery, [user_uuid, contact_uuid]);
+
+        if (contacts.length > 0) {
+          const emailAddresses = contacts.map((contact) => contact.contact_email);
+          const schedule = {
+            'daily': '18 15 * * *',
+            'weekly': '10 0 * * 1',
+            'monthly': '15 0 1 * *'
+          }[reports_schedule_type];
+
+          cron.schedule(schedule, () => {
+            sendReportsByEmail(title, emailAddresses, newUuid);
+            console.log(`Scheduled ${reports_schedule_type} email sent`);
+          });
+        }
+      }
+
+      res.status(200).json({
+        message: "Report inserted successfully",
+        report_uuid: newUuid,
+        selectedvehiclesJson,
+        selectedEventsJson,
+        reports_schedule_type
+      });
+    } else {
+      res.status(400).json({ message: "Report insertion failed" });
+    }
+  } catch (error) {
+    logger.error(`Error in scheduleReports: ${error.message}`);
+    res.status(500).json({ message: "Internal server error" });
+  } finally {
+    connection.release();
+  }
+};
+
 
 exports.scheduleupdateReports = async (req, res) => {
   const connection = await pool.getConnection();
@@ -259,14 +341,15 @@ exports.scheduleupdateReports = async (req, res) => {
 
       const [results] = await connection.execute(updateQuery, values2);
           // Send your reports by email here
-          sendReportsByEmail(groupedData);
-          console.log("Scheduled email sent");
+          // sendReportsByEmail(groupedData);
+          // console.log("Scheduled email sent");
        
       if (results.affectedRows > 0) {
         res.status(200).json({
           success: true,
           message: "Report successfully updated",
           report_uuid: report_uuid,
+          
         });
       } else {
         res.status(404).json({ message: "No reports were updated" });
@@ -279,6 +362,7 @@ exports.scheduleupdateReports = async (req, res) => {
     connection.release();
   }
 };
+
 
 
 
