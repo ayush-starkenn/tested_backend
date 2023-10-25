@@ -275,7 +275,7 @@ const getFeaturesetOFUser = async (req, res) => {
           matchingFeaturesets.push({
             featureset_uuid: result.featureset_uuid,
             featureset_name: result.featureset_name,
-            featureset_data: results,
+            featureset_data: result.featureset_data,
           });
         }
       }
