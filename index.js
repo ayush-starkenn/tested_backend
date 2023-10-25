@@ -17,7 +17,10 @@ const { profileRouter } = require("./routes/customer/profileRoute");
 const cronJobForEndTrip = require("./controllers/cronJob");
 const { rfidRouter } = require("./routes/customer/rfidRoute");
 const { reportsRouter } = require("./routes/customer/reportsRoute");
+const { scheduleRouter } = require("./routes/customer/scheduleRoute");
 const { dashboardRouter } = require("./routes/customer/dashboardRoute");
+
+//const sendReportsByEmail = require("./controllers/customer/schedulReports")
 // const { notification } = require ("./middleware/notify");
 
 const cors = require("cors");
@@ -42,6 +45,9 @@ setupMQTT();
 cronJobForEndTrip();
 // setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
+//sendReportsByEmail();
+
+
 // Login Routes
 app.use("/api", loginRouter);
 
@@ -64,6 +70,7 @@ app.use("/api/alert-triggers", alertRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/vehicle-featureset", vehiclefeaturesetRouter);
 app.use("/api/reports", reportsRouter);
+app.use("/api/schedule_reports", scheduleRouter);
 app.use("/api/trips", tripRouter);
 app.use("/api/dashboardCustomers", dashboardRouter);
 

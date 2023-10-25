@@ -10,7 +10,7 @@ customerRouter.post("/signup", AdminController.Signup);
 customerRouter.post("/login", AdminController.Login);
 
 // Logout User Routes
-customerRouter.get("/logout", AdminController.Logout);
+customerRouter.put("/logout", AdminController.Logout);
 
 // Chnage Password User Routes
 customerRouter.get("/change-password/:user_uuid", AdminController.ResetPassword);

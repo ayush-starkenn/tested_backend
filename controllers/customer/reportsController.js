@@ -5,11 +5,15 @@ const moment = require("moment-timezone");
 const { v4: uuidv4 } = require("uuid");
 const bodyParser = require("body-parser");
 const schedule = require('node-schedule');
+const nodemailer = require('nodemailer');
+const cron = require("node-cron");
+require("dotenv").config();
 //const { createAndScheduleReport } = require('../path-to-createAndScheduleReport');
+ 
 
-
-const { sendEmail } = require("../../middleware/mailer");
+const { sendReportsByEmail } = require("../../middleware/reportsmailer");
 const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+const { Console } = require("winston/lib/winston/transports");
 
 const app = express();
 
@@ -136,7 +140,7 @@ WHERE
     AND v.vehicle_uuid IN (${vehiclePlaceholders})
 GROUP BY
     v.vehicle_uuid,
-    v.vehicle_name,
+    v.vehicle_name, 
     v.vehicle_registration,
     td.event  
 ORDER BY
@@ -207,7 +211,7 @@ exports.createAllreport = async (req, res) => {
   try {
     const {
       title,
-      selected_events,
+     // selected_events,
       from_date,
       to_date,
       contact_uuid,
@@ -218,6 +222,8 @@ exports.createAllreport = async (req, res) => {
     const newUuid = uuidv4();
     const createdAt = moment().tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
 
+    const selected_events = req.body.selected_events || []; 
+
     // Validate input parameters
     if (
       !Array.isArray(selected_events) ||
@@ -226,13 +232,13 @@ exports.createAllreport = async (req, res) => {
       !title ||
       !contact_uuid ||
       !Array.isArray(selected_vehicles) ||
-      selected_vehicles.length === 0
+      selected_vehicles.length === 0,
+      selected_events.length === 0
     ) {
       return res.status(400).json({ message: "Invalid request parameters" });
     }
 
-    const fromDateObj = new Date(from_date);
-    const toDateObj = new Date(to_date);
+    const fromDateObj = new Date(frcreated_atate);
 
     if (isNaN(fromDateObj) || isNaN(toDateObj)) {
       return res.status(400).json({ message: "Invalid date format" });
@@ -248,7 +254,7 @@ exports.createAllreport = async (req, res) => {
         v.vehicle_registration,
         ts.trip_id,
         td.event AS event_type, 
-        COUNT(*) AS event_count,
+        COALESCE(COUNT(*), 0) AS event_count,
         td.timestamp,
         JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.data.alert_type')) AS alert_type,
         JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.message')) AS message
@@ -263,7 +269,7 @@ exports.createAllreport = async (req, res) => {
         AND v.vehicle_status = ? 
         AND td.created_at BETWEEN ? AND ? 
         AND ts.trip_status = ? 
-        AND td.event IN (${eventPlaceholders})
+        AND (td.event IN (${eventPlaceholders}) OR td.event IS NULL) 
         AND v.vehicle_uuid IN (${vehiclePlaceholders})
       GROUP BY
         v.vehicle_uuid,
@@ -283,7 +289,7 @@ exports.createAllreport = async (req, res) => {
       ...selected_events,
       ...selected_vehicles,
     ]);
-
+    //console.log(vehicles)
     const groupedData = vehicles.reduce((result, row) => {
       const key = row.vehicle_uuid;
       if (!result[key]) {
@@ -296,8 +302,8 @@ exports.createAllreport = async (req, res) => {
       }
       if (row.trip_id) {
         result[key].events.push({
-          eventType: row.event_type,
-          eventCount: row.event_count,
+          eventType: row.event_type || null,
+          eventCount: row.event_count || 0,
         });
       }
       return result;
@@ -305,10 +311,11 @@ exports.createAllreport = async (req, res) => {
 
     // Convert the selected_events array to a JSON string
     const selectedEventsJson = JSON.stringify(selected_events);
+    const selectedvehiclesJson = JSON.stringify(selected_vehicles);
 
     const insertQuery = `
-      INSERT INTO reports (title, report_uuid, user_uuid, vehicles, selected_events, from_date, to_date, contact_uuid, report_status, report_created_at, report_created_by)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?);
+      INSERT INTO reports (title, report_uuid, user_uuid, vehicles, selected_vehicles, selected_events, from_date, to_date, contact_uuid, report_status, reports_type, report_created_at, report_created_by)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);
     `;
 
     const values = [
@@ -316,10 +323,12 @@ exports.createAllreport = async (req, res) => {
       newUuid,
       user_uuid,
       JSON.stringify(groupedData),
+      selectedvehiclesJson,
       selectedEventsJson,
       fromDateObj,
       toDateObj,
       contact_uuid,
+      1,
       1,
       createdAt,
       user_uuid,
@@ -331,7 +340,8 @@ exports.createAllreport = async (req, res) => {
       success: true,
       message: "Report data successfully created",
       report_uuid: newUuid,
-      events: selectedEventsJson
+      events: selectedEventsJson,
+      vehicles: selectedvehiclesJson
     });
   } catch (err) {
     logger.error(`Error in creating report: ${err.message}`);
@@ -420,175 +430,33 @@ exports.getReports = async (req, res) => {
   }
 };
 
-// This Api Used For Schedule Reports
-// ...
-
-
-
-exports.scheduleReports = async (req, res) => {
-  const { from_date, to_date, user_uuid, title, selected_events, contact_uuid, selected_vehicles } = req.body;
-
-  try {
-    // Trigger the scheduled job by name or identifier
-    const result = await schedule.scheduledJobs['yourJobName'].callback(
-      from_date,
-      to_date,
-      user_uuid,
-      title,
-      selected_events,
-      contact_uuid,
-      selected_vehicles
-    );
-
-    // Handle the result here and send a response
-    if (result.success) {
-      res.status(200).json(result);
-    } else {
-      res.status(400).json(result);
-    }
-  } catch (error) {
-    console.error(`Error in scheduleReports: ${error.message}`);
-    res.status(500).json({ message: "Internal server error" });
-  }
-};
-
-// Schedule the report creation using node-schedule
-// schedule.scheduleJob('yourJobName','*/5 * * * * *', async (from_date, to_date, user_uuid, title, selected_events, contact_uuid, selected_vehicles) => {
 //   const connection = await pool.getConnection();
-
 //   try {
-//     //const { title, selected_events, from_date, to_date, contact_uuid, selected_vehicles} = req.body;
-//     //const { user_uuid } = req.params;
- 
-// // Validate input parameters
-// if (
-//   !Array.isArray(selected_events) ||
-//   !from_date ||
-//   !to_date ||
-//   !title ||
-//   !contact_uuid ||
-//   !Array.isArray(selected_vehicles) || 
-//   selected_vehicles.length === 0
-//   ) {
-//   return res.status(400).json({ message: "Invalid request parameters" });
-//   }
+//     const transporter = nodemailer.createTransport({
+//       service: "Gmail",
+//       auth: {
+//         user: process.env.EMAIL_USERNAME_NOREPLY,
+//         pass: process.env.EMAIL_USERNAME_NOREPLY_PASS,
+//       },
+//     });
 
-//    // Convert fromDate and toDate to Date objects and validate
-//    const fromDateObj = new Date(from_date);
-//    const toDateObj = new Date(to_date);
-  
-//    if (isNaN(fromDateObj) || isNaN(toDateObj)) {
-//    return res.status(400).json({ message: "Invalid date format" });
-//    }
-  
-//    // Ensure fromDate is before toDate
-//    if (fromDateObj >= toDateObj) {
-//    return res
-//    .status(400)
-//    .json({ message: "fromDate must be earlier than toDate" });
-//    }
-
-//    const eventPlaceholders = selected_events.map(() => "?").join(",");
-//    const vehiclePlaceholders = selected_vehicles.map(() => "?").join(",");
-//     // V - Vehicles, td - tripData, ts - trip_summary
-
-//     const query = `
-//     SELECT
-//     v.vehicle_uuid,
-//     v.vehicle_name,
-//     v.vehicle_registration,
-//     ts.trip_id,
-//     td.event AS event_type, 
-//     COUNT(*) AS event_count,
-//     td.timestamp,
-//     JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.data.alert_type')) AS alert_type,
-//     JSON_UNQUOTE(JSON_EXTRACT(td.jsondata, '$.message')) AS message
-// FROM
-//     vehicles v 
-// LEFT JOIN
-//     trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
-// LEFT JOIN
-//     tripdata td ON ts.trip_id = td.trip_id
-// WHERE
-//     v.user_uuid = ? 
-//     AND v.vehicle_status = ? 
-//     AND td.created_at >= ?
-//     AND td.created_at <= ? 
-//     AND ts.trip_status = ? 
-//     AND td.event IN (${eventPlaceholders})
-//     AND v.vehicle_uuid IN (${vehiclePlaceholders})
-// GROUP BY
-//     v.vehicle_uuid,
-//     v.vehicle_name,
-//     v.vehicle_registration,
-//     td.event  
-// ORDER BY
-//     v.vehicle_uuid ASC
-
-// `;
-
-//     const [vehicles] = await connection.query(query, [
-//       user_uuid,
-//       1,
-//       fromDateObj,
-//       toDateObj,
-//       1,
-//       ...selected_events,
-//       ...selected_vehicles,
-//     ]);
-
-
-//     // Group the data by vehicle_uuid
-//     const groupedData = vehicles.reduce((result, row) => {
-//       const key = row.vehicle_uuid;
-//       if (!result[key]) {
-//         result[key] = {
-//           vehicle_uuid: key,
-//           vehicle_name: row.vehicle_name,
-//           vehicle_registration: row.vehicle_registration,
-//           events: [],
-//         };
-//       }
-//       if (row.trip_id) {
-//         result[key].events.push({
-//          // trip_id: row.trip_id,
-//           eventType: row.event_type,
-//           eventCount: row.event_count, 
-//         });
-//       }
-//       return result;
-//     }, {});
-
-//     // Convert the grouped data object into an array
-//     const tripData = Object.values(groupedData);
-
-//     return {
-//       success: true,
-//       message: "Successfully generated report",
-//       // Add other data as needed
+//     const mailOptions = {
+//       from: process.env.EMAIL_USERNAME_NOREPLY,
+//       to: 'rohitshekhawat@starkenn.com',
+//       subject: 'Daily/Weekly Reports',tripData,
+//       text: 'Attached are your daily/weekly reports.',
 //     };
+
+//     await transporter.sendMail(mailOptions);
+
+//     console.log("Email sent successfully");
 //   } catch (error) {
-//     console.error(`Error in Get Trip Alert's: ${error.message}`);
-//     console.log(error);
-
-//     // If an error occurs, return a result object with an error message
-//     return {
-//       success: false,
-//       message: "Error generating report",
-//     };
+//     console.log("Error sending email:", error);
+//     logger.error("sendEmail error:", error);
+//     // Handle the error appropriately, such as sending an alert or retrying.
+//   } finally {
+//     connection.release();
 //   }
-// });
-// // Your route definition
-// exports.scheduleReports = async (req, res) => {
-//   // Get the parameters from the request
-//   const { from_date, to_date, user_uuid, title, selected_events, contact_uuid, selected_vehicles } = req.body;
+// } 
 
-//   // Listen for the 'reportData' event
-//   eventEmitter.once('reportData', (responseData) => {
-//     // Send the response with the responseData
-//     res.status(200).json(responseData);
-//   });
-
-//   // Trigger the scheduled job
-//   schedule.scheduledJobs.callback(from_date, to_date);
-// };
+// module.exports = { sendReportsByEmail };
