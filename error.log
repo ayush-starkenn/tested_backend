@@ -1,5 +1,0 @@
-10/20/2023, 11:47:11 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: '091bd707-9b55-4e4f-8444-72f4f72350e2' for column `starkenn`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
-10/20/2023, 3:31:42 PM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: '091bd707-9b55-4e4f-8444-72f4f72350e2' for column `starkenn`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
-10/21/2023, 8:00:33 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: '091bd707-9b55-4e4f-8444-72f4f72350e2' for column `starkenn`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
-10/21/2023, 8:01:57 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: '87f7e1ea-0541-42f0-a17e-575f556fd0b4' for column `starkenn`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
-10/21/2023, 8:03:29 AM [ERROR]: Error in adding vehicleFeatureset: Error: Incorrect datetime value: '87f7e1ea-0541-42f0-a17e-575f556fd0b4' for column `starkenn`.`vehiclefeatureset`.`vehiclefeatureset_created_at` at row 1
