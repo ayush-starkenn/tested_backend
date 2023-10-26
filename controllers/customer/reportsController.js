@@ -21,6 +21,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//First Step of selected Vehicles
 // This api use to get Vehicles for reports .
 exports.getVehicle = async (req, res) => {
   const connection = await pool.getConnection();
@@ -45,6 +46,7 @@ exports.getVehicle = async (req, res) => {
   }
 };
 
+// Selected Vehicles
 // This Api user to get All conatcts for  reports .
 exports.getAllContacts = async (req, res) => {
   const connection = await pool.getConnection();
@@ -242,7 +244,9 @@ exports.createAllreport = async (req, res) => {
       return res.status(400).json({ message: "Invalid request parameters" });
     }
 
-    const fromDateObj = new Date(frcreated_atate);
+    // Convert fromDate and toDate to Date objects and validate
+    const fromDateObj = new Date(from_date);
+    const toDateObj = new Date(to_date);
 
     if (isNaN(fromDateObj) || isNaN(toDateObj)) {
       return res.status(400).json({ message: "Invalid date format" });
@@ -443,32 +447,30 @@ exports.getReports = async (req, res) => {
   }
 };
 
-//   try {
-//     const transporter = nodemailer.createTransport({
-//       service: "Gmail",
-//       auth: {
-//         user: process.env.EMAIL_USERNAME_NOREPLY,
-//         pass: process.env.EMAIL_USERNAME_NOREPLY_PASS,
-//       },
-//     });
+// Get All Reports
+exports.getreportsall = async (req, res) => {
+  const connection = await pool.getConnection();
 
-//     const mailOptions = {
-//       from: process.env.EMAIL_USERNAME_NOREPLY,
-//       to: 'rohitshekhawat@starkenn.com',
-//       subject: 'Daily/Weekly Reports',tripData,
-//       text: 'Attached are your daily/weekly reports.',
-//     };
+  try {
+    const { user_uuid } = req.params;
 
-//     await transporter.sendMail(mailOptions);
+    const [reportResult] = await connection.execute(
+      "SELECT * FROM reports WHERE user_uuid = ? AND reports_type IN (?,?)  ORDER BY r_id DESC",
+      [user_uuid , 1,2]
+    );
 
-//     console.log("Email sent successfully");
-//   } catch (error) {
-//     console.log("Error sending email:", error);
-//     logger.error("sendEmail error:", error);
-//     // Handle the error appropriately, such as sending an alert or retrying.
-//   } finally {
-//     connection.release();
-//   }
-// } 
+    res.status(200).send({
+      message: "Successfully got list of all Reports",
+      totalCount: reportResult.length,
+      reportResult,
+    });
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Error in getting user reports list", Error: err });
+  } finally {
+    connection.release();
+  }
+};
 
-// module.exports = { sendReportsByEmail };
+
