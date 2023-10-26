@@ -122,6 +122,58 @@ const editFeatureset = async (req, res) => {
   }
 };
 
+//this is the function created to delete all vehicleFS when default featureset updated
+const DeleteVehiclesFromVehiFS = async (user_uuid) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const deleteQuery = "DELETE FROM vehiclefeatureset WHERE `user_uuid`=?";
+    const [deleteResults] = await connection.execute(deleteQuery, [user_uuid]);
+
+    if (deleteResults.affectedRows >= 0) {
+      return;
+    }
+  } catch (err) {
+    logger.error(`Error in Deleting vehicleFS: ${err}`);
+    return;
+  } finally {
+    connection.release();
+  }
+};
+
+//this function created to add deviceIds & FS to mqttFS to
+const addVehiclesToMqttFS = async (user_uuid, featureset_data) => {
+  const connection = await pool.getConnection();
+  try {
+    const updatedAt = moment.tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
+
+    const getVehicles = `SELECT iot FROM vehicles WHERE user_uuid=?`;
+    const [deviceIDs] = await connection.execute(getVehicles, [user_uuid]);
+
+    for (const device of deviceIDs) {
+      const insertQuery = `
+        INSERT INTO mqttfeatureset (device_id, featureset, status, created_at, modified_at)
+        VALUES (?, ?, ?, ?, ?)
+      `;
+
+      const values = [
+        device.iot,
+        JSON.stringify(featureset_data),
+        0,
+        updatedAt,
+        updatedAt,
+      ];
+      await connection.execute(insertQuery, values);
+    }
+    return;
+  } catch (err) {
+    logger.error(`Error in adding vehicles to mqttFeatureset: ${err}`);
+    return;
+  } finally {
+    connection.release();
+  }
+};
+
 const clientFeatureset = async (req, res) => {
   const connection = await pool.getConnection();
   try {
@@ -143,24 +195,12 @@ const clientFeatureset = async (req, res) => {
     const [results] = await connection.execute(editQuery, values);
 
     if (results.affectedRows > 0) {
-      const deleteQuery = "DELETE FROM vehiclefeatureset WHERE `user_uuid`=?";
-      const [deleteResults] = await connection.execute(deleteQuery, [
-        user_uuid,
-      ]);
-
-      if (deleteResults.affectedRows >= 0) {
-        res.status(200).send({
-          message:
-            "Successfully featureset updated and related records deleted",
-          updatedRows: results.affectedRows,
-          deletedRows: deleteResults.affectedRows,
-        });
-      } else {
-        res.status(500).send({
-          message: "Failed to delete related records",
-          error: "Related records deletion failed",
-        });
-      }
+      DeleteVehiclesFromVehiFS(user_uuid);
+      addVehiclesToMqttFS(user_uuid, featureset_data);
+      res.status(200).send({
+        message: "Successfully featureset updated and related records deleted",
+        updatedRows: results.affectedRows,
+      });
     } else {
       res.status(404).send({
         message: "No matching featureset found for the given ID",
