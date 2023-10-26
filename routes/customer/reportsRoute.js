@@ -28,6 +28,9 @@ reportsRouter.post(
 reportsRouter.get("/get_Reports/:report_uuid", reportsController.getReports);
 
 // This  Api Get a Schedule Reports
-// reportsRouter.post("/get_Reports_schedule/:user_uuid", reportsController.scheduleReports);
+reportsRouter.post(
+  "/get_Reports_schedule/:user_uuid",
+  reportsController.scheduleReports
+);
 
 module.exports = { reportsRouter };

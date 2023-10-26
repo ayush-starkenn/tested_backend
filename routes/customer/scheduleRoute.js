@@ -8,7 +8,10 @@ scheduleRouter.post(
   scheduleController.scheduleReports
 );
 
-// schedule_reportsRouter.put("/update_Reports_schedule/:report_uuid", schedule_reportsController.scheduleReports);
+schedule_reportsRouter.put(
+  "/update_Reports_schedule/:report_uuid",
+  schedule_reportsController.scheduleReports
+);
 
 scheduleRouter.put(
   "/get_Reports_schedule/:report_uuid",
