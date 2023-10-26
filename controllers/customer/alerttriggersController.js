@@ -9,6 +9,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+;const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 // functions
 exports.saveAlertTrigger = async (req, res) => {
   const connection = await pool.getConnection();
@@ -66,6 +70,10 @@ exports.saveAlertTrigger = async (req, res) => {
     const savequery = `INSERT INTO alert_triggers (user_uuid, trigger_name, trigger_description, vehicle_uuid, trigger_type, recipients, trigger_status, trigger_created_at, trigger_created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const [alerts] = await connection.execute(savequery, dataSent);
+
+      //await notification(values);
+   var NotificationValues = "Successfully saved the alert";
+   await save_notification(NotificationValues, user_uuid);
 
     res.status(200).send({
       message: "Successfully saved the alert",
@@ -144,6 +152,10 @@ exports.DeleteAlertTrigger = async (req, res) => {
     const deletequery = `UPDATE alert_triggers SET trigger_status = ? WHERE trigger_id = ?`;
 
     const [alerts] = await connection.execute(deletequery, [0, trigger_id]);
+
+          //await notification(values);
+   var NotificationValues = "Successfully deleted the alert";
+   await save_notification(NotificationValues, user_uuid);
 
     res.status(200).send({
       message: "Successfully deleted the alert",
@@ -225,6 +237,10 @@ exports.updateAlertTrigger = async (req, res) => {
     const editquery = `UPDATE alert_triggers SET trigger_name = ?, trigger_description = ?, vehicle_uuid = ?, trigger_type = ?, recipients = ?, trigger_status = ?, trigger_modified_at = ?, trigger_modified_by = ? WHERE trigger_id = ?`;
 
     const [alerts] = await connection.execute(editquery, dataSent);
+
+              //await notification(values);
+   var NotificationValues = "Successfully updated the alert";
+   await save_notification(NotificationValues, user_uuid);
 
     res.status(200).send({
       message: "Successfully updated the alert",

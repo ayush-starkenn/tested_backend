@@ -12,8 +12,8 @@ require("dotenv").config();
  
 
 const { sendEmail } = require("../../middleware/mailer");
-const { sendWhatsappMessage } = require("../../middleware/whatsapp");
-const { Console } = require("winston/lib/winston/transports");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 const app = express();
 
@@ -345,6 +345,10 @@ exports.createAllreport = async (req, res) => {
     ];
 
     const [results] = await connection.execute(insertQuery, values);
+
+    //await notification(values);
+   var NotificationValues = "Report data successfully created";
+   await save_notification(NotificationValues, user_uuid);
 
     res.status(200).json({
       success: true,

@@ -11,6 +11,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 // Utility function to generate an RFID code
 function generateRFIDCode() {
   const timestamp = Date.now().toString();
