@@ -3,6 +3,36 @@ const moment = require("moment-timezone");
 const pool = require("../../config/db.js");
 const logger = require("../../logger.js");
 
+const addMqttFS = async (vehicle_uuid, featureset_data) => {
+  const connection = await pool.getConnection();
+  try {
+    const updatedAt = moment.tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
+    const getDeviceId = "SELECT iot FROM vehicles WHERE vehicle_uuid=?";
+    const [deviceId] = await connection.execute(getDeviceId, [vehicle_uuid]);
+
+    if (deviceId) {
+      const addQuery = `INSERT INTO mqttfeatureset (device_id, featureset, status, created_at, modified_at)
+      VALUES (?, ?, ?, ?, ?)`;
+
+      const values = [
+        deviceId[0].iot,
+        JSON.stringify(featureset_data),
+        0,
+        updatedAt,
+        updatedAt,
+      ];
+      await connection.execute(addQuery, values);
+    }
+
+    return;
+  } catch (err) {
+    logger.error(`Error in adding mqttFS: ${err}`);
+    return;
+  } finally {
+    connection.release();
+  }
+};
+
 const addVehicleFeatureset = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -33,6 +63,7 @@ const addVehicleFeatureset = async (req, res) => {
     const [results] = await connection.execute(addQuery, values);
 
     if (results) {
+      addMqttFS(vehicle_uuid, featureset_data);
       res.status(200).send({
         message: "Successfully vehicle featureset added",
         totalCount: results.length,
@@ -75,6 +106,8 @@ const editVehicleFeatureset = async (req, res) => {
     const [results] = await connection.execute(editQuery, values);
 
     if (results) {
+      addMqttFS(vehicle_uuid, featureset_data);
+
       res.status(200).send({
         message: "Successsfully vehicle featureset updated",
         totalCount: results.length,
