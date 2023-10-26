@@ -3,6 +3,10 @@ const moment = require("moment-timezone");
 const pool = require("../../config/db.js");
 const logger = require("../../logger.js");
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 //adding the featureset
 const addFeatureset = async (req, res) => {
   const connection = await pool.getConnection();
@@ -40,6 +44,10 @@ const addFeatureset = async (req, res) => {
     ];
 
     const [results] = await connection.execute(addQuery, values);
+
+        //await notification(values);
+        var NotificationValues = "Successfully featureset added";
+        await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       res.status(201).send({
@@ -92,6 +100,10 @@ const editFeatureset = async (req, res) => {
     ];
 
     [results] = await connection.execute(editQuery, values);
+
+        //await notification(values);
+        var NotificationValues = "Successfully featureset updated";
+        await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       res.status(200).send({
@@ -223,6 +235,10 @@ const deleteFeatureset = async (req, res) => {
     const values = [0, currentTimeIST, user_uuid, featureset_uuid];
 
     const [results] = await connection.execute(deleteQuery, values);
+
+  //await notification(values);
+   var NotificationValues = "Successfully featureset deleted";
+   await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       res
@@ -432,6 +448,10 @@ const assignuser = async (req, res) => {
     const addedusers = [JSON.stringify(assignedUsers), featureset_uuid];
 
     await connection.execute(updateQuery, addedusers);
+
+      //await notification(values);
+  //  var NotificationValues = "Successfully featureset deleted";
+  //  await save_notification(NotificationValues, user_uuid);
 
     if (addedusers) {
       res.status(200).send({

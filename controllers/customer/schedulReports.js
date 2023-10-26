@@ -10,7 +10,7 @@ const cron = require("node-cron");
 require("dotenv").config();
 //const { createAndScheduleReport } = require('../path-to-createAndScheduleReport');
  
-
+const { save_notification} = require("../customer/notifiController");
 const { sendReportsByEmail } = require("../../middleware/reportsmailer");
 const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 const { Console } = require("winston/lib/winston/transports");
@@ -158,6 +158,10 @@ exports.scheduleReports = async (req, res) => {
         }
       }
 
+    //await notification(values);
+    var NotificationValues = "Report inserted successfully";
+    await save_notification(NotificationValues, user_uuid);
+
       res.status(200).json({
         message: "Report inserted successfully",
         report_uuid: newUuid,
@@ -177,7 +181,7 @@ exports.scheduleReports = async (req, res) => {
 };
 
 
-exports.scheduleupdateReports22 = async (req, res) => {
+exports.scheduleupdateReports22 = async (req, res) => { 
   const connection = await pool.getConnection();
   try {
     const { report_uuid } = req.params;
@@ -366,7 +370,7 @@ exports.scheduleupdateReports22 = async (req, res) => {
   }
 };
 
-
+// Working Code 
 exports.scheduleupdateReports = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -384,10 +388,12 @@ exports.scheduleupdateReports = async (req, res) => {
     const getLastReportValues = [report_uuid];
     const [lastReport] = await connection.execute(getLastReportQuery, getLastReportValues);
 
-    if (lastReport.length !== 1) {
+    if (lastReport.length === 0) {
       res.status(404).json({ message: "Report not found" });
       return;
     }
+
+    const title = lastReport[0].title;
 
     // Extract the schedule type from the database
     const reports_schedule_type = (lastReport[0] && lastReport[0].reports_schedule_type) || '';
@@ -536,9 +542,11 @@ exports.scheduleupdateReports = async (req, res) => {
       if (results.affectedRows > 0) {
         // Construct a response object similar to the one in getReports
         const report = {
+         title: title,
           report_uuid: report_uuid,
           from_date: timeAgoFormatted,
           to_date: createdAt,
+          // vehicles:groupedData,
           selected_events: eventPlaceholders,
         };
 
@@ -556,10 +564,14 @@ exports.scheduleupdateReports = async (req, res) => {
           };
         });
 
+    //await notification(values);
+    var NotificationValues = "Report successfully updated";
+    await save_notification(NotificationValues, report_uuid);
+        
         res.status(200).json({
           message: "Report successfully updated",
           report: {...report,
-            
+
             vehicleResults: vehicleResults},
           
         });

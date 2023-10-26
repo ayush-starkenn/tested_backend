@@ -3,6 +3,10 @@ const moment = require("moment-timezone");
 const logger = require("../../logger.js");
 const { client } = require("../../config/mqtt.js"); 
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 // Add the device to database
 const addDevice = async (req, res) => {
   // Connection to the database
@@ -41,6 +45,10 @@ const addDevice = async (req, res) => {
     ];
 
     const [results] = await connection.execute(addQuery, values);
+
+//await notification(values);
+  var NotificationValues = "Device added successfully";
+  await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
       message: "Device added successfully",
@@ -105,6 +113,10 @@ const editDevice = async (req, res) => {
       userUUID,
       req.params.device_id,
     ];
+
+    //await notification(values);
+  var NotificationValues = "Device updated successfully";
+  await save_notification(NotificationValues, user_uuid);
 
     const [results] = await connection.execute(editQuery, values);
     res.status(201).json({
@@ -181,6 +193,10 @@ const deleteDevice = async (req, res) => {
       req.body.userUUID,
       device_id,
     ]);
+
+    //await notification(values);
+    var NotificationValues = "Device updated successfully";
+    await save_notification(NotificationValues, userUUID);
 
     res.status(201).send({
       message: "Device deleted successfully",

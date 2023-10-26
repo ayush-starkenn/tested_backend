@@ -4,6 +4,10 @@ const { v4: uuidv4 } = require("uuid");
 const logger = require("../../logger.js");
 const { clear } = require("winston");
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 const getAllContacts = async (req, res) => {
   const connection = await pool.getConnection();
   try {
@@ -110,6 +114,10 @@ const saveContact = async (req, res) => {
 
     const [insertResults] = await connection.execute(insertQuery, insertData);
 
+                  //await notification(values);
+   var NotificationValues = "Contact added successfully";
+   await save_notification(NotificationValues, user_uuid);
+
     res.status(201).json({
       message: "Contact added successfully",
       totalCount: insertResults.length,
@@ -175,6 +183,10 @@ const editContact = async (req, res) => {
 
     const [results] = await connection.execute(query, updateData);
 
+                      //await notification(values);
+   var NotificationValues = "Contacts updated successfully";
+   await save_notification(NotificationValues, contact_uuid);
+
     res.status(201).json({
       message: "Contacts updated successfully",
       totalCount: results.length,
@@ -211,6 +223,10 @@ const deleteContact = async (req, res) => {
       req.body.user_uuid,
       contact_uuid,
     ]);
+
+  //await notification(values);
+   var NotificationValues = "Contacts deleted successfully";
+   await save_notification(NotificationValues, user_uuid);
 
     res.status(201).send({
       message: "Contacts deleted successfully",
