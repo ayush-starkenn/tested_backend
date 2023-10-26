@@ -47,7 +47,6 @@ cronJobForEndTrip();
 
 //sendReportsByEmail();
 
-
 // Login Routes
 app.use("/api", loginRouter);
 
