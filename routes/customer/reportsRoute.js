@@ -33,4 +33,10 @@ reportsRouter.get(
   reportsController.getreportsall
 );
 
+// This  Api delete a Reports
+reportsRouter.get(
+  "/delete-report/:report_uuid",
+  reportsController.deleteReports
+);
+
 module.exports = { reportsRouter };
