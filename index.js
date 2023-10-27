@@ -42,10 +42,10 @@ setupMQTT();
 cronJobForEndTrip();
 // setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
-app.use(authentication);
-
 // Login Routes
 app.use("/api", loginRouter);
+
+app.use(authentication);
 
 // Admin Panel Routes
 app.use("/api/devices", deviceRouter);

@@ -57,7 +57,7 @@ const get_all_notifications = async (req, res) => {
   try {
   const { user_uuid } = req.params;
 
-  const queries = `SELECT * FROM notifications WHERE user_uuid = ?`;
+  const queries = `SELECT * FROM notifications WHERE user_uuid = ? ORDER BY notification_id DESC`;
 
     const [results] = await connection.execute(queries, [user_uuid]);
 

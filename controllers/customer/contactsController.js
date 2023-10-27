@@ -206,6 +206,7 @@ const deleteContact = async (req, res) => {
 
   try {
     const { contact_uuid } = req.params;
+    const { user_uuid } = req.body;
 
     //creating current date and time
     let createdAt = new Date();
@@ -220,7 +221,7 @@ const deleteContact = async (req, res) => {
     const [results] = await connection.execute(queryMade, [
       0,
       currentTimeIST,
-      req.body.user_uuid,
+      user_uuid,
       contact_uuid,
     ]);
 
@@ -228,7 +229,7 @@ const deleteContact = async (req, res) => {
    var NotificationValues = "Contacts deleted successfully";
    await save_notification(NotificationValues, user_uuid);
 
-    res.status(201).send({
+    res.status(201).json({
       message: "Contacts deleted successfully",
       totalCount: results.length,
       results,
@@ -237,7 +238,7 @@ const deleteContact = async (req, res) => {
     logger.error(`Error in deleting the Contacts ${err}`);
     res
       .status(500)
-      .send({ message: "Error in deleting the contacts", Error: err });
+      .json({ message: "Error in deleting the contacts", Error: err });
   } finally {
     connection.release();
   }

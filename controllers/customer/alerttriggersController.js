@@ -148,10 +148,24 @@ exports.DeleteAlertTrigger = async (req, res) => {
   const connection = await pool.getConnection();
 
   try {
-    const { trigger_id } = req.params;
-    const deletequery = `UPDATE alert_triggers SET trigger_status = ? WHERE trigger_id = ?`;
 
-    const [alerts] = await connection.execute(deletequery, [0, trigger_id]);
+    let createdAt = new Date();
+    let currentTimeIST = moment
+      .tz(createdAt, "Asia/Kolkata")
+      .format("YYYY-MM-DD HH:mm:ss ");
+
+
+    const { trigger_id } = req.params;
+    const {user_uuid} = req.body;
+
+    const deletequery = `UPDATE alert_triggers SET trigger_status = ?, trigger_modified_at = ?, trigger_modified_by = ? WHERE trigger_id = ?`;
+
+    const [alerts] = await connection.execute(deletequery, [
+      0,
+      currentTimeIST,
+      user_uuid,
+      trigger_id
+    ]);
 
           //await notification(values);
    var NotificationValues = "Successfully deleted the alert";
