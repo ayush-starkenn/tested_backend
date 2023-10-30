@@ -35,7 +35,7 @@ try{
       currentTimeIST,
       user_uuid,
     ]);
-    console.log(NotificationResult);
+   // console.log(NotificationResult);
 
     // set the socket.io
    // const data = `${NotificationValues[2]} : by ${NotificationValues[1]} at time : ${currentTimeIST}`;
