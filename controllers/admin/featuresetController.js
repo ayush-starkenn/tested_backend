@@ -32,7 +32,7 @@ const addFeatureset = async (req, res) => {
       JSON.stringify(featureset_users),
       featuerset_version,
       JSON.stringify(featureset_data),
-      1,
+      "1",
       user_uuid,
       currentTimeIST,
       currentTimeIST,
@@ -135,24 +135,191 @@ const addVehiclesToMqttFS = async (user_uuid, featureset_data) => {
   try {
     const updatedAt = moment.tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
 
+    // Get the list of devices for the user
     const getVehicles = `SELECT iot FROM vehicles WHERE user_uuid=?`;
-    const [deviceIDs] = await connection.execute(getVehicles, [user_uuid]);
+    const [deviceRows] = await connection.execute(getVehicles, [user_uuid]);
+    const deviceIDs = deviceRows.map((row) => row.iot);
+
+    if (deviceIDs.length === 0) {
+      console.log("No devices found for the user.");
+      return;
+    }
+
+    let now = new Date();
+    let timestamp = Math.floor(now.getTime() / 1000);
+    let FormatedMSG = {
+      message: 105,
+      timestamp: timestamp,
+      data: {
+        sys: { mode: parseInt(featureset_data.mode) },
+        cas: {
+          sts: parseInt(featureset_data.CASMode),
+          act_spd: parseInt(featureset_data.activationSpeed),
+          brk_spd: parseInt(featureset_data.brakeSpeed),
+          stat_obj_sts: parseInt(featureset_data.detectStationaryObject),
+          full_brk_sts: parseInt(featureset_data.allowCompleteBrake),
+          oncm_obj_sts: parseInt(featureset_data.detectOncomingObstacle),
+          cas_mode: parseInt(featureset_data.safetyMode),
+          alrm_th: parseInt(featureset_data.alarmThreshold),
+          brk_th: parseInt(featureset_data.brakeThreshold),
+          ttc_th: parseInt(featureset_data.ttcThreshold),
+          brk_on_time: parseInt(featureset_data.brakeOnDuration),
+          brk_off_time: parseInt(featureset_data.brakeOffDuration),
+          start_tm: parseInt(featureset_data.start_time),
+          stop_tm: parseInt(featureset_data.stop_time),
+        },
+        sa: {
+          sts: parseInt(featureset_data.sleepAlertMode),
+          pre_warn: parseInt(featureset_data.preWarning),
+          brk_sts: parseInt(featureset_data.braking),
+          intvl: parseInt(featureset_data.sleepAlertInterval),
+          spd: parseInt(featureset_data.sa_activationSpeed),
+          start_tm: parseInt(featureset_data.startTime),
+          stop_tm: parseInt(featureset_data.stopTime),
+          brk_tm: parseInt(featureset_data.brakeActivateTime),
+        },
+        de: {
+          sts: parseInt(featureset_data.driverEvalMode),
+          ln_ch_th1: parseInt(featureset_data.maxLaneChangeThreshold),
+          ln_ch_th2: parseInt(featureset_data.minLaneChangeThreshold),
+          h_acc_th1: parseInt(featureset_data.maxHarshAccelerationThreshold),
+          h_acc_th2: parseInt(featureset_data.minHarshAccelerationThreshold),
+          s_brk_th1: parseInt(featureset_data.suddenBrakingThreshold),
+          s_bmp_th1: parseInt(featureset_data.maxSpeedBumpThreshold),
+          s_bmp_th2: parseInt(featureset_data.minSpeedBumpThreshold),
+        },
+        spd_gov: {
+          sts: parseInt(featureset_data.GovernerMode),
+          limit: parseInt(featureset_data.speedLimit),
+        },
+        cruz: {
+          sts: parseInt(featureset_data.cruiseMode),
+          act_spd: parseInt(featureset_data.cruiseactivationSpeed),
+          veh_typ: parseInt(featureset_data.vehicleType),
+        },
+        obd: {
+          sts: parseInt(featureset_data.obdMode),
+          proto_no: parseInt(featureset_data.protocolType),
+        },
+        tpms: { sts: parseInt(featureset_data.tpmsMode) },
+        veh_set: { acc_type: parseInt(featureset_data.acceleratorType) },
+        sensor: {
+          rdr_sts: parseInt(featureset_data.rfSensorMode),
+          ldr_sts: parseInt(featureset_data.lazerMode),
+          rdr_angl: parseInt(featureset_data.rfAngle),
+          rdr_act_spd: parseInt(featureset_data.rdr_act_spd),
+          rs1: parseInt(featureset_data.rdr_type),
+          rs2: parseInt(featureset_data.Sensor_res1),
+        },
+        spd_sett: {
+          src: parseInt(featureset_data.speedSource),
+          slope: parseInt(featureset_data.slope),
+          offset: parseInt(featureset_data.offset),
+        },
+        sht_dwn_tm: { delay: parseInt(featureset_data.delay) },
+        rfid: { sts: parseInt(featureset_data.rfNameMode) },
+        fota: {
+          sts: parseInt(featureset_data.firmwareOtaUpdate),
+          rs1: parseInt(featureset_data.firewarereserver1),
+          rs2: parseInt(featureset_data.firewarereserver2),
+        },
+        alcohol: {
+          sts: parseInt(featureset_data.alcoholDetectionMode),
+          intvl: parseInt(featureset_data.alcoholinterval),
+          start_tm: parseInt(featureset_data.alcoholstart_time),
+          stop_tm: parseInt(featureset_data.alcoholstop_time),
+          mode: parseInt(featureset_data.alcoholmode),
+          act_spd: parseInt(featureset_data.alcoholact_spd),
+        },
+        dd: {
+          sts: parseInt(featureset_data.driverDrowsinessMode),
+          acc_cut_sts: parseInt(featureset_data.dd_acc_cut),
+          act_spd: parseInt(featureset_data.dd_act_spd),
+          start_tm: parseInt(featureset_data.dd_strt_tim),
+          stop_tm: parseInt(featureset_data.dd_stop_tim),
+          rs1: parseInt(featureset_data.dd_res1),
+        },
+        temp: { sts: 0, thrshld: 0, rs1: 0 },
+        err_tim: {
+          no_alrm: parseInt(featureset_data.noAlarm),
+          spd: parseInt(featureset_data.speed),
+          acc_byps: parseInt(featureset_data.accelerationBypass),
+          tpms: parseInt(featureset_data.tim_err_tpms),
+        },
+        err_spd: {
+          rdr: parseInt(featureset_data.rfSensorAbsent),
+          gyro: parseInt(featureset_data.gyroscopeAbsent),
+          hmi: parseInt(featureset_data.hmiAbsent),
+          rtc: parseInt(featureset_data.timeNotSet),
+          brake_cyl: parseInt(featureset_data.brakeError),
+          tpms: parseInt(featureset_data.tpmsError),
+          obd: parseInt(featureset_data.obdAbsent),
+          no_alarm: parseInt(featureset_data.noAlarmSpeed),
+          ldr: parseInt(featureset_data.laserSensorAbsent),
+          rfid: parseInt(featureset_data.rfidAbsent),
+          iot: parseInt(featureset_data.iotAbsent),
+          acc_board: parseInt(featureset_data.acc_board),
+          dd: parseInt(featureset_data.SBE_dd),
+          alcohol: parseInt(featureset_data.SBE_alcohol),
+          temp: parseInt(featureset_data.SBE_temp),
+        },
+        lds: {
+          sts: parseInt(featureset_data.load_sts),
+          max_cap: parseInt(featureset_data.load_max_cap),
+          acc: parseInt(featureset_data.load_acc),
+        },
+        fuel: {
+          sts: parseInt(featureset_data.fuelMode),
+          Tank_Capacity: parseInt(featureset_data.fuel_tnk_cap),
+          Interval1: parseInt(featureset_data.fuel_intvl1),
+          Interval2: parseInt(featureset_data.fuel_intvl2),
+          ACC_Cut: parseInt(featureset_data.fuel_acc),
+          threshold: parseInt(featureset_data.fuel_thrsh),
+        },
+      },
+    };
+
+    const insertQuery = `
+      INSERT INTO mqttfeatureset (device_id, featureset, status, created_at, modified_at)
+      VALUES (?, ?, ?, ?, ?)
+    `;
 
     for (const device of deviceIDs) {
-      const insertQuery = `
-        INSERT INTO mqttfeatureset (device_id, featureset, status, created_at, modified_at)
-        VALUES (?, ?, ?, ?, ?)
-      `;
+      // Check if the device ID is not null
+      if (device) {
+        // Check if the device data already exists in the mqttfeatureset table
+        const checkQuery = `SELECT device_id FROM mqttfeatureset WHERE device_id=?`;
+        const [checkRows] = await connection.execute(checkQuery, [device]);
+        const deviceExists = checkRows.length > 0;
 
-      const values = [
-        device.iot,
-        JSON.stringify(featureset_data),
-        0,
-        updatedAt,
-        updatedAt,
-      ];
-      await connection.execute(insertQuery, values);
+        if (deviceExists) {
+          // If the device data exists, update it
+          const updateQuery = `
+            UPDATE mqttfeatureset 
+            SET featureset=?, modified_at=?
+            WHERE device_id=?
+          `;
+
+          await connection.execute(updateQuery, [
+            JSON.stringify(FormatedMSG),
+            updatedAt,
+            device,
+          ]);
+        } else {
+          // If the device data doesn't exist, insert it
+          const values = [
+            device,
+            JSON.stringify(FormatedMSG),
+            0,
+            updatedAt,
+            updatedAt,
+          ];
+
+          await connection.execute(insertQuery, values);
+        }
+      }
     }
+
     return;
   } catch (err) {
     logger.error(`Error in adding vehicles to mqttFeatureset: ${err}`);
