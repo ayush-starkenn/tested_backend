@@ -6,7 +6,7 @@ const logger = require("../../logger.js");
 const { sendEmail } = require("../../middleware/mailer");
 const { save_notification } = require("../customer/notifiController");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
-const addMqttFS = async (vehicle_uuid, featureset_data) => {
+const addVehiclesToMqttFS = async (vehicle_uuid, featureset_data) => {
   const connection = await pool.getConnection();
   try {
     const parsedFS = JSON.parse(featureset_data);
