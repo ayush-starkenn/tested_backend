@@ -5,7 +5,7 @@ const logger = require("../../logger.js");
 const { clear } = require("winston");
 
 const { sendEmail } = require("../../middleware/mailer");
-const { save_notification} = require("../customer/notifiController");
+const { save_notification } = require("../customer/notifiController");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 const getAllContacts = async (req, res) => {
@@ -114,9 +114,9 @@ const saveContact = async (req, res) => {
 
     const [insertResults] = await connection.execute(insertQuery, insertData);
 
-                  //await notification(values);
-   var NotificationValues = "Contact added successfully";
-   await save_notification(NotificationValues, user_uuid);
+    //await notification(values);
+    var NotificationValues = "Contact added successfully";
+    await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
       message: "Contact added successfully",
@@ -185,9 +185,9 @@ const editContact = async (req, res) => {
 
     const [results] = await connection.execute(query, updateData);
 
-  //await notification(values);
-   var NotificationValues = `${contact_first_name} updated successfully`;
-   await save_notification(NotificationValues, user_uuid);
+    //await notification(values);
+    var NotificationValues = `${contact_first_name} updated successfully`;
+    await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
       message: "Contacts updated successfully",
@@ -227,9 +227,9 @@ const deleteContact = async (req, res) => {
       contact_uuid,
     ]);
 
-  //await notification(values);
-   var NotificationValues = "Contacts deleted successfully";
-   await save_notification(NotificationValues, user_uuid);
+    //await notification(values);
+    var NotificationValues = "Contacts deleted successfully";
+    await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
       message: "Contacts deleted successfully",
