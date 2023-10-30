@@ -391,6 +391,7 @@ exports.ResetPassword = async (req, res) => {
   try {
     const { user_uuid } = req.params;
     const { oldPassword, newPassword } = req.body;
+    var type = 2;
 
     // Get user information
     const [userRows] = await connection.execute(
@@ -402,7 +403,12 @@ exports.ResetPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-   
+    // app.use((req, res, next) => {
+    //   // Simulating decoded user information (replace with your actual logic)
+    //   req.decoded = { email: 'email' };
+    //   next();
+    // });
+
 
     // Verify old password
     const isPasswordMatch = await bcrypt.compare(
@@ -424,7 +430,7 @@ exports.ResetPassword = async (req, res) => {
     );
 
  // Send OTP on Email
-   await sendEmail(email);
+   await sendEmail(email, type);
 
        //await notification(values);
        var NotificationValues = "Password changed successfully";

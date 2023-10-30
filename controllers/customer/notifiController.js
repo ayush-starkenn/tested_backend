@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // saving the notification in database
-async function save_notification(NotificationValues,user_uuid)  {
+async function save_notification(NotificationValues,user_uuid)   {
   const connection = await pool.getConnection();
   // latest time function
 try{

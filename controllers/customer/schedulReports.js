@@ -31,7 +31,7 @@ exports.scheduleReports = async (req, res) => {
     const { user_uuid } = req.params;
 
     // Validate input parameters
-    if (!title || !Array.isArray(selected_vehicles) || !Array.isArray(selected_events) || !contact_uuid || !user_uuid) {
+    if (!title || !Array.isArray(selected_vehicles) || !Array.isArray(selected_events) || !contact_uuid || !user_uuid || !reports_schedule_type) {
       return res.status(400).json({ message: "Invalid request parameters" });
     }
     const createdAt = moment().tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
@@ -41,7 +41,7 @@ exports.scheduleReports = async (req, res) => {
 
     const insertQuery = `
       INSERT INTO reports (title, report_uuid, user_uuid, selected_vehicles, selected_events, contact_uuid, reports_type, report_status, reports_schedule_type, report_created_at, report_created_by)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     `;
 
     const values = [title, newUuid, user_uuid, selectedvehiclesJson, selectedEventsJson, contact_uuid, 2, 1, reports_schedule_type, createdAt, user_uuid];

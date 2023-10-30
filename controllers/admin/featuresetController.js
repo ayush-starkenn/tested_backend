@@ -197,6 +197,11 @@ const clientFeatureset = async (req, res) => {
     if (results.affectedRows > 0) {
       DeleteVehiclesFromVehiFS(user_uuid);
       addVehiclesToMqttFS(user_uuid, featureset_data);
+
+              //await notification(values);
+              var NotificationValues = "Successfully featureset updated and related records deleted";
+              await save_notification(NotificationValues, user_uuid);
+
       res.status(200).send({
         message: "Successfully featureset updated and related records deleted",
         updatedRows: results.affectedRows,

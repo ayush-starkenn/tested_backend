@@ -145,16 +145,12 @@ exports.changePassword = async (req, res) => {
 
     try {
 
-      // app.use((req, res, next) => {
-      //   // Simulating decoded user information (replace with your actual logic)
-      //   req.decoded = { email: 'email' };
-      //   next();
-      // });
-
         //const { email } = req.decoded;
         const { user_uuid } = req.params;
         const { oldPassword, newPassword } = req.body;
-    
+        const { email } = req.decoded;
+        var type = 2;
+
         // Get user information
         const [userRows] = await connection.execute(
           "SELECT * FROM users WHERE user_uuid = ?",
@@ -182,7 +178,7 @@ exports.changePassword = async (req, res) => {
         );
     
      // Send OTP on Email
-     await sendEmail(email);
+     await sendEmail(email,type);
 
     //await notification(values);
    var NotificationValues = "Password changed successfully";
