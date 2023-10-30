@@ -141,7 +141,9 @@ const editContact = async (req, res) => {
       contact_email,
       contact_mobile,
       contact_status,
+      user_uuid,
     } = req.body;
+    // const { user_uuid } = req.decoded;
 
     const { contact_uuid } = req.params;
 
@@ -183,9 +185,9 @@ const editContact = async (req, res) => {
 
     const [results] = await connection.execute(query, updateData);
 
-                      //await notification(values);
-   var NotificationValues = "Contacts updated successfully";
-   await save_notification(NotificationValues, contact_uuid);
+  //await notification(values);
+   var NotificationValues = `${contact_first_name} updated successfully`;
+   await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
       message: "Contacts updated successfully",

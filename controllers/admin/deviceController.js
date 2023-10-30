@@ -196,8 +196,8 @@ const deleteDevice = async (req, res) => {
     ]);
 
     //await notification(values);
-    var NotificationValues = "Device updated successfully";
-    await save_notification(NotificationValues, userUUID);
+    // var NotificationValues = "Device updated successfully";
+    // await save_notification(NotificationValues, userUUID);
 
     res.status(201).send({
       message: "Device deleted successfully",
