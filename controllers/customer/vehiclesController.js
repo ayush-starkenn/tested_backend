@@ -3,6 +3,10 @@ const moment = require("moment-timezone");
 const pool = require("../../config/db");
 const logger = require("../../logger");
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 //add the vehicle into database
 const addVehicle = async (req, res) => {
   const connection = await pool.getConnection();
@@ -56,6 +60,10 @@ const addVehicle = async (req, res) => {
     ];
 
     const [results] = await connection.execute(addQuery, values);
+
+                //await notification(values);
+                var NotificationValues = "Vehicle added successfully";
+                await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       res.status(200).send({
@@ -128,6 +136,10 @@ const editVehicle = async (req, res) => {
     ];
 
     const [results] = await connection.execute(editQuery, values);
+
+                //await notification(values);
+                var NotificationValues = "Vehicle updated successfully";
+                await save_notification(NotificationValues, user_uuid);
 
     res.status(200).send({
       message: "Vehicle updated successfully",
@@ -202,11 +214,23 @@ const deleteVehicle = async (req, res) => {
       .format("YYYY-MM-DD HH:mm:ss");
 
     const deleteQuery =
-      "UPDATE vehicles SET vehicle_status=?,modified_at=?,modified_by=?,ecu='NULL',iot='NULL',dms='NULL'  WHERE vehicle_uuid=?";
+      "UPDATE vehicles SET vehicle_status=?,modified_at=?,modified_by= ?,ecu=?,iot=?,dms=?  WHERE vehicle_uuid=?";
 
-    const values = [0, currentTimeIST, user_uuid, vehicle_uuid];
+    const values = [
+      0,
+      currentTimeIST,
+      user_uuid,
+      null,
+      null,
+      null,
+      vehicle_uuid,
+    ];
 
     const [results] = await connection.execute(deleteQuery, values);
+
+                    //await notification(values);
+                    var NotificationValues = "Successfully vehicle deleted";
+                    await save_notification(NotificationValues, user_uuid);
 
     res.status(200).send({
       message: "Successfully vehicle deleted",

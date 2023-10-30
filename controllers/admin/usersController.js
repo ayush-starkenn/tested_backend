@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
 const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 const app = express();
@@ -156,8 +157,10 @@ exports.Signup = async (req, res) => {
 
     // Send OTP on Email
     await sendEmail(email, type);
+
     //await notification(values);
-    
+    var NotificationValues = "Customer Add Successfully";
+    await save_notification(NotificationValues, user_uuid);
     //await sendWhatsappMessage(phone);
 
     res.status(201).json({ message: "Customer Added Successfully!", results });
@@ -281,6 +284,9 @@ exports.updateCustomers = async (req, res) => {
       first_name, // Swap the order of first_name and existingUserRows[0].company_name
       existingUserRows[0].company_name,
     );
+    //await notification(values);
+    var NotificationValues = "User updated successfully";
+    await save_notification(NotificationValues, user_uuid);
 
     res
       .status(201)
@@ -292,7 +298,6 @@ exports.updateCustomers = async (req, res) => {
     connection.release();
   }
 };
-
 
 // Get customer details by customer ID
 exports.GetCustomerById = async (req, res) => {
@@ -341,6 +346,11 @@ exports.deleteCustomer = async (req, res) => {
     ]);
     // // Send OTP on Email
     // await sendEmail(email, values);
+
+    //await notification(values);
+    var NotificationValues = "Customer deleted successfully";
+    await save_notification(NotificationValues, user_uuid);
+    
     res.status(200).send({ message: "Customer deleted successfully", results });
   } catch (err) {
     logger.error("Error updating user:", err);
@@ -381,6 +391,7 @@ exports.ResetPassword = async (req, res) => {
   try {
     const { user_uuid } = req.params;
     const { oldPassword, newPassword } = req.body;
+    var type = 2;
 
     // Get user information
     const [userRows] = await connection.execute(
@@ -392,7 +403,12 @@ exports.ResetPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-   
+    // app.use((req, res, next) => {
+    //   // Simulating decoded user information (replace with your actual logic)
+    //   req.decoded = { email: 'email' };
+    //   next();
+    // });
+
 
     // Verify old password
     const isPasswordMatch = await bcrypt.compare(
@@ -414,7 +430,11 @@ exports.ResetPassword = async (req, res) => {
     );
 
  // Send OTP on Email
-   await sendEmail(email);
+   await sendEmail(email, type);
+
+       //await notification(values);
+       var NotificationValues = "Password changed successfully";
+       await save_notification(NotificationValues, user_uuid);
 
     res.status(200).json({ message: "Password changed successfully." });
   } catch (err) {
@@ -474,6 +494,10 @@ exports.ForgotPasswordOTP = async (req, res) => {
       [otp, email]
     );
 
+           //await notification(values);
+           var NotificationValues = "OTP generated";
+           await save_notification(NotificationValues, user_uuid);
+
     res.status(200).json({ message: "OTP generated " });
   } catch (err) {
     logger.error("Forgot password error:", err);
@@ -507,6 +531,10 @@ exports.ForgotPasswordOTPVerify = async (req, res) => {
       return res.status(401).json({ message: "Invalid OTP " });
     }
 
+               //await notification(values);
+               var NotificationValues = "OTP verified successfully";
+               await save_notification(NotificationValues, user_uuid);
+
     res.status(200).json({ message: "OTP verified successfully." });
   } catch (err) {
     logger.error("Verify OTP error:", err);
@@ -539,6 +567,10 @@ exports.ForgotPasswordChange = async (req, res) => {
 
  // Send OTP on Email
  await sendEmail(email, values);
+
+      //await notification(values);
+      var NotificationValues = "User Password Change Successfully";
+      await save_notification(NotificationValues, user_uuid);
 
     res
       .status(200)

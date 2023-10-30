@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
 const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 exports.getProfile = async (req, res) => {
 
@@ -121,6 +123,10 @@ exports.updateProfile = async (req, res) => {
         // Send OTP on Email
         await sendEmail(email);
 
+  //await notification(values);
+   var NotificationValues = "User updated successfully";
+   await save_notification(NotificationValues, user_uuid);
+
         res
         .status(202)
         .json({ message: "User updated successfully", customerData: results,first_name });
@@ -139,16 +145,12 @@ exports.changePassword = async (req, res) => {
 
     try {
 
-      // app.use((req, res, next) => {
-      //   // Simulating decoded user information (replace with your actual logic)
-      //   req.decoded = { email: 'email' };
-      //   next();
-      // });
-
         //const { email } = req.decoded;
         const { user_uuid } = req.params;
         const { oldPassword, newPassword } = req.body;
-    
+        const { email } = req.decoded;
+        var type = 2;
+
         // Get user information
         const [userRows] = await connection.execute(
           "SELECT * FROM users WHERE user_uuid = ?",
@@ -176,7 +178,11 @@ exports.changePassword = async (req, res) => {
         );
     
      // Send OTP on Email
-     await sendEmail(email);
+     await sendEmail(email,type);
+
+    //await notification(values);
+   var NotificationValues = "Password changed successfully";
+   await save_notification(NotificationValues, user_uuid);
 
         res.status(200).json({ message: "Password changed successfully." });
       } catch (err) {

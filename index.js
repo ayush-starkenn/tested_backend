@@ -2,6 +2,16 @@ const logger = require("./logger");
 const express = require("express");
 const pool = require("./config/db");
 const setupMQTT = require("./controllers/mqttHandler");
+const cors = require("cors");
+
+require("dotenv").config();
+const PORT = process.env.PORT;
+
+const app = express();
+
+app.use(express.json());
+app.use(cors({ origin: "*" }));
+
 //const  whatsappRouter = require("./middleware/whatsapp");
 
 // Import all routes
@@ -19,25 +29,12 @@ const { rfidRouter } = require("./routes/customer/rfidRoute");
 const { reportsRouter } = require("./routes/customer/reportsRoute");
 const { scheduleRouter } = require("./routes/customer/scheduleRoute");
 const { dashboardRouter } = require("./routes/customer/dashboardRoute");
-
-//const sendReportsByEmail = require("./controllers/customer/schedulReports")
-// const { notification } = require ("./middleware/notify");
-
-const cors = require("cors");
+const { notifiRouter } = require("./routes/customer/notifiRoute");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
-const {
-  vehiclefeaturesetRouter,
-} = require("./routes/customer/vehicleFeaturesetRoute");
+const { vehiclefeaturesetRouter } = require("./routes/customer/vehicleFeaturesetRoute");
 const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 const { tripRouter } = require("./routes/customer/tripRoute");
 
-require("dotenv").config();
-const PORT = process.env.PORT;
-
-const app = express();
-
-app.use(express.json());
-app.use(cors({ origin: "*" }));
 
 setupMQTT();
 //whatsappRouter();
@@ -45,14 +42,11 @@ setupMQTT();
 cronJobForEndTrip();
 // setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
-//sendReportsByEmail();
-
-
 // Login Routes
 app.use("/api", loginRouter);
 
 app.use(authentication);
-//app.use(notification);
+
 // Admin Panel Routes
 app.use("/api/devices", deviceRouter);
 app.use("/api/customers", customerRouter);
@@ -72,11 +66,15 @@ app.use("/api/reports", reportsRouter);
 app.use("/api/schedule_reports", scheduleRouter);
 app.use("/api/trips", tripRouter);
 app.use("/api/dashboardCustomers", dashboardRouter);
+app.use("/api/notification", notifiRouter);
 
+
+// PORT 
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);
 });
 
+// Logger / combined / Error File
 process.on("SIGINT", async () => {
   logger.info("Received SIGINT signal. Closing connection pool...");
   try {

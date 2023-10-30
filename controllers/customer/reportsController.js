@@ -12,8 +12,8 @@ require("dotenv").config();
  
 
 const { sendEmail } = require("../../middleware/mailer");
-const { sendWhatsappMessage } = require("../../middleware/whatsapp");
-const { Console } = require("winston/lib/winston/transports");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 const app = express();
 
@@ -346,6 +346,10 @@ exports.createAllreport = async (req, res) => {
 
     const [results] = await connection.execute(insertQuery, values);
 
+    //await notification(values);
+   var NotificationValues = "Report data successfully created";
+   await save_notification(NotificationValues, user_uuid);
+
     res.status(200).json({
       success: true,
       message: "Report data successfully created",
@@ -455,8 +459,8 @@ exports.getreportsall = async (req, res) => {
     const { user_uuid } = req.params;
 
     const [reportResult] = await connection.execute(
-      "SELECT * FROM reports WHERE user_uuid = ? AND reports_type IN (?,?)  ORDER BY r_id DESC",
-      [user_uuid , 1,2]
+      "SELECT * FROM reports WHERE user_uuid = ? AND reports_type IN (?,?) AND report_status = ? ORDER BY r_id DESC",
+      [user_uuid , 1,2,1]
     );
 
     res.status(200).send({
@@ -473,4 +477,48 @@ exports.getreportsall = async (req, res) => {
   }
 };
 
+// Delete Reports
 
+exports.deleteReports = async (req, res) => {
+  //connection to database
+  const connection = await pool.getConnection();
+
+  try {
+    const { report_uuid } = req.params;
+    const { user_uuid } = req.body;
+
+    //creating current date and time
+    let createdAt = new Date();
+    let currentTimeIST = moment
+      .tz(createdAt, "Asia/Kolkata")
+      .format("YYYY-MM-DD HH:mm:ss ");
+
+    // writing the query
+    const queryMade = `UPDATE reports SET report_status = ?, report_modified_at = ?, report_modified_by = ?  WHERE report_uuid = ?`;
+
+    // executing ...
+    const [results] = await connection.execute(queryMade, [
+      0,
+      currentTimeIST,
+      user_uuid,
+      report_uuid,
+    ]);
+
+  //await notification(values);
+   var NotificationValues = "Reports deleted successfully";
+   await save_notification(NotificationValues, user_uuid);
+
+    res.status(201).json({
+      message: "Reports deleted successfully",
+      totalCount: results.length,
+      results,
+    });
+  } catch (err) {
+    logger.error(`Error in deleting the Reports ${err}`);
+    res
+      .status(500)
+      .json({ message: "Error in deleting the Reports", Error: err });
+  } finally {
+    connection.release();
+  }
+};

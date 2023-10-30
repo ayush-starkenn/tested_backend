@@ -9,6 +9,10 @@ const logger = require("../../logger");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 // Add analytic threshold
 exports.addAnalyticsThreshold = async (req, res) => {
   const connection = await pool.getConnection();
@@ -67,6 +71,10 @@ exports.addAnalyticsThreshold = async (req, res) => {
     ];
 
     const [results] = await connection.execute(insertQuery, values);
+
+        //await notification(values);
+        var NotificationValues = "Analytics Thresholds Added Successfully";
+        await save_notification(NotificationValues, userUUID);
 
     res
       .status(201)
@@ -155,6 +163,10 @@ exports.updateAnalyticsThresholds = async (req, res) => {
     ];
 
     const [results] = await connection.execute(updateQuery, values);
+
+            //await notification(values);
+            var NotificationValues = "Analytics Thresholds Updated Successfully";
+            await save_notification(NotificationValues, user_uuid);
     res
       .status(201)
       .json({ message: "Analytics Thresholds Updated Successfully", results });
@@ -190,6 +202,10 @@ exports.deleteAnalyticsThresholds = async (req, res) => {
       userUUID,
       threshold_uuid,
     ]);
+
+  //await notification(values);
+  var NotificationValues = "Analytics Thresholds deleted successfully";
+  await save_notification(NotificationValues, userUUID);
 
     res
       .status(201)
