@@ -4,7 +4,7 @@ const pool = require("../../config/db.js");
 const logger = require("../../logger.js");
 
 const { sendEmail } = require("../../middleware/mailer");
-const { save_notification} = require("../customer/notifiController");
+const { save_notification } = require("../customer/notifiController");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 //adding the featureset
@@ -45,9 +45,9 @@ const addFeatureset = async (req, res) => {
 
     const [results] = await connection.execute(addQuery, values);
 
-        //await notification(values);
-        var NotificationValues = "Successfully featureset added";
-        await save_notification(NotificationValues, user_uuid);
+    //await notification(values);
+    var NotificationValues = "Successfully featureset added";
+    await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       res.status(201).send({
@@ -101,9 +101,9 @@ const editFeatureset = async (req, res) => {
 
     [results] = await connection.execute(editQuery, values);
 
-        //await notification(values);
-        var NotificationValues = "Successfully featureset updated";
-        await save_notification(NotificationValues, user_uuid);
+    //await notification(values);
+    var NotificationValues = "Successfully featureset updated";
+    await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       res.status(200).send({
@@ -153,7 +153,7 @@ const addVehiclesToMqttFS = async (user_uuid, featureset_data) => {
     const deviceIDs = deviceRows.map((row) => row.iot);
 
     if (deviceIDs.length === 0) {
-      console.log("No devices found for the user.");
+      logger.error("No devices found for the user.");
       return;
     }
 
@@ -365,9 +365,10 @@ const clientFeatureset = async (req, res) => {
       DeleteVehiclesFromVehiFS(user_uuid);
       addVehiclesToMqttFS(user_uuid, featureset_data);
 
-              //await notification(values);
-              var NotificationValues = "Successfully featureset updated and related records deleted";
-              await save_notification(NotificationValues, user_uuid);
+      //await notification(values);
+      var NotificationValues =
+        "Successfully featureset updated and related records deleted";
+      await save_notification(NotificationValues, user_uuid);
 
       res.status(200).send({
         message: "Successfully featureset updated and related records deleted",
@@ -408,9 +409,9 @@ const deleteFeatureset = async (req, res) => {
 
     const [results] = await connection.execute(deleteQuery, values);
 
-  //await notification(values);
-   var NotificationValues = "Successfully featureset deleted";
-   await save_notification(NotificationValues, user_uuid);
+    //await notification(values);
+    var NotificationValues = "Successfully featureset deleted";
+    await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       res
@@ -621,9 +622,9 @@ const assignuser = async (req, res) => {
 
     await connection.execute(updateQuery, addedusers);
 
-      //await notification(values);
-  //  var NotificationValues = "Successfully featureset deleted";
-  //  await save_notification(NotificationValues, user_uuid);
+    //await notification(values);
+    //  var NotificationValues = "Successfully featureset deleted";
+    //  await save_notification(NotificationValues, user_uuid);
 
     if (addedusers) {
       res.status(200).send({

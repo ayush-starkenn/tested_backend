@@ -19,7 +19,7 @@ const addVehiclesToMqttFS = async (vehicle_uuid, featureset_data) => {
     const [iotRow] = await connection.execute(getVehicleIOT, [vehicle_uuid]);
 
     if (iotRow.length === 0 || !iotRow[0].iot) {
-      console.log("No valid device (iot) found for the vehicle.");
+      logger.error("No valid device (iot) found for the vehicle.");
       return;
     }
     const iot = iotRow[0].iot;
