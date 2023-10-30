@@ -214,9 +214,17 @@ const deleteVehicle = async (req, res) => {
       .format("YYYY-MM-DD HH:mm:ss");
 
     const deleteQuery =
-      "UPDATE vehicles SET vehicle_status=?,modified_at=?,modified_by=?,ecu='NULL',iot='NULL',dms='NULL'  WHERE vehicle_uuid=?";
+      "UPDATE vehicles SET vehicle_status=?,modified_at=?,modified_by= ?,ecu=?,iot=?,dms=?  WHERE vehicle_uuid=?";
 
-    const values = [0, currentTimeIST, user_uuid, vehicle_uuid];
+    const values = [
+      0,
+      currentTimeIST,
+      user_uuid,
+      null,
+      null,
+      null,
+      vehicle_uuid,
+    ];
 
     const [results] = await connection.execute(deleteQuery, values);
 
