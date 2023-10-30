@@ -204,7 +204,7 @@ const completeTrip = async (tripID) => {
           let seconds = difference;
           if (hours > 0) {
             duration =
-              hours + " hours " + minutes + " Mins " + seconds + " Sec";
+              hours + " Hours " + minutes + " Mins " + seconds + " Sec";
           } else {
             duration = minutes + " Mins " + seconds + " Sec";
           }
