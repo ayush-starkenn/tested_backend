@@ -10,6 +10,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 exports.getOngoingTripData = async (req, res) => {
   const connection = await pool.getConnection();
 

@@ -3,6 +3,10 @@ const moment = require("moment-timezone");
 const logger = require("../../logger.js");
 const { client } = require("../../config/mqtt.js"); 
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 // Add the device to database
 const addDevice = async (req, res) => {
   // Connection to the database
@@ -41,6 +45,10 @@ const addDevice = async (req, res) => {
     ];
 
     const [results] = await connection.execute(addQuery, values);
+
+//await notification(values);
+  var NotificationValues = `Device /${device_id} added successfully`;
+  await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
       message: "Device added successfully",
@@ -106,6 +114,10 @@ const editDevice = async (req, res) => {
       req.params.device_id,
     ];
 
+    //await notification(values);
+  var NotificationValues = "Device updated successfully";
+  await save_notification(NotificationValues, user_uuid);
+
     const [results] = await connection.execute(editQuery, values);
     res.status(201).json({
       message: "Device updated successfully",
@@ -165,6 +177,7 @@ const deleteDevice = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const { device_id } = req.params;
+    const { userUUID } = req.body;
 
     //creating current date and time
     let createdAt = new Date();
@@ -178,9 +191,13 @@ const deleteDevice = async (req, res) => {
     const [results] = await connection.execute(deleteQuery, [
       0,
       currentTimeIST,
-      req.body.userUUID,
+      userUUID,
       device_id,
     ]);
+
+    //await notification(values);
+    var NotificationValues = "Device updated successfully";
+    await save_notification(NotificationValues, userUUID);
 
     res.status(201).send({
       message: "Device deleted successfully",

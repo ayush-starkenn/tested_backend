@@ -4,6 +4,10 @@ const { v4: uuidv4 } = require("uuid");
 const logger = require("../../logger.js");
 const { clear } = require("winston");
 
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification} = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+
 const getAllContacts = async (req, res) => {
   const connection = await pool.getConnection();
   try {
@@ -110,6 +114,10 @@ const saveContact = async (req, res) => {
 
     const [insertResults] = await connection.execute(insertQuery, insertData);
 
+                  //await notification(values);
+   var NotificationValues = "Contact added successfully";
+   await save_notification(NotificationValues, user_uuid);
+
     res.status(201).json({
       message: "Contact added successfully",
       totalCount: insertResults.length,
@@ -175,6 +183,10 @@ const editContact = async (req, res) => {
 
     const [results] = await connection.execute(query, updateData);
 
+                      //await notification(values);
+   var NotificationValues = "Contacts updated successfully";
+   await save_notification(NotificationValues, contact_uuid);
+
     res.status(201).json({
       message: "Contacts updated successfully",
       totalCount: results.length,
@@ -194,6 +206,7 @@ const deleteContact = async (req, res) => {
 
   try {
     const { contact_uuid } = req.params;
+    const { user_uuid } = req.body;
 
     //creating current date and time
     let createdAt = new Date();
@@ -208,11 +221,15 @@ const deleteContact = async (req, res) => {
     const [results] = await connection.execute(queryMade, [
       0,
       currentTimeIST,
-      req.body.user_uuid,
+      user_uuid,
       contact_uuid,
     ]);
 
-    res.status(201).send({
+  //await notification(values);
+   var NotificationValues = "Contacts deleted successfully";
+   await save_notification(NotificationValues, user_uuid);
+
+    res.status(201).json({
       message: "Contacts deleted successfully",
       totalCount: results.length,
       results,
@@ -221,7 +238,7 @@ const deleteContact = async (req, res) => {
     logger.error(`Error in deleting the Contacts ${err}`);
     res
       .status(500)
-      .send({ message: "Error in deleting the contacts", Error: err });
+      .json({ message: "Error in deleting the contacts", Error: err });
   } finally {
     connection.release();
   }

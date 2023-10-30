@@ -3,8 +3,10 @@ const moment = require("moment-timezone");
 const pool = require("../../config/db.js");
 const logger = require("../../logger.js");
 
-//this function created to add deviceIds & FS to mqttFS to
-const addVehiclesToMqttFS = async (vehicle_uuid, featureset_data) => {
+const { sendEmail } = require("../../middleware/mailer");
+const { save_notification } = require("../customer/notifiController");
+//const { sendWhatsappMessage } = require("../../middleware/whatsapp");
+const addMqttFS = async (vehicle_uuid, featureset_data) => {
   const connection = await pool.getConnection();
   try {
     const parsedFS = JSON.parse(featureset_data);
@@ -226,6 +228,10 @@ const addVehicleFeatureset = async (req, res) => {
 
     const [results] = await connection.execute(addQuery, values);
 
+    //await notification(values);
+    var NotificationValues = "Successfully vehicle featureset added";
+    await save_notification(NotificationValues, user_uuid);
+
     if (results) {
       addVehiclesToMqttFS(vehicle_uuid, featureset_data);
       res.status(200).send({
@@ -268,6 +274,10 @@ const editVehicleFeatureset = async (req, res) => {
     ];
 
     const [results] = await connection.execute(editQuery, values);
+
+    //await notification(values);
+    var NotificationValues = "Successsfully vehicle featureset updated";
+    await save_notification(NotificationValues, user_uuid);
 
     if (results) {
       addVehiclesToMqttFS(vehicle_uuid, featureset_data);
