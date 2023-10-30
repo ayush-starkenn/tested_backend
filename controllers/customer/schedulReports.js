@@ -57,9 +57,9 @@ exports.scheduleReports = async (req, res) => {
         if (contacts.length > 0) {
           const emailAddresses = contacts.map((contact) => contact.contact_email);
           const schedule = {
-            'daily': '5 16 * * *',
+            'daily': '5 0 * * *',
             'weekly': '10 0 * * 1',
-            'monthly': '22 18 * * *'
+            'monthly': '15 0 1 * *'
           }[reports_schedule_type];
 
           cron.schedule(schedule, () => {
@@ -202,7 +202,9 @@ exports.scheduleupdateReports = async (req, res) => {
       ts.vehicle_uuid,
       v.vehicle_name,
       v.vehicle_registration,
-      td2.event  
+      td1.event,  
+      td1.trip_id,
+      td2.created_at
     ORDER BY
       r.report_uuid ASC;
       `;

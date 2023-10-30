@@ -34,7 +34,7 @@ reportsRouter.get(
 );
 
 // This  Api delete a Reports
-reportsRouter.get(
+reportsRouter.put(
   "/delete-report/:report_uuid",
   reportsController.deleteReports
 );
