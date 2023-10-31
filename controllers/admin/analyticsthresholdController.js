@@ -21,7 +21,7 @@ exports.addAnalyticsThreshold = async (req, res) => {
   // Database Connection-------------
   const connection = await pool.getConnection();
   try {
-    const {title,status,brake,tailgating,rash_driving,sleep_alert,over_speed,green_zone,minimum_distance,minimum_driver_rating,ttc_difference_percentage,total_distance,duration,} = req.body;
+    const {customer_id, title,status,brake,tailgating,rash_driving,sleep_alert,over_speed,green_zone,minimum_distance,minimum_driver_rating,ttc_difference_percentage,total_distance,duration,} = req.body;
     const {user_uuid} = req.params;
 
     // Time Stamp In Bhart Zone----------
@@ -37,7 +37,7 @@ exports.addAnalyticsThreshold = async (req, res) => {
 
     const values = [
       threshold_uuid,
-      user_uuid,
+      customer_id,
       title,
       JSON.stringify({
         brake,
@@ -148,17 +148,18 @@ exports.updateAnalyticsThresholds = async (req, res) => {
   const connection = await pool.getConnection();
   try {
     const { threshold_uuid } = req.params;
-    const {user_uuid,title,score,incentive,accident,leadership_board,halt,status,} = req.body;
+    const {customer_id,title,score,incentive,accident,leadership_board,halt,status,user_uuid} = req.body;
 
   // Validate incoming data here-------------------
     if (
-      !user_uuid ||
+      !customer_id ||
       !title ||
       !score ||
       !incentive ||
       !accident ||
       !leadership_board ||
-      !halt
+      !halt ||
+      !user_uuid
     ) {
       return res
         .status(400)
@@ -172,7 +173,7 @@ exports.updateAnalyticsThresholds = async (req, res) => {
     const updateQuery =
       "UPDATE thresholds SET user_uuid=?,title=?, score=?, incentive=?, accident=?, leadership_board=?, halt=?, status=?, modified_at=?, modified_by = ? WHERE threshold_uuid=?";
     const values = [
-      user_uuid,
+      customer_id,
       title,
       JSON.stringify(score),
       JSON.stringify(incentive),
