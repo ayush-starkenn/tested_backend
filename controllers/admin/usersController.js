@@ -159,7 +159,7 @@ exports.Signup = async (req, res) => {
     await sendEmail(email, type);
 
     //await notification(values);
-    var NotificationValues = "Customer Add Successfully";
+    var NotificationValues = `${first_name} ${last_name} has been Added Successfully`;
     await save_notification(NotificationValues, user_uuid);
     //await sendWhatsappMessage(phone);
 
@@ -285,7 +285,7 @@ exports.updateCustomers = async (req, res) => {
       existingUserRows[0].company_name,
     );
     //await notification(values);
-    var NotificationValues = "User updated successfully";
+    var NotificationValues = `${first_name} ${last_name} has been Updated Successfully`;
     await save_notification(NotificationValues, user_uuid);
 
     res
@@ -345,10 +345,10 @@ exports.deleteCustomer = async (req, res) => {
       user_uuid,
     ]);
     // // Send OTP on Email
-    // await sendEmail(email, values);
+    // await sendEmail(email, values); u 
 
     //await notification(values);
-    var NotificationValues = "Customer deleted successfully";
+    var NotificationValues = `Your Account has been Deleted Successfully`;
     await save_notification(NotificationValues, user_uuid);
     
     res.status(200).send({ message: "Customer deleted successfully", results });
@@ -382,6 +382,8 @@ exports.Logout = async (req, res) => {
   } catch (err) {
     logger.error("Logout error:", err);
     return res.status(500).json({ message: "Error in Logout" });
+  } finally {
+    connection.release();
   }
 };
 

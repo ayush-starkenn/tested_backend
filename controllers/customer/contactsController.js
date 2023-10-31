@@ -245,7 +245,7 @@ const deleteContact = async (req, res) => {
     connection.release();
   }
 };
-
+  
 //exports.....
 module.exports = {
   getAllContacts,

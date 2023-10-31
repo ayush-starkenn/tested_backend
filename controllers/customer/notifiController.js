@@ -24,7 +24,7 @@ try{
     .format("YYYY-MM-DD HH:mm:ss");
 
  
-  console.log(NotificationValues);
+  //console.log(NotificationValues);
   const queries = `INSERT INTO notifications (notification_uuid , user_uuid, content , notification_status, notification_created_at, notification_created_by ) VALUES ( ? , ? , ? , ? , ? , ? )`;
 
     const [NotificationResult] = await connection.execute(queries, [

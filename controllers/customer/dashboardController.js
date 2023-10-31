@@ -293,12 +293,42 @@ ORDER BY
 exports.getOngoingLOC = async (req, res) => {
   try {
     const { user_uuid } = req.params;
+  //  const {vehicle_uuid} = req.decoded;
     const event = "LOC";
     const trip_status = 0;
 
-    const query = `SELECT td.event, td.timestamp, td.lat, td.lng, td.spd, td.created_at, v.vehicle_name, v.vehicle_registration, ts.trip_id FROM tripdata AS td INNER JOIN trip_summary AS ts ON td.trip_id = ts.trip_id INNER JOIN vehicles AS v ON ts.vehicle_uuid = v.vehicle_uuid WHERE ts.trip_status = ? AND td.event = ? AND ts.user_uuid = ? ORDER BY td.timestamp DESC LIMIT 1;`;
+    const query = 
+    `SELECT
+    ts.trip_status,
+    td.event, 
+    td.timestamp, 
+    td.lat, 
+    td.lng, 
+    td.spd,
+    td.timestamp,
+    v.vehicle_uuid, 
+    v.vehicle_name, 
+    v.vehicle_registration, 
+    ts.trip_id 
+FROM 
+    vehicles v
+LEFT JOIN
+    trip_summary ts ON v.vehicle_uuid = ts.vehicle_uuid
+LEFT JOIN
+    tripdata AS td ON ts.trip_id = td.trip_id
+WHERE 
+ts.trip_status = ? 
+AND td.event = ? 
+AND ts.user_uuid = ? 
+AND td.timestamp = (
+    SELECT MAX(timestamp)
+    FROM tripdata
+    WHERE trip_id = ts.trip_id
+)
+ORDER BY 
+     td.timestamp DESC;`;
 
-    const params = [trip_status, event, user_uuid];
+    const params = [trip_status, event, user_uuid, ];
     const [results] = await pool.query(query, params);
 
     res.status(200).json({
