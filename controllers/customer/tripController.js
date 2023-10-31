@@ -46,7 +46,7 @@ exports.getOngoingTripdata = async (req, res) => {
     const { vehicle_uuid } = req.params;
 
     const tripID = await getTripdataByVehicleUUID(vehicle_uuid);
-    console.log(tripID);
+    // console.log(tripID);
     if (tripID) {
       const [getTripdata] = await pool.query(
         "SELECT event, message, timestamp, lat, lng, spd FROM tripdata WHERE trip_id = ? ORDER BY timestamp ASC",

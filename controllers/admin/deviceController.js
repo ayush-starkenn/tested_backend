@@ -9,18 +9,16 @@ const { save_notification} = require("../customer/notifiController");
 
 // Add the device to database
 const addDevice = async (req, res) => {
-  // Connection to the database
+  // Connection to the database--------------------
   const connection = await pool.getConnection();
   try {
-    const { device_id, device_type, user_uuid, sim_number, status, userUUID } =
-      req.body;
+    const { device_id, device_type, user_uuid, sim_number, status, userUUID } = req.body;
 
-    // Creating current date and time
+    // Creating current date and time--------------------
     let createdAt = new Date();
-    let currentTimeIST = moment
-      .tz(createdAt, "Asia/Kolkata")
-      .format("YYYY-MM-DD HH:mm:ss");
+    let currentTimeIST = moment.tz(createdAt, "Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
 
+    // Get and check sim number  alredy exists-----------------------
     const checkQuery = "SELECT sim_number FROM devices WHERE sim_number=?";
 
     const [checksim] = await connection.execute(checkQuery, [sim_number]);
@@ -31,6 +29,7 @@ const addDevice = async (req, res) => {
         .json({ message: "Device with this SIM number already exists" });
     }
 
+    // Insert query for new device add
     const addQuery =
       "INSERT INTO devices(`device_id`,`device_type`,`user_uuid`,`sim_number`,`device_status`,`created_at`,`created_by`) VALUES (?,?,?,?,?,?,?)";
 
@@ -46,8 +45,8 @@ const addDevice = async (req, res) => {
 
     const [results] = await connection.execute(addQuery, values);
 
-//await notification(values);
-  var NotificationValues = `Device /${device_id} added successfully`;
+// Notification
+  var NotificationValues = `Device /${device_id} has been Added Successfully`;
   await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
@@ -61,12 +60,12 @@ const addDevice = async (req, res) => {
       // subscribe from the topic
       client.subscribe(`starkennInv3/${device_id}/data`, (err) => {
         if (err) {
-          console.error(
+          logger.error(
             `Error subscribing from topic: starkennInv3/${device_id}/data`,
             err
           );
         } else {
-          console.log(
+          logger.info(
             "Subscribed from topic",
             `starkennInv3/${device_id}/data`
           );
@@ -130,12 +129,12 @@ const editDevice = async (req, res) => {
       // Unsubscribe from the topic
       client.unsubscribe(`starkennInv3/${device_id}/data`, (err) => {
         if (err) {
-          console.error(
+          logger.error(
             `Error unsubscribing from topic: starkennInv3/${device_id}/data`,
             err
           );
         } else {
-          console.log(
+          logger.info(
             "Unsubscribed from topic",
             `starkennInv3/${device_id}/data`
           );
@@ -148,12 +147,12 @@ const editDevice = async (req, res) => {
       // Unsubscribe from the topic
       client.subscribe(`starkennInv3/${device_id}/data`, (err) => {
         if (err) {
-          console.error(
+          logger.error(
             `Error subscribing from topic: starkennInv3/${device_id}/data`,
             err
           );
         } else {
-          console.log(
+          logger.info(
             "Subscribed from topic",
             `starkennInv3/${device_id}/data`
           );
@@ -210,12 +209,12 @@ const deleteDevice = async (req, res) => {
       // Unsubscribe from the topic
       client.unsubscribe(`starkennInv3/${device_id}/data`, (err) => {
         if (err) {
-          console.error(
+          logger.error(
             `Error unsubscribing from topic: starkennInv3/${device_id}/data`,
             err
           );
         } else {
-          console.log(
+          logger.info(
             "Unsubscribed from topic",
             `starkennInv3/${device_id}/data`
           );

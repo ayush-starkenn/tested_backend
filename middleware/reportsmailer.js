@@ -31,9 +31,9 @@ async function sendReportsByEmail(title, recipients, newUuid) {
 
     await transporter.sendMail(mailOptions);
 
-    console.log("Email sent successfully");
+    logger.info("Email sent successfully");
   } catch (error) {
-    console.log("Error sending email:", error);
+   // console.log("Error sending email:", error);
     logger.error("sendEmail error:", error);
     // Handle the error appropriately, such as sending an alert or retrying.
   } finally {

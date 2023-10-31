@@ -42,7 +42,7 @@ try{
 
    // io.emit("123", data);
   } catch (error) {
-    console.log("Error in notification:", error);
+    // console.log("Error in notification:", error);
     logger.error("notification error:", error);
     // Handle the error appropriately, such as sending an alert or retrying.
   } finally {
