@@ -437,7 +437,7 @@ const trigerMode = async (event, vehicleUUID) => {
       [vehicleUUID, event, 1]
     );
     if (triggers.length > 0) {
-      // console.log(triggers);
+      console.log(triggers);
       sendEmail("piyush@starkenn.com", `${event} mode due to Some reason...`);
     } else {
       // logger.info(`No alert trigger found`);
