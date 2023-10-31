@@ -24,7 +24,7 @@ try{
     .format("YYYY-MM-DD HH:mm:ss");
 
  
-  console.log(NotificationValues);
+  //console.log(NotificationValues);
   const queries = `INSERT INTO notifications (notification_uuid , user_uuid, content , notification_status, notification_created_at, notification_created_by ) VALUES ( ? , ? , ? , ? , ? , ? )`;
 
     const [NotificationResult] = await connection.execute(queries, [
@@ -35,7 +35,7 @@ try{
       currentTimeIST,
       user_uuid,
     ]);
-    console.log(NotificationResult);
+   // console.log(NotificationResult);
 
     // set the socket.io
    // const data = `${NotificationValues[2]} : by ${NotificationValues[1]} at time : ${currentTimeIST}`;

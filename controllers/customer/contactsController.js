@@ -178,7 +178,7 @@ const editContact = async (req, res) => {
       contact_mobile,
       contact_status,
       currentTimeIST2,
-      contact_uuid,
+      user_uuid,
       //req.body.user_uuid,
       contact_uuid,
     ];
@@ -245,7 +245,7 @@ const deleteContact = async (req, res) => {
     connection.release();
   }
 };
-
+  
 //exports.....
 module.exports = {
   getAllContacts,
