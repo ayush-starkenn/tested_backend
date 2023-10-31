@@ -64,7 +64,7 @@ exports.scheduleReports = async (req, res) => {
 
           cron.schedule(schedule, () => {
             sendReportsByEmail(title, emailAddresses, newUuid);
-            console.log(`Scheduled ${reports_schedule_type} email sent`);
+          //  console.log(`Scheduled ${reports_schedule_type} email sent`);
           });
         }
       }
@@ -307,7 +307,7 @@ async function updateschedulereports(s_reports, report_uuid,title,res,timeAgoFor
         });
       } else {
         // Handle the case where res is not defined or incorrect
-        console.error("Response object (res) is undefined or incorrect.");
+        logger.error("Response object (res) is undefined or incorrect.");
       }
     }
   } catch (error) {

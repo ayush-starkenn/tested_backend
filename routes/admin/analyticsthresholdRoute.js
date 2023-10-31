@@ -3,27 +3,21 @@ const ATController = require("../../controllers/admin/analyticsthresholdControll
 const ATRouter = express.Router();
 
 // ADD Analytics Threshold
-ATRouter.post("/add-analytics", ATController.addAnalyticsThreshold);
+ATRouter.post("/add-analytics/:user_uuid", ATController.addAnalyticsThreshold);
 
-// Get Customers By ID
-ATRouter.get(
-  "/get-AnalyticsThresholds-ById/:threshold_uuid",
-  ATController.getByIdAnalyticsThresholds
-);
+// Get Analytics Thresholds By AT - uuid 
+ATRouter.get("/get-AnalyticsThresholds-ById/:threshold_uuid",ATController.getByIdAnalyticsThresholds);
 
-// Get Analytics Threshold Routes //
+// Get- ALL - Analytics Threshold  //
 ATRouter.get("/get-analytics-threshold", ATController.getAnalyticsThreshold);
 
+// Get Analytics thresholds By User UUID
+ATRouter.get("/get-analytics-threshold-userID/:user_uuid", ATController.getAnalyticsThresholduser);
+
 // Update Analytics Threshold Routes //
-ATRouter.put(
-  "/update-analytic-threshold/:threshold_uuid",
-  ATController.updateAnalyticsThresholds
-);
+ATRouter.put("/update-analytic-threshold/:threshold_uuid",ATController.updateAnalyticsThresholds);
 
 // Delete Analytics Threshold Routes //
-ATRouter.put(
-  "/delete-analytic-threshold/:threshold_uuid",
-  ATController.deleteAnalyticsThresholds
-);
+ATRouter.put("/delete-analytic-threshold/:threshold_uuid",ATController.deleteAnalyticsThresholds);
 
 module.exports = { ATRouter };

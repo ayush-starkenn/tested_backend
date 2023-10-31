@@ -86,7 +86,7 @@ const cronJobForEndTrip = async () => {
               [tripEndTime, distance, duration, avgSpd, maxSpd, 1, tripID]
             );
 
-            console.log("Trip completed:", updateTrip);
+            logger.info("Trip completed:", updateTrip);
           }
         } else {
           logger.info("Trip data not found for the Trip ID", tripID);

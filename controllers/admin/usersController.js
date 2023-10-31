@@ -255,7 +255,6 @@ exports.updateCustomers = async (req, res) => {
         message: "User already exists with the provided email or mobile",
       });
     }
-    
 
     const updateQuery =
       "UPDATE users SET first_name=?, last_name=?, email=?, company_name=?, address=?, state=?, city=?, pincode=?, phone=?, modified_at=?, modified_by = ? WHERE user_uuid=?";
