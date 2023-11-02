@@ -9,7 +9,7 @@ pipeline {
 	    stage('gitclone') {
 
 			steps {
-				git 'https://github.com/piyushak21/finalBetaV2.git'
+				git branch: 'main', credentialsId: 'githublocal', url: 'https://github.com/piyushak21/finalBetaV2.git'
 			}
 		}
 
