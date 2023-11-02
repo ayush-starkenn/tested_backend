@@ -63,7 +63,7 @@ const checkForTripCompletion = async (validatedJson) => {
     const vehicleUUID = getVehicleUUID[0].vehicle_uuid;
 
     const checkTrip = await checkIfTripAlreadyCompleted(vehicleUUID);
-    console.log(checkTrip);
+    // console.log(checkTrip);
     if (checkTrip === true) {
       logger.info(
         `Trip is already completed for this Vehicle ${vehicleUUID} New trip will generate.`
@@ -94,11 +94,11 @@ const checkForTripCompletion = async (validatedJson) => {
 
         // check the time diff is > 30 mins
         if (timeDifferenceInMinutes > 30) {
-          console.log("Trip end");
+          // console.log("Trip end");
           // Complete the trip
           completeTrip(checkTrip[0].trip_id);
         } else {
-          console.log("trip continue");
+          // console.log("trip continue");
           // Store valid JSON in DB [continue trip]
           storeJsonInDatabase(validatedJson);
         }
@@ -219,7 +219,7 @@ const completeTrip = async (tripID) => {
           [tripEndTime, distance, duration, avgSpd, maxSpd, 1, tripID]
         );
 
-        console.log("Trip completed:", updateTrip);
+        // console.log("Trip completed:", updateTrip);
       } else {
         logger.info("Trip data not found for the Trip ID", tripID);
       }
@@ -399,9 +399,7 @@ const deleteLocalFeatureset = async (fs_id) => {
       [fs_id]
     );
     if (deleteQ) {
-      console.log("deleted");
-    } else {
-      console.log("not deleted");
+      logger.info("Featureset send to IoT");
     }
   } catch (error) {
     logger.error(`Error in delete featureset ${error}`);
@@ -421,7 +419,6 @@ const storeInvalidJsonInDatabase = async (topic, message) => {
     );
 
     logger.info("Stored invalid Tripdata in the database");
-    return;
   } catch (error) {
     logger.error(
       `Error storing invalid Tripdata in database: ${error.message}`
@@ -441,7 +438,7 @@ const trigerMode = async (event, vehicleUUID) => {
       [vehicleUUID, event, 1]
     );
     if (triggers.length > 0) {
-      console.log(triggers);
+      // console.log(triggers);
       sendEmail("piyush@starkenn.com", `${event} mode due to Some reason...`);
     } else {
       // logger.info(`No alert trigger found`);
