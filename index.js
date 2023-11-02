@@ -31,16 +31,17 @@ const { scheduleRouter } = require("./routes/customer/scheduleRoute");
 const { dashboardRouter } = require("./routes/customer/dashboardRoute");
 const { notifiRouter } = require("./routes/customer/notifiRoute");
 const { featuresetRouter } = require("./routes/admin/featuresetRoute");
-const { vehiclefeaturesetRouter } = require("./routes/customer/vehicleFeaturesetRoute");
+const {
+  vehiclefeaturesetRouter,
+} = require("./routes/customer/vehicleFeaturesetRoute");
 const { alertRouter } = require("./routes/customer/alerttriggersRoute");
 const { tripRouter } = require("./routes/customer/tripRoute");
-
 
 setupMQTT();
 //whatsappRouter();
 
 cronJobForEndTrip();
-// setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
+setInterval(cronJobForEndTrip, 10 * 60 * 1000); // run cronjob every 10 mins
 
 // Login Routes
 app.use("/api", loginRouter);
@@ -68,8 +69,7 @@ app.use("/api/trips", tripRouter);
 app.use("/api/dashboardCustomers", dashboardRouter);
 app.use("/api/notification", notifiRouter);
 
-
-// PORT 
+// PORT
 app.listen(PORT, () => {
   logger.info(`App is running on port ${PORT}`);
 });
