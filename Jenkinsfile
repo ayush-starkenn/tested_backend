@@ -39,6 +39,12 @@ pipeline {
 				sh 'docker push piyushakotkar/jenkinsnodelocal:latest'
 			}
 		}
+
+        stage('Run to Docker Hub') {
+            steps {
+                sh 'docker run -d -p 3001:3001 piyushakotkar/jenkinsnodelocal:latest'
+            }
+        }
 	}
 
 	post {
