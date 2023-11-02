@@ -19,6 +19,13 @@ pipeline {
             }
         }
 
+        stage('Stop and Remove Previous Container') {
+            steps {
+                sh 'docker stop piyushakotkar/jenkinsnodelocal || true'
+                sh 'docker rm piyushakotkar/jenkinsnodelocal || true'
+            }
+        }
+
 		stage('Docker Build') {
 
 			steps {
@@ -40,7 +47,7 @@ pipeline {
 			}
 		}
 
-        stage('Run to Docker Hub') {
+        stage('Run Docker Container') {
             steps {
                 sh 'docker run -d -p 3001:3001 piyushakotkar/jenkinsnodelocal:latest'
             }
