@@ -31,18 +31,21 @@ const setupMQTT = () => {
   });
 
   client.on("message", (topic, message) => {
-    // console.log(`${message.toString()}`);
-    try {
-      const validatedJson = JSON.parse(message.toString());
-
-      // Check for trip completion if the current data is > 30 mins
-      checkForTripCompletion(validatedJson);
-    } catch (error) {
-      logger.error(
-        `MQTT send invalid JSON from Topic : ${topic} Error: ${error.message}`
-      );
-      // Call the function to store in DB
-      storeInvalidJsonInDatabase(topic, message.toString());
+    if (message) {
+      // If message is not null, try to parse it as JSON
+      try {
+        const validatedJson = JSON.parse(message.toString());
+        // Check for trip completion if the current data is > 30 mins
+        checkForTripCompletion(validatedJson);
+      } catch (error) {
+        // Call the function to store in DB
+        storeInvalidJsonInDatabase(topic, message.toString());
+        logger.error(
+          `MQTT send invalid JSON from Topic : ${topic} Error: ${error.message}`
+        );
+      }
+    } else {
+      logger.error("Received a null message from MQTT.");
     }
   });
 
@@ -418,6 +421,7 @@ const storeInvalidJsonInDatabase = async (topic, message) => {
     );
 
     logger.info("Stored invalid Tripdata in the database");
+    return;
   } catch (error) {
     logger.error(
       `Error storing invalid Tripdata in database: ${error.message}`
