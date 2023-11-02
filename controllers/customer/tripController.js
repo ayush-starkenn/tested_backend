@@ -21,7 +21,7 @@ exports.getTripSummary = async (req, res) => {
     const [results] = await connection.execute(query, [vehicle_uuid, 1]);
 
     if (results.length === 0) {
-      return res.status(404).send({ error: "Trip data not found!" });
+      logger.info(`Trip data not found for vehicle ${vehicle_uuid}`);
     }
 
     res.status(200).send({
