@@ -1,10 +1,10 @@
 const pool = require("../../config/db.js");
 const moment = require("moment-timezone");
 const logger = require("../../logger.js");
-const { client } = require("../../config/mqtt.js"); 
+const { client } = require("../../config/mqtt.js");
 
 const { sendEmail } = require("../../middleware/mailer");
-const { save_notification} = require("../customer/notifiController");
+const { save_notification } = require("../customer/notifiController");
 //const { sendWhatsappMessage } = require("../../middleware/whatsapp");
 
 // Add the device to database
@@ -12,11 +12,14 @@ const addDevice = async (req, res) => {
   // Connection to the database--------------------
   const connection = await pool.getConnection();
   try {
-    const { device_id, device_type, user_uuid, sim_number, status, userUUID } = req.body;
+    const { device_id, device_type, user_uuid, sim_number, status, userUUID } =
+      req.body;
 
     // Creating current date and time--------------------
     let createdAt = new Date();
-    let currentTimeIST = moment.tz(createdAt, "Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss");
+    let currentTimeIST = moment
+      .tz(createdAt, "Asia/Kolkata")
+      .format("YYYY-MM-DD HH:mm:ss");
 
     // Get and check sim number  alredy exists-----------------------
     const checkQuery = "SELECT sim_number FROM devices WHERE sim_number=?";
@@ -37,7 +40,7 @@ const addDevice = async (req, res) => {
       device_id,
       device_type,
       user_uuid,
-      sim_number,
+      sim_number || null,
       parseInt(status),
       currentTimeIST,
       userUUID,
@@ -45,9 +48,9 @@ const addDevice = async (req, res) => {
 
     const [results] = await connection.execute(addQuery, values);
 
-// Notification
-  var NotificationValues = `Device /${device_id} has been Added Successfully`;
-  await save_notification(NotificationValues, user_uuid);
+    // Notification
+    var NotificationValues = `Device /${device_id} has been Added Successfully`;
+    await save_notification(NotificationValues, user_uuid);
 
     res.status(201).json({
       message: "Device added successfully",
@@ -114,8 +117,8 @@ const editDevice = async (req, res) => {
     ];
 
     //await notification(values);
-  var NotificationValues = "Device updated successfully";
-  await save_notification(NotificationValues, user_uuid);
+    var NotificationValues = "Device updated successfully";
+    await save_notification(NotificationValues, user_uuid);
 
     const [results] = await connection.execute(editQuery, values);
     res.status(201).json({
