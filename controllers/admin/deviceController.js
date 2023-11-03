@@ -109,7 +109,7 @@ const editDevice = async (req, res) => {
       device_id,
       device_type,
       user_uuid,
-      sim_number,
+      sim_number || null,
       parseInt(device_status),
       currentTimeIST,
       userUUID,
