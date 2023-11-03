@@ -59,8 +59,10 @@ const cronJobForEndTrip = async () => {
 
             // Set Trip Total distance
             let distance = 0;
-            const totalDistance = pkg.getPathLength(path); // In meters
-            distance = totalDistance / 1000; // In Kms
+            if (path) {
+              const totalDistance = pkg.getPathLength(path); // In meters
+              distance = totalDistance / 1000; // In Kms
+            }
 
             // Set Trip duration
             let difference = "";
