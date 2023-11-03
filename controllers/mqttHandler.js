@@ -192,8 +192,10 @@ const completeTrip = async (tripID) => {
 
         // Set Trip Total distance
         let distance = 0;
-        const totalDistance = pkg.getPathLength(path); // In meters
-        distance = totalDistance / 1000; // In Kms
+        if (pkg) {
+          const totalDistance = pkg.getPathLength(path); // In meters
+          distance = totalDistance / 1000; // In Kms
+        }
 
         // Set Trip duration
         let difference = "";
@@ -218,8 +220,9 @@ const completeTrip = async (tripID) => {
           "UPDATE trip_summary SET trip_end_time = ?, total_distance = ?, duration = ?, avg_spd =?, max_spd = ?, trip_status =? WHERE trip_id = ?",
           [tripEndTime, distance, duration, avgSpd, maxSpd, 1, tripID]
         );
-
-        // console.log("Trip completed:", updateTrip);
+        if (updateTrip.affectedRows > 0) {
+          logger.info(`Trip completed tripID: tripID`);
+        }
       } else {
         logger.info("Trip data not found for the Trip ID", tripID);
       }
